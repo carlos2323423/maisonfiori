@@ -19,9 +19,9 @@ use App\Http\Controllers\UsersController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::redirect('/', '/home');
+// Route::redirect('/', '/home');
 
-Route::get('/home', [HomeController::class, 'index']);
+// Route::get('/home', [HomeController::class, 'index']);
 
 Route::get('/about', [AboutController::class, 'index']);
 
@@ -32,6 +32,12 @@ Route::get('/evaluaciong', [EvaluacionGController::class, 'index']);
 Route::get('/evaluacion', [EvaluacionController::class, 'index']);
 
 Route::get('/empleados', [EmpleadosController::class, 'index']);
+
+// queryes sql
+Route::get('/insert', [HomeController::class, 'insert']);
+Route::get('/edit', [EmpleadosController::class, 'edit']);
+Route::get('/read', [EmpleadosController::class, 'read']);
+Route::get('/delete', [EmpleadosController::class, 'delete']);
 
 // Route::resource('empleados',[EmpleadosController::class]);
 
