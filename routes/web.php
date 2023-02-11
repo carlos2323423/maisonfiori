@@ -46,6 +46,8 @@ Route::group(['prefix'=>'admin', 'as'=>'admin'], function() {
    Route::get('/usuarios', [UsersController::class, 'index']);
 });
 
+// Route::resoruce('/posts', User::class);
+// Route::get()
 // Route::get('/', function () {
 //     return view('welcome');
 // });
