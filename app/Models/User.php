@@ -5,21 +5,42 @@ namespace App\Models;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Contracts\Auth\Authenticatable;
 
-class User extends Model
-{
+class User extends Model implements Authenticatable
+{    
+    use \Illuminate\Auth\Authenticatable;
     use HasFactory;
     public function create (array $array) {
+        // $user =  DB::transaction(function() use ($array) {
+        //     $user = User::create([
+        //         'firstname' => $array['firstname'],
+        //         'lastname' => $array['lastname'],
+        //         'CI' => $array['ci'],
+        //         // 'CI' => '65161651',
+        //         'email' => $array['email'],                                
+        //         'password' => $array['password']                
+        //     ]);
+        //     return $user;
+        // });         
+        // return $user;                        
         $firstname = $array['firstname'];
         $lastname = $array['lastname'];
         $ci = $array['ci'];
         $email = $array['email'];
         $password = $array['password'];
         $date = new DateTime();
-        DB::connection('mysql')->insert("INSERT INTO User (UserID, LastName, FirstName, CI, Email, password)
-        VALUES (1, '$lastname', '$firstname', '$ci', '$email', '$password');");
-        // DB::connection('mysql')->insert("INSERT INTO User (UserID, LastName, FirstName, CI, Email, password)
-        // VALUES (1, 'Vasquez', 'Carlos', '6550387', 'fiorimaison36@gmail.com', 'password');");
+        $user = DB::connection('mysql')->insert("INSERT INTO User (LastName, FirstName, CI, Email, password)
+        VALUES ('$lastname', '$firstname', '$ci', '$email', '$password');");        
+        $user = [
+            'firstname' => $array['firstname'],
+            'lastname' => $array['lastname'],
+            'CI' => $array['ci'],            
+            'email' => $array['email'],                                
+            'password' => $array['password'],
+        ];        
+        return $user;        
     }
 
     public function edit () {
