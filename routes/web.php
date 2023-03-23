@@ -33,7 +33,7 @@ use App\Http\Controllers\RedirectorController;
 */
 // Route::redirect('/', '/home');
 
-// Route::get('/home', [HomeController::class, 'index']);
+      Route::get('/home', [HomeController::class, 'index']);
 
 // START CONTROLLERS ROUTES
 
@@ -80,6 +80,6 @@ Route::group(['prefix'=>'admin', 'as'=>'admin'], function() {
 
 
 
-// Auth::routes();
+Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

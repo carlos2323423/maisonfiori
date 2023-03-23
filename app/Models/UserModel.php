@@ -8,6 +8,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserModel extends Model
 {
+     /**
+    * The table associated with the model.
+    *
+    * @var string
+    */
+    protected $table = 'User';
+
+    /**
+    * The primary key associated with the table.
+    *
+    * @var string
+    */
+    protected $primaryKey = 'UserID';
+     /**
+    * Show a list of all of the application's users.
+    *
+    * @return Response
+    */
+    public function index()
+    {
+        $users = DB::table('User')->get();
+        return view('home.index', ['users' => $users]);
+    }
     use HasFactory;
     public function create (array $array) {
 

@@ -7,13 +7,7 @@ use App\Models\UserModel;
 use Illuminate\Http\Request;
 
 class UserModelController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
+{    
     public function authenticate(Request $request) {          
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -104,9 +98,9 @@ class UserModelController extends Controller
             'password' => $request->password,
         ];        
         $dataUser = $this->select($data);
-        $this->authenticate($request);
-        echo ('hola soy el store de login');
-        
+        return $this->authenticate($request);
+        // echo ('hola soy el store de login');
+        // return redirect('home');
     }
 
     /**
