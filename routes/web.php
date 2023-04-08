@@ -31,9 +31,20 @@ use App\Http\Controllers\RedirectorController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/clear', function() {
+
+   Artisan::call('cache:clear');
+   Artisan::call('config:clear');
+   Artisan::call('config:cache');
+   Artisan::call('view:clear');
+   Artisan::call('route:clear');
+
+   return "Cleared!";
+
+});
 // Route::redirect('/', '/home');
 
-      Route::get('/home', [HomeController::class, 'index']);
+      // Route::get('/home', [HomeController::class, 'index']);
 
 // START CONTROLLERS ROUTES
 
@@ -49,9 +60,9 @@ use App\Http\Controllers\RedirectorController;
       Route::get('/empleados', [EmpleadosController::class, 'index']);
 
       // Route::get('/register', [UserModelController::class, 'index']);
-      Route::get('/register', [RedirectorController::class, 'register'])->name('register');
+      // Route::get('/register', [RedirectorController::class, 'register'])->name('register');
 
-      Route::get('/login', [RedirectorController::class, 'login'])->name('login');
+      // Route::get('/login', [RedirectorController::class, 'login'])->name('login');
 
    // END GETING BLADES
 // END CONTROLLERS ROUTES
@@ -76,10 +87,12 @@ Route::group(['prefix'=>'admin', 'as'=>'admin'], function() {
    Route::get('/', [AdminController::class, 'index']);
    Route::get('/usuarios', [UsersController::class, 'index']);
 });
-
-
-
+// Middleware START
+Route::get('profile', function () {
+   // Only authenticated users may enter...
+})->middleware('auth');
+// Middleware END
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
