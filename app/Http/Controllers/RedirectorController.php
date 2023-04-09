@@ -7,13 +7,17 @@ use Illuminate\Http\Request;
 
 class RedirectorController extends Controller
 {
-    public function login() {
-        //
-        return view('login', ['title' => 'Home Page']);
-    }
+    // public function login() {
+    //     //
+    //     return view('login', ['title' => 'Home Page']);
+    // }
 
-    public function register() {
-        return view('register', ['title' => 'Home Page']);
+    // public function register() {
+    //     return view('register', ['title' => 'Home Page']);
+    // }    
+
+    public function welcome() {
+        return view('welcome', ['title' => 'Welcome']);
     }    
     /**
      * Display a listing of the resource.

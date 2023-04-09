@@ -10,12 +10,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 /** START ADITIONS */
 use Illuminate\Support\Facades\Auth;
-if (Auth::check()) {
-    // The user is logged in...
-}
+// if (Auth::check()) {
+//     // The user is logged in...
+// }
 // Get the currently authenticated user...
 $user = Auth::user();
 // Get the currently authenticated user's ID...
+// $id = Auth::UserID();
 $id = Auth::id();
 /** END ADITIONS */
 class RegisterController extends Controller

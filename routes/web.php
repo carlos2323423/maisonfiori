@@ -62,7 +62,8 @@ Route::get('/clear', function() {
       // Route::get('/register', [UserModelController::class, 'index']);
       // Route::get('/register', [RedirectorController::class, 'register'])->name('register');
 
-      // Route::get('/login', [RedirectorController::class, 'login'])->name('login');
+      // Route::get('/login', [RedirectorController::class, 'login'])->name('login');      
+      Route::get('/', [RedirectorController::class, 'welcome'])->name('welcome');      
 
    // END GETING BLADES
 // END CONTROLLERS ROUTES
@@ -91,6 +92,7 @@ Route::group(['prefix'=>'admin', 'as'=>'admin'], function() {
 Route::get('profile', function () {
    // Only authenticated users may enter...
 })->middleware('auth');
+
 // Middleware END
 
 Auth::routes();
