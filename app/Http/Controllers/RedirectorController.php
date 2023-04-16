@@ -17,7 +17,11 @@ class RedirectorController extends Controller
     // }    
 
     public function welcome() {
-        return view('welcome', ['title' => 'Welcome']);
+        return view('welcome2', ['title' => 'Welcome']);
+    }    
+
+    public function users() {
+        return view('usuarios', ['title' => 'Welcome']);
     }    
     /**
      * Display a listing of the resource.

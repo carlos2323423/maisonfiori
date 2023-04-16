@@ -21,6 +21,9 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\UserModelController;
 
 use App\Http\Controllers\RedirectorController;
+
+use App\Http\Controllers\RegisterManagerController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +45,34 @@ Route::get('/clear', function() {
    return "Cleared!";
 
 });
+
+
+// // Authentication Routes...
+// Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+// Route::post('login', 'Auth\LoginController@login');
+// Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+// // Registration Routes...
+// Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+// Route::post('register', 'Auth\RegisterController@register');
+
+// // Password Reset Routes...
+// Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+// Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+// Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+// Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+
+// // Confirm Password (added in v6.2)
+// Route::get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
+// Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
+
+// // Email Verification Routes...
+// Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+// Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify'); // v6.x
+// /* Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify'); // v5.x */
+// Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+
+
 // Route::redirect('/', '/home');
 
       // Route::get('/home', [HomeController::class, 'index']);
@@ -59,11 +90,15 @@ Route::get('/clear', function() {
 
       Route::get('/empleados', [EmpleadosController::class, 'index']);
 
-      // Route::get('/register', [UserModelController::class, 'index']);
-      // Route::get('/register', [RedirectorController::class, 'register'])->name('register');
+// START ROUTES REDIRECTOR CONTROLLER
 
-      // Route::get('/login', [RedirectorController::class, 'login'])->name('login');      
-      Route::get('/', [RedirectorController::class, 'welcome'])->name('welcome');      
+   // Route::get('/register', [UserModelController::class, 'index']);
+   // Route::get('/register', [RedirectorController::class, 'register'])->name('register');
+
+   // Route::get('/login', [RedirectorController::class, 'login'])->name('login');      
+   Route::get('/', [RedirectorController::class, 'welcome'])->name('welcome');      
+   Route::get('/users', [RedirectorController::class, 'users'])->name('usuarios');
+// END ROUTES REDIRECTOR CONTROLLER
 
    // END GETING BLADES
 // END CONTROLLERS ROUTES
@@ -79,10 +114,12 @@ Route::get('/delete', [EmpleadosController::class, 'delete']);
       Route::get('/edit', [EmpleadosController::class, 'edit']);
       Route::get('/read', [EmpleadosController::class, 'read']);
       Route::get('/delete', [EmpleadosController::class, 'delete']);      
-      // START form receptor
-      Route::post('/register', [UserModelController::class, 'store_register'])->name('registersent');
+      // START form receptor REGISTER MANNAGER
+      Route::post('/register_user', [UserModelController::class, 'store'])->name('registersent');
+      Route::post('/register_user', [RegisterManagerController::class, 'store'])->name('user_registersent');
+      // $this->post('register', 'Auth\RegisterController@register');
       Route::post('/login', [UserModelController::class, 'store_login'])->name('loginsent');
-      // END form receptor
+      // END form receptor REGISTER MANNAGER
    // END UserModelController
 Route::group(['prefix'=>'admin', 'as'=>'admin'], function() {
    Route::get('/', [AdminController::class, 'index']);
@@ -95,6 +132,8 @@ Route::get('profile', function () {
 
 // Middleware END
 
-Auth::routes();
-
+Auth::routes(
+   
+);
+// Auth::routes(['register' => false]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

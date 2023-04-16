@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,9 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $user = Auth::user();
         $this->middleware('auth');
-        // $this->middleware('guest');
     }
 
     /**

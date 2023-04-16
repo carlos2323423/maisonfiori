@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use App\Models\UserModel;
+// use App\Models\UserModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserModelController extends Controller
@@ -40,7 +41,7 @@ class UserModelController extends Controller
     {        
         // return $request;
         // return gettype($request);                
-        return UserModel::create([
+        return User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'ci' => $data['ci'],
