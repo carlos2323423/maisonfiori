@@ -87,8 +87,9 @@ Route::get('/clear', function() {
       Route::get('/evaluaciong', [EvaluacionGController::class, 'index']);
 
       Route::get('/evaluacion', [EvaluacionController::class, 'index']);
-
-      Route::get('/empleados', [EmpleadosController::class, 'index']);
+      
+      Route::get('/empleados', [RedirectorController::class, 'empleados'])->name('empleados');
+      // Route::get('/empleados', [EmpleadosController::class, 'index']);
 
 // START ROUTES REDIRECTOR CONTROLLER
 
@@ -116,7 +117,7 @@ Route::get('/delete', [EmpleadosController::class, 'delete']);
       Route::get('/delete', [EmpleadosController::class, 'delete']);      
       // START form receptor REGISTER MANNAGER
       Route::post('/register_user', [UserModelController::class, 'store'])->name('registersent');
-      Route::post('/register_user', [RegisterManagerController::class, 'store'])->name('user_registersent');
+      
       // $this->post('register', 'Auth\RegisterController@register');
       Route::post('/login', [UserModelController::class, 'store_login'])->name('loginsent');
       // END form receptor REGISTER MANNAGER
@@ -137,3 +138,16 @@ Auth::routes(
 );
 // Auth::routes(['register' => false]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// START FORM BY USERS
+// CREATE
+Route::post('/register_user', [RegisterManagerController::class, 'store'])->name('user_registersent');
+// DELETE
+Route::delete('/destroy_user/{id}', [RegisterManagerController::class, 'destroy'])->name('user_destroysent');
+// SHOW
+Route::get('/profesores/{id}/ver', [RegisterManagerController::class, 'show'])->name('user.show');
+// EDIT
+// Route::get('/user/{id}/editar', [RegisterManagerController::class, 'edit'])->name('usuario.edit');
+Route::post('/user/{id}/editar', [RegisterManagerController::class, 'edit'])->name('usuario.edit');
+Route::put('/user/{id}', [RegisterManagerController::class, 'update'])->name('usuario.update');
+// Route::delete('/profesores/{id}', [ProfesorController::class, 'destroy'])->name('profesores.destroy');
+// END FORM BY USERS

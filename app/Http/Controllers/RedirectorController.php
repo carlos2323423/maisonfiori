@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\UserModel;
+use App\Models\User;
+use App\Models\Empleado;
 use Illuminate\Http\Request;
 
 class RedirectorController extends Controller
@@ -21,7 +21,33 @@ class RedirectorController extends Controller
     }    
 
     public function users() {
-        return view('usuarios', ['title' => 'Welcome']);
+        // selection query        
+        $usuarios = User::all();        
+        return view('usuarios', [
+            'title' => 'Welcome',
+            'usuarios' => $usuarios,
+        ]);
+    }    
+    public function empleados() {
+        $spaces = [
+            'hotel',
+            'nivel',
+            'rol',
+            'foto',
+            'nombre',
+            'ci',
+            'celular',
+            'ingreso',
+            'genero',
+        ];
+        // selection query                      
+        $usuarios = Empleado::all();  
+
+        return view('empleados', [
+            'title' => 'Welcome',
+            'usuarios' => $usuarios,
+            'spaces' => $spaces,
+        ]);
     }    
     /**
      * Display a listing of the resource.
@@ -62,7 +88,9 @@ class RedirectorController extends Controller
      */
     public function show(UserModel $userModel)
     {
-        //
+        // selection query        
+        $usuarios = User::all();
+        return view('profesores.index', ['profesores' => $profesores]);
     }
 
     /**

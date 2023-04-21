@@ -11,6 +11,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\RedirectorController;
 /** START ADITIONS */
 if (Auth::check()) {
     // The user is logged in...
@@ -126,11 +127,7 @@ class RegisterManagerController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
-
-    public function update(Request $request)
-    {
-        // $request->user() returns an instance of the authenticated user...
-    }
+   
     protected function create(array $data)
     {
         $user = User::create([                     
@@ -161,7 +158,52 @@ class RegisterManagerController extends Controller
             'email' => $request->email,            
             'password' => $request->password,
         ];
-        return $this->create($data);
+        return $this->create($data);        
+    }
+
+    public function show($id)
+    {
+        // selection query        
+        // $usuarios = User::all();
+        $usuario = User::findOrFail($id);
+        return view('profesores.editar', ['usuario' => $usuario]);        
+    }
+
+    public function edit($id)
+    {
+        //        
+        $usuarios = User::findOrFail($id);
+        // return view('alumnos.editar', ['alumno' => $alumno]);        
+        $usuarios->nombre_apellido = $request->nombre_apellido;
+        $usuarios->edad = $request->edad;
+        $usuarios->telefono = $request->telefono;
+        $usuarios->direccion = $request->direccion;
+        $usuarios->save();
+        return redirect()->action([AlumnoController::class, 'index']);
+    }    
+    
+    public function update(Request $request, $id)
+    {        
+         $usuarios = User::findOrFail($id);
+         // return view('alumnos.editar', ['alumno' => $alumno]);                          
+         $usuarios->firstname = $request->firstname;
+         $usuarios->lastname = $request->lastname;
+         $usuarios->ci = $request->ci;
+         $usuarios->email = $request->email;
+         $usuarios->password = Hash::make($request->password);         
+         $usuarios->save();
+         return redirect()->action([RedirectorController::class, 'users']);             
+    }
+
+    // public function destroy(User $usuarios)
+    public function destroy($id)
+    {
+        //
+        $usuarios = User::findOrFail($id);
+        // $usuarios->alumnos()->detach();
+        $usuarios->delete();
+        return redirect()->action([RedirectorController::class, 'users']);
+
     }
 
     public function redirectPath(){

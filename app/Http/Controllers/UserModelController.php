@@ -142,10 +142,20 @@ class UserModelController extends Controller
      * @param  \App\Models\UserModel  $userModel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserModel $userModel)
+    // public function update(Request $request, UserModel $userModel)
+    // {
+    //     //
+        
+    // }
+    public function update(Request $request, $id)
     {
-        //
+        $registro = TuModelo::find($id);
+        $registro->nombre = $request->input('nombre');
+        $registro->email = $request->input('email');
+        $registro->save();
+        return redirect('/lista-de-registros');
     }
+
 
     /**
      * Remove the specified resource from storage.
