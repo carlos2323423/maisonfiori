@@ -30,15 +30,15 @@ class RedirectorController extends Controller
     }    
     public function empleados() {
         $spaces = [
-            'hotel',
-            'nivel',
-            'rol',
-            'foto',
-            'nombre',
-            'ci',
-            'celular',
-            'ingreso',
-            'genero',
+            'c1' => 'hotel',
+            'c2' => 'nivel',
+            'c3' => 'rol',
+            // 'c4'=> 'foto',
+            'c5' => 'nombre',
+            'c6' => 'ci',
+            'c7' => 'celular',
+            // 'c8' => 'ingreso',
+            // 'c9' => 'genero',
         ];
         // selection query                      
         $usuarios = Empleado::all();  

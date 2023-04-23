@@ -138,16 +138,35 @@ Auth::routes(
 );
 // Auth::routes(['register' => false]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// START FORM BY USERS
-// CREATE
-Route::post('/register_user', [RegisterManagerController::class, 'store'])->name('user_registersent');
-// DELETE
-Route::delete('/destroy_user/{id}', [RegisterManagerController::class, 'destroy'])->name('user_destroysent');
-// SHOW
-Route::get('/profesores/{id}/ver', [RegisterManagerController::class, 'show'])->name('user.show');
-// EDIT
-// Route::get('/user/{id}/editar', [RegisterManagerController::class, 'edit'])->name('usuario.edit');
-Route::post('/user/{id}/editar', [RegisterManagerController::class, 'edit'])->name('usuario.edit');
-Route::put('/user/{id}', [RegisterManagerController::class, 'update'])->name('usuario.update');
-// Route::delete('/profesores/{id}', [ProfesorController::class, 'destroy'])->name('profesores.destroy');
-// END FORM BY USERS
+
+// START FORMS
+   // START FORM BY USERS
+      // CREATE
+         Route::post('/register_user', [RegisterManagerController::class, 'store'])->name('user_registersent');
+      // DELETE
+         Route::delete('/destroy_user/{id}', [RegisterManagerController::class, 'destroy'])->name('user_destroysent');
+      // SHOW
+         Route::get('/profesores/{id}/ver', [RegisterManagerController::class, 'show'])->name('user.show');
+      // EDIT
+      // Route::get('/user/{id}/editar', [RegisterManagerController::class, 'edit'])->name('usuario.edit');
+         Route::post('/user/{id}/editar', [RegisterManagerController::class, 'edit'])->name('usuario.edit');
+         Route::put('/user/{id}', [RegisterManagerController::class, 'update'])->name('usuario.update');         
+   // END FORM BY USERS
+   // START FORM BY EMPLEADOS
+      // CREATE
+         Route::post('/register_empleado', [EmpleadosController::class, 'store'])->name('empleados_registersent');
+      // DELETE
+         Route::delete('/destroy_user/{id}', [RegisterManagerController::class, 'destroy'])->name('user_destroysent');
+      // SHOW
+         Route::get('/profesores/{id}/ver', [RegisterManagerController::class, 'show'])->name('user.show');
+      // EDIT
+      // Route::get('/user/{id}/editar', [RegisterManagerController::class, 'edit'])->name('usuario.edit');
+         Route::post('/user/{id}/editar', [RegisterManagerController::class, 'edit'])->name('usuario.edit');
+         Route::put('/user/{id}', [RegisterManagerController::class, 'update'])->name('usuario.update');         
+   // END FORM BY EMPLEADOS
+// END FORMS
+
+
+
+
+

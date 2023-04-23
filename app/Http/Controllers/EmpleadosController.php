@@ -130,32 +130,41 @@ class RegisterManagerController extends Controller
    
     protected function create(array $data)
     {
-        $user = User::create([                     
-        // return User::create([                     
-            'firstname' => $data['firstname'],
-            'lastname' => $data['lastname'],
-            'ci' => $data['ci'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            // 'created_at' => date('m-d-y H:i:s'),
+        $user = Empleado::create([                     
+        // return User::create([        
+            'hotel' => $data['hotel'],             
+            'nivel' => $data['nivel'],
+            'rol' => $data['rol'],
+            'foto' => $data['foto'],
+            'nombre' => $data['nombre'],
+            'ci' => $data['ci'],             
+            'email' => $data['email'],            
+            'foto' => $data['celular'],
+            'ingreso' => $data['ingreso'],
+            'genero' => $data['genero'],
+            'password' => Hash::make($data['password']),            
             'created_at' => date('y-m-d H:i:s'),
-            'updated_at' => date('y-m-d H:i:s')
-            // 'created_at' => time(),
+            'updated_at' => date('y-m-d H:i:s')            
         ]);
         // return route('usuarios');
-        return redirect()->route('usuarios');
+        return redirect()->route('empleados');
         // auth()->login($user);    
         // return $user;    
     }
 
     public function store(Request $request)
-    {
-        // store all data sent by blade
+    {        
         $data = [
-            'firstname' => $request->firstname,            
-            'lastname' => $request->lastname,
-            'ci' => $request->ci,
+            'hotel' => $request->hotel,            
+            'nivel' => $request->nivel,
+            'rol' => $request->rol,
+            'foto' => $request->foto,            
+            'nombre' => $request->nombre,
+            'ci' => $request->ci,            
             'email' => $request->email,            
+            'celular' => $request->celular,
+            'ingreso' => $request->ingreso,
+            'genero' => $request->genero,            
             'password' => $request->password,
         ];
         return $this->create($data);        

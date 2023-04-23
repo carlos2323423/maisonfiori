@@ -20,10 +20,12 @@ class CreateEmpleadosTable extends Migration
             $table->string('rol', 255);
             $table->string('foto', 255);               
             $table->string('nombre', 255);            
-            $table->integer('ci');             
+            $table->integer('ci');            
+            $table->string('email', 255); 
             $table->integer('celular');                    
             $table->date('ingreso');           
-            $table->string('genero', 255);            
+            $table->string('genero', 255);    
+            $table->string('password', 60);            
             $table->timestamps();
             // $table->string('apellido', 255);            
             // $table->string('edad', 255);                                    
