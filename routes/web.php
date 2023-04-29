@@ -142,7 +142,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // START FORMS
    // START FORM BY USERS
       // CREATE
-         Route::post('/register_user', [RegisterManagerController::class, 'store'])->name('user_registersent');
+         Route::post('/register_user', [RegisterManagerController::class, 'store'])->name('usuario_registersent');
       // DELETE
          Route::delete('/destroy_user/{id}', [RegisterManagerController::class, 'destroy'])->name('user_destroysent');
       // SHOW
@@ -154,19 +154,32 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    // END FORM BY USERS
    // START FORM BY EMPLEADOS
       // CREATE
-         Route::post('/register_empleado', [EmpleadosController::class, 'store'])->name('empleados_registersent');
+         Route::post('/register_empleado', [EmpleadosController::class, 'create'])->name('empleado_registersent');
       // DELETE
-         Route::delete('/destroy_user/{id}', [RegisterManagerController::class, 'destroy'])->name('user_destroysent');
+         Route::delete('/destroy_user/{id}', [EmpleadosController::class, 'destroy'])->name('empleado_destroysent');
       // SHOW
          Route::get('/profesores/{id}/ver', [RegisterManagerController::class, 'show'])->name('user.show');
       // EDIT
       // Route::get('/user/{id}/editar', [RegisterManagerController::class, 'edit'])->name('usuario.edit');
          Route::post('/user/{id}/editar', [RegisterManagerController::class, 'edit'])->name('usuario.edit');
-         Route::put('/user/{id}', [RegisterManagerController::class, 'update'])->name('usuario.update');         
+         Route::put('/user/{id}', [EmpleadosController::class, 'update'])->name('empleado.update');         
    // END FORM BY EMPLEADOS
 // END FORMS
 
 
-
+// START FILES
+Route::get('avatar/{filename}', function ($filename) {
+   $path = storage_path('public/' . $filename);
+   dd($path); // Imprime el contenido de $columns y detiene la ejecución del código
+   if (!File::exists($path)) {
+       abort(404);
+   }
+   $file = File::get($path);
+   $type = File::mimeType($path);
+   $response = Response::make($file, 200);
+   $response->header("Content-Type", $type);
+   return $response;
+})->name('avatar');
+// END FILES
 
 

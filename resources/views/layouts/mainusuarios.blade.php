@@ -370,8 +370,8 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Usuarios</h1>
+                    <!-- Page Heading -->                    
+                    @yield('Page Heading')   
                     <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
                         For more information about DataTables, please visit the <a target="_blank"
                             href="https://datatables.net">official DataTables documentation</a>.
@@ -379,11 +379,8 @@
                     <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                         <i class="fas fa-user fa-sm text-white-50"></i> 
                         Agregar Usuario
-                    </a> -->
-                    <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="#" data-toggle="modal" data-target="#register_userModal">
-                        <i class="fas fa-user fa-sm text-white-50"></i> 
-                        Agregar Usuario
-                    </a>
+                    </a> -->                    
+                    @yield('boton_agragar')                    
                     <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Usuarios</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
@@ -398,515 +395,11 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">                                    
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>                                    
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot>                                    
+                                    @yield('table_head_foot')                                                                                                                               
                                     <tbody>
-                                        @foreach ($usuarios as $usuario)  
-                                        <script>
-                                            var user = @json($usuario);
-                                        </script>
                                         @yield('edit_modal')                                  
-                                        <tr>
-                                            <td>{{ $usuario->FirstName }}</td>
-                                            <td>{{ $usuario->Email }}</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <ul class="list-inline m-0">
-                                                    <li class="list-inline-item">
-                                                        <button class="btn btn-primary btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Add"><i class="fa fa-table"></i></button>
-                                                    </li>
-                                                    <li class="list-inline-item">
-                                                        @if($errors->any())
-                                                            <p class="error-message">{{$errors->first('mensaje')}}</p>
-                                                        @endif
-                                                        <br>
-                                                        <!-- <a href="{{ route('user.show', $usuario->id) }}">Editar</a> 
-                                                        <br> -->
-                                                        <button onclick="cambiaValores(`{{ route('usuario.update', $usuario->id) }}`)" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="modal" data-target="#edit_userModal" data-placement="top" title="Edit">
-                                                            <i class="fa fa-edit"></i>
-                                                        </button>                                                        
-                                                    </li>
-                                                    <li class="list-inline-item">
-                                                    <form action="{{ route('user_destroysent', $usuario->id) }}" method ="POST" >                                                    
-                                                        @csrf
-                                                        <!-- @method('DELETE') -->
-                                                        {{ method_field('DELETE') }}
-                                                        <!-- <button type="submit">Eliminar</button> -->
-                                                        <button type="submit" class="btn btn-danger btn-sm rounded-0" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-                                                    </form>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                            <td>$86,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29</td>
-                                            <td>$433,060</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brielle Williamson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>New York</td>
-                                            <td>61</td>
-                                            <td>2012/12/02</td>
-                                            <td>$372,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Herrod Chandler</td>
-                                            <td>Sales Assistant</td>
-                                            <td>San Francisco</td>
-                                            <td>59</td>
-                                            <td>2012/08/06</td>
-                                            <td>$137,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Rhona Davidson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>Tokyo</td>
-                                            <td>55</td>
-                                            <td>2010/10/14</td>
-                                            <td>$327,900</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Colleen Hurst</td>
-                                            <td>Javascript Developer</td>
-                                            <td>San Francisco</td>
-                                            <td>39</td>
-                                            <td>2009/09/15</td>
-                                            <td>$205,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sonya Frost</td>
-                                            <td>Software Engineer</td>
-                                            <td>Edinburgh</td>
-                                            <td>23</td>
-                                            <td>2008/12/13</td>
-                                            <td>$103,600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jena Gaines</td>
-                                            <td>Office Manager</td>
-                                            <td>London</td>
-                                            <td>30</td>
-                                            <td>2008/12/19</td>
-                                            <td>$90,560</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Quinn Flynn</td>
-                                            <td>Support Lead</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2013/03/03</td>
-                                            <td>$342,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Charde Marshall</td>
-                                            <td>Regional Director</td>
-                                            <td>San Francisco</td>
-                                            <td>36</td>
-                                            <td>2008/10/16</td>
-                                            <td>$470,600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Haley Kennedy</td>
-                                            <td>Senior Marketing Designer</td>
-                                            <td>London</td>
-                                            <td>43</td>
-                                            <td>2012/12/18</td>
-                                            <td>$313,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tatyana Fitzpatrick</td>
-                                            <td>Regional Director</td>
-                                            <td>London</td>
-                                            <td>19</td>
-                                            <td>2010/03/17</td>
-                                            <td>$385,750</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Michael Silva</td>
-                                            <td>Marketing Designer</td>
-                                            <td>London</td>
-                                            <td>66</td>
-                                            <td>2012/11/27</td>
-                                            <td>$198,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Paul Byrd</td>
-                                            <td>Chief Financial Officer (CFO)</td>
-                                            <td>New York</td>
-                                            <td>64</td>
-                                            <td>2010/06/09</td>
-                                            <td>$725,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Gloria Little</td>
-                                            <td>Systems Administrator</td>
-                                            <td>New York</td>
-                                            <td>59</td>
-                                            <td>2009/04/10</td>
-                                            <td>$237,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bradley Greer</td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>41</td>
-                                            <td>2012/10/13</td>
-                                            <td>$132,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dai Rios</td>
-                                            <td>Personnel Lead</td>
-                                            <td>Edinburgh</td>
-                                            <td>35</td>
-                                            <td>2012/09/26</td>
-                                            <td>$217,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jenette Caldwell</td>
-                                            <td>Development Lead</td>
-                                            <td>New York</td>
-                                            <td>30</td>
-                                            <td>2011/09/03</td>
-                                            <td>$345,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Yuri Berry</td>
-                                            <td>Chief Marketing Officer (CMO)</td>
-                                            <td>New York</td>
-                                            <td>40</td>
-                                            <td>2009/06/25</td>
-                                            <td>$675,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Caesar Vance</td>
-                                            <td>Pre-Sales Support</td>
-                                            <td>New York</td>
-                                            <td>21</td>
-                                            <td>2011/12/12</td>
-                                            <td>$106,450</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Doris Wilder</td>
-                                            <td>Sales Assistant</td>
-                                            <td>Sidney</td>
-                                            <td>23</td>
-                                            <td>2010/09/20</td>
-                                            <td>$85,600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Angelica Ramos</td>
-                                            <td>Chief Executive Officer (CEO)</td>
-                                            <td>London</td>
-                                            <td>47</td>
-                                            <td>2009/10/09</td>
-                                            <td>$1,200,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Gavin Joyce</td>
-                                            <td>Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>42</td>
-                                            <td>2010/12/22</td>
-                                            <td>$92,575</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jennifer Chang</td>
-                                            <td>Regional Director</td>
-                                            <td>Singapore</td>
-                                            <td>28</td>
-                                            <td>2010/11/14</td>
-                                            <td>$357,650</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brenden Wagner</td>
-                                            <td>Software Engineer</td>
-                                            <td>San Francisco</td>
-                                            <td>28</td>
-                                            <td>2011/06/07</td>
-                                            <td>$206,850</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fiona Green</td>
-                                            <td>Chief Operating Officer (COO)</td>
-                                            <td>San Francisco</td>
-                                            <td>48</td>
-                                            <td>2010/03/11</td>
-                                            <td>$850,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Shou Itou</td>
-                                            <td>Regional Marketing</td>
-                                            <td>Tokyo</td>
-                                            <td>20</td>
-                                            <td>2011/08/14</td>
-                                            <td>$163,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Michelle House</td>
-                                            <td>Integration Specialist</td>
-                                            <td>Sidney</td>
-                                            <td>37</td>
-                                            <td>2011/06/02</td>
-                                            <td>$95,400</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Suki Burks</td>
-                                            <td>Developer</td>
-                                            <td>London</td>
-                                            <td>53</td>
-                                            <td>2009/10/22</td>
-                                            <td>$114,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Prescott Bartlett</td>
-                                            <td>Technical Author</td>
-                                            <td>London</td>
-                                            <td>27</td>
-                                            <td>2011/05/07</td>
-                                            <td>$145,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Gavin Cortez</td>
-                                            <td>Team Leader</td>
-                                            <td>San Francisco</td>
-                                            <td>22</td>
-                                            <td>2008/10/26</td>
-                                            <td>$235,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Martena Mccray</td>
-                                            <td>Post-Sales support</td>
-                                            <td>Edinburgh</td>
-                                            <td>46</td>
-                                            <td>2011/03/09</td>
-                                            <td>$324,050</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Unity Butler</td>
-                                            <td>Marketing Designer</td>
-                                            <td>San Francisco</td>
-                                            <td>47</td>
-                                            <td>2009/12/09</td>
-                                            <td>$85,675</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Howard Hatfield</td>
-                                            <td>Office Manager</td>
-                                            <td>San Francisco</td>
-                                            <td>51</td>
-                                            <td>2008/12/16</td>
-                                            <td>$164,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hope Fuentes</td>
-                                            <td>Secretary</td>
-                                            <td>San Francisco</td>
-                                            <td>41</td>
-                                            <td>2010/02/12</td>
-                                            <td>$109,850</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Vivian Harrell</td>
-                                            <td>Financial Controller</td>
-                                            <td>San Francisco</td>
-                                            <td>62</td>
-                                            <td>2009/02/14</td>
-                                            <td>$452,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Timothy Mooney</td>
-                                            <td>Office Manager</td>
-                                            <td>London</td>
-                                            <td>37</td>
-                                            <td>2008/12/11</td>
-                                            <td>$136,200</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jackson Bradshaw</td>
-                                            <td>Director</td>
-                                            <td>New York</td>
-                                            <td>65</td>
-                                            <td>2008/09/26</td>
-                                            <td>$645,750</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Olivia Liang</td>
-                                            <td>Support Engineer</td>
-                                            <td>Singapore</td>
-                                            <td>64</td>
-                                            <td>2011/02/03</td>
-                                            <td>$234,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bruno Nash</td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>38</td>
-                                            <td>2011/05/03</td>
-                                            <td>$163,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sakura Yamamoto</td>
-                                            <td>Support Engineer</td>
-                                            <td>Tokyo</td>
-                                            <td>37</td>
-                                            <td>2009/08/19</td>
-                                            <td>$139,575</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Thor Walton</td>
-                                            <td>Developer</td>
-                                            <td>New York</td>
-                                            <td>61</td>
-                                            <td>2013/08/11</td>
-                                            <td>$98,540</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Finn Camacho</td>
-                                            <td>Support Engineer</td>
-                                            <td>San Francisco</td>
-                                            <td>47</td>
-                                            <td>2009/07/07</td>
-                                            <td>$87,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Serge Baldwin</td>
-                                            <td>Data Coordinator</td>
-                                            <td>Singapore</td>
-                                            <td>64</td>
-                                            <td>2012/04/09</td>
-                                            <td>$138,575</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Zenaida Frank</td>
-                                            <td>Software Engineer</td>
-                                            <td>New York</td>
-                                            <td>63</td>
-                                            <td>2010/01/04</td>
-                                            <td>$125,250</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Zorita Serrano</td>
-                                            <td>Software Engineer</td>
-                                            <td>San Francisco</td>
-                                            <td>56</td>
-                                            <td>2012/06/01</td>
-                                            <td>$115,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jennifer Acosta</td>
-                                            <td>Junior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>43</td>
-                                            <td>2013/02/01</td>
-                                            <td>$75,650</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cara Stevens</td>
-                                            <td>Sales Assistant</td>
-                                            <td>New York</td>
-                                            <td>46</td>
-                                            <td>2011/12/06</td>
-                                            <td>$145,600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hermione Butler</td>
-                                            <td>Regional Director</td>
-                                            <td>London</td>
-                                            <td>47</td>
-                                            <td>2011/03/21</td>
-                                            <td>$356,250</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Lael Greer</td>
-                                            <td>Systems Administrator</td>
-                                            <td>London</td>
-                                            <td>21</td>
-                                            <td>2009/02/27</td>
-                                            <td>$103,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jonas Alexander</td>
-                                            <td>Developer</td>
-                                            <td>San Francisco</td>
-                                            <td>30</td>
-                                            <td>2010/07/14</td>
-                                            <td>$86,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Shad Decker</td>
-                                            <td>Regional Director</td>
-                                            <td>Edinburgh</td>
-                                            <td>51</td>
-                                            <td>2008/11/13</td>
-                                            <td>$183,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Michael Bruce</td>
-                                            <td>Javascript Developer</td>
-                                            <td>Singapore</td>
-                                            <td>29</td>
-                                            <td>2011/06/27</td>
-                                            <td>$183,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Donna Snider</td>
-                                            <td>Customer Support</td>
-                                            <td>New York</td>
-                                            <td>27</td>
-                                            <td>2011/01/25</td>
-                                            <td>$112,000</td>
-                                        </tr>
+                                        
+                                        @yield('table_row_list')                                                                                                                                                          
                                     </tbody>
                                 </table>
                             </div>
@@ -960,23 +453,167 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
     <script>
-        function cambiaValores(acction) {
-            var editFirstName = document.getElementById("editFirstName");
-            var editLastName = document.getElementById("editLastName");
-            var editCI = document.getElementById("editCI");
-            var editInputEmail = document.getElementById("editInputEmail");
-            var editInputPassword = document.getElementById("editInputPassword");
-            var editRepeatPassword = document.getElementById("editRepeatPassword");
-            var edit_list_form = document.getElementById("edit_list_form");            
+        function resturar_modal(acction) {            
+
+            for (const property in spaces) {  
+                const elementId = "MODAL_id_" + spaces[property];
+                const element = document.getElementById(elementId); 
+                // alert(property);   
+                if (element === null) {
+                    // console.log("retorno nulo en " + spaces[property]);           
+                    continue;
+                }                
+                
+                if (spaces[property] == 'password') { 
+                    // const elementId = "MODAL_id_" + spaces[property];
+                    const elementId2 = "Repeat_MODAL_id_" + spaces[property];
+                    // const element = document.getElementById(elementId); 
+                    const element2 = document.getElementById(elementId2);
+                    element.value = "";
+                    element2.value = "";
+                    continue;    
+                } 
+                
+                if (spaces[property] == 'foto') {  
+                    // const elementId = "MODAL_id_" + spaces[property];
+
+                    let image = document.getElementById("MODAL_id_avatar");                                                            
+                    image.src = "https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" ;
+                    foto_restaur(elementId);
+                }
+                // alert(spaces[property]);                   
+                // const elementId = "MODAL_id_" + spaces[property];
+                // const element = document.getElementById(elementId); 
+                element.value = "";                
+
+            }
+
+            var edit_list_form = document.getElementById("register_list_form");                                    
+            edit_list_form.method = "POST";
+
+            var methodField = document.createElement("input");
+            methodField.setAttribute("type", "hidden");
+            methodField.setAttribute("name", "_method");
+            methodField.setAttribute("value", "POST");
+            edit_list_form.appendChild(methodField);            
+
+            edit_list_form.setAttribute('action', acction);        
+            // alert("¡Has ingresado a la función!");                            
+        }        
+
+        function foto_restaur(id) {
+            // alert("¡Has ingresado a la función!");
+            const element = document.getElementById(id);            
+            element.type = "file";                            
+            
+        }        
+        function cambiaValores(acction, data) {
+            var entidades = data;
+            // console.log(typeof entidades);
+            // console.log(entidades);
+            for (const property in entidades) {                
+                if (property == 'id') {
+
+                } else {
+                    if (entidades.hasOwnProperty(property)) {
+                        if (property == 'foto') {
+                            let image = document.getElementById("MODAL_id_avatar");
+                            var foto = entidades[property];
+                            // image.src = foto;
+                            // image.src = "{{ route('avatar', ':filename') }}".replace(':filename', foto);                            
+                            image.src = "{{ asset('storage/') }}/" + foto;
+
+                            {{--
+                                // image.src = "{{ asset('storage/' + foto) }}";
+                                // <img src="{{ asset('storage/images/mi_imagen.jpg') }}" alt="Mi imagen">
+                                // <img src="{{ asset('storage/' . $foto) }}">
+                            --}}
+                        }
+                        if (property == 'password') {
+                            const elementId = "MODAL_id_" + property;
+                            const elementId2 = "Repeat_MODAL_id_" + property;                        
+                            const element = document.getElementById(elementId);
+                            if (element === null) {
+                                continue;
+                            }
+                            const element2 = document.getElementById(elementId2);
+                            element.value = entidades[property];                            
+                            element2.value = entidades[property];
+                        } else {
+                            const elementId = "MODAL_id_" + property;                        
+                            // console.log(elementId);
+                            const element = document.getElementById(elementId);   
+                            if (element === null) {
+                                continue;
+                            }                     
+                            const inputType = element.type;
+                            if (inputType === "file") {
+                                // hacer algo si el input es de tipo file                            
+                                element.remove();                            
+                                const newFileInput = document.createElement("input");
+                                // newFileInput.type = "file";                            
+                                newFileInput.id = elementId;
+                                newFileInput.name = property;
+                                newFileInput.className = "form-control d-none";
+                                newFileInput.value = entidades[property];
+                                
+                                // newFileInput.type = "file";
+                                const form = document.getElementById("foto_imputcontainer");
+                                form.appendChild(newFileInput);
+    
+                            } else {
+                                // hacer algo si el input no es de tipo file
+                                element.value = entidades[property];
+                            }                        
+                        }
+
+                    } else {
+                    console.log("La propiedad " + property + " no está definida en el objeto");
+                    }                
+                }
+            }
+            {{-- 
+                // entidades.forEach(function(element) {
+                //     var element = document.getElementById("MODAL_id_{{ $space }}");    
+                //     element.value = entidad;                
+                // });
+                // for (let entidad of entidades) {
+                //     var element = document.getElementById("MODAL_id_{{ $space }}");    
+                //     element.value = entidad;                
+                // }
+            --}}
+
+
+            // var editFirstName = document.getElementById("editFirstName");
+            // var editLastName = document.getElementById("editLastName");
+            // var editCI = document.getElementById("editCI");
+            // var editInputEmail = document.getElementById("editInputEmail");
+            // var editInputPassword = document.getElementById("editInputPassword");
+            // var editRepeatPassword = document.getElementById("editRepeatPassword");
             // console.log(user);
-            editFirstName.value = user.FirstName;
-            editLastName.value = user.LastName;
-            editCI.value = user.CI;
-            editInputEmail.value = user.Email;
-            editInputPassword.value = user.password;
-            editRepeatPassword.value = user.password;                                    
+            
+            
+            
+            
+            // editFirstName.value = user.FirstName;
+            // editLastName.value = user.LastName;
+            // editCI.value = user.CI;
+            // editInputEmail.value = user.Email;
+            // editInputPassword.value = user.password;
+            // editRepeatPassword.value = user.password;                                    
             // console.log(acction);
             
+            // var edit_list_form = document.getElementById("edit_list_form");   
+
+            var edit_list_form = document.getElementById("register_list_form");                                    
+            
+            edit_list_form.method = "POST";
+            var methodField = document.createElement("input");
+            methodField.setAttribute("type", "hidden");
+            methodField.setAttribute("name", "_method");
+            methodField.setAttribute("value", "PUT");
+            edit_list_form.appendChild(methodField);
+
             edit_list_form.setAttribute('action', acction);            
         }
 

@@ -13,11 +13,12 @@ class Empleado extends Model
         'nivel',
         'rol',
         'foto',
-        'nombre'.
+        'nombre',
         'ci',
         'email',        
         'celular',
         'ingreso',                
         'genero',        
+        'password',       
     ];
 }

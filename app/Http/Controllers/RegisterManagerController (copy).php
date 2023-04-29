@@ -1,17 +1,17 @@
 <?php
-// ESENCIASLES INPORTS
+
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Models\Empleado;
-// END ESENCIASLES INPORTS
-// EXTAS ADITION 
+
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Http\Request;
+
+// use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\RedirectorController;
-// END EXTAS ADITION 
 /** START ADITIONS */
 if (Auth::check()) {
     // The user is logged in...
@@ -22,7 +22,7 @@ $user = Auth::user();
 // $id = Auth::UserID();
 $id = Auth::id();
 /** END ADITIONS */
-class EmpleadosController extends Controller
+class RegisterManagerController extends Controller
 {
     public const HOME = '/home';
     
@@ -130,79 +130,36 @@ class EmpleadosController extends Controller
    
     protected function create(array $data)
     {
-        
+        $user = User::create([                     
+        // return User::create([                     
+            'firstname' => $data['firstname'],
+            'lastname' => $data['lastname'],
+            'ci' => $data['ci'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            // 'created_at' => date('m-d-y H:i:s'),
+            'created_at' => date('y-m-d H:i:s'),
+            'updated_at' => date('y-m-d H:i:s')
+            // 'created_at' => time(),
+        ]);
+        // return route('usuarios');
+        return redirect()->route('usuarios');
+        // auth()->login($user);    
+        // return $user;    
     }
-    
+
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'hotel' => 'required|string',
-            'nivel' => 'required|string',
-            'rol' => 'required|string',
-            'foto' => 'nullable|image|max:2048',
-            'nombre' => 'required|string',
-            'ci' => 'required|string|unique:empleados',
-            'email' => 'required|string|email|unique:empleados',
-            'celular' => 'required|string|unique:empleados',
-            'ingreso' => 'required|date',
-            'genero' => 'required|string',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-
-        $data = $request->except(['_token', 'password_confirmation']);
-        $data['password'] = Hash::make($request->password);
-
-        if ($request->hasFile('foto')) {
-            $extension = $request->file('foto')->getClientOriginalExtension();
-            $filename = 'foto_' . $request->nombre . '.' . $extension;
-            $imagePath = $request->file('foto')->storeAs('avatar_img', $filename, 'public');
-            $data['foto'] = $imagePath;
-        }
-
-        Empleado::create($data);
-
-        return redirect()->route('empleados');
+        // store all data sent by blade
+        $data = [
+            'firstname' => $request->firstname,            
+            'lastname' => $request->lastname,
+            'ci' => $request->ci,
+            'email' => $request->email,            
+            'password' => $request->password,
+        ];
+        return $this->create($data);        
     }
-
-
-
-    // protected function create(array $data)
-    // {
-    //     $data['password'] = Hash::make($data['password']);
-
-    //     if ($data['foto'] && $data['foto'] instanceof UploadedFile) {
-    //         $extension = $data['foto']->getClientOriginalExtension();
-    //         $filename = 'foto_' . $data['nombre'] . '.' . $extension;
-    //         $imagePath = $data['foto']->storeAs('avatar_img', $filename, 'public');
-    //         $data['foto'] = $imagePath;
-    //     }
-
-    //     return Empleado::create($data);
-    // }
-
-    // public function store(Request $request)
-    // {
-    //     $validatedData = $request->validate([
-    //         'hotel' => 'required|string',
-    //         'nivel' => 'required|string',
-    //         'rol' => 'required|string',
-    //         'foto' => 'nullable|image|max:2048',
-    //         'nombre' => 'required|string',
-    //         'ci' => 'required|string|unique:empleados',
-    //         'email' => 'required|string|email|unique:empleados',
-    //         'celular' => 'required|string|unique:empleados',
-    //         'ingreso' => 'required|date',
-    //         'genero' => 'required|string',
-    //         'password' => 'required|string|min:8|confirmed',
-    //     ]);
-
-    //     $data = $request->all();
-    //     $this->create($data);
-
-    //     return redirect()->route('empleados');
-    // }
-
-
 
     public function show($id)
     {
@@ -226,30 +183,26 @@ class EmpleadosController extends Controller
     }    
     
     public function update(Request $request, $id)
-    {    
-        $empleado = Empleado::findOrFail($id);
-        $empleado->fill($request->all());
-
-        if ($request->hasFile('foto')) {
-            $imagePath = $request->file('foto')->store('avatar_img', 'public');
-            $empleado->foto = $imagePath;
-        } else {
-            $imagePath = null; // o cualquier otro valor predeterminado que desee usar
-        }        
-    
-        $empleado->save();         
-        // $usuarios->password = Hash::make($request->password);         
-        return redirect()->action([RedirectorController::class, 'empleados']);             
+    {        
+         $usuarios = User::findOrFail($id);
+         // return view('alumnos.editar', ['alumno' => $alumno]);                          
+         $usuarios->firstname = $request->firstname;
+         $usuarios->lastname = $request->lastname;
+         $usuarios->ci = $request->ci;
+         $usuarios->email = $request->email;
+         $usuarios->password = Hash::make($request->password);         
+         $usuarios->save();
+         return redirect()->action([RedirectorController::class, 'users']);             
     }
 
     // public function destroy(User $usuarios)
     public function destroy($id)
     {
         //
-        $empleado = Empleado::findOrFail($id);
+        $usuarios = User::findOrFail($id);
         // $usuarios->alumnos()->detach();
-        $empleado->delete();
-        return redirect()->action([RedirectorController::class, 'empleados']);
+        $usuarios->delete();
+        return redirect()->action([RedirectorController::class, 'users']);
 
     }
 

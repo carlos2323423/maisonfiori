@@ -45,7 +45,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             // $table->string('remember_token', 100)->default(100);            
             $table->string('remember_token', 100)->nullable();
-            $table->string('img')->default('https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.stickpng.com%2Fimg%2Ficons-logos-emojis%2Fusers%2Fsimple-user-icon&psig=AOvVaw2D2V8bEv10fhLoL5laMMoQ&ust=1680935822867000&source=images&cd=vfe&ved=0CA4QjRxqFwoTCODBooiUl_4CFQAAAAAdAAAAABAD');
+            // $table->string('img')->default('https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.stickpng.com%2Fimg%2Ficons-logos-emojis%2Fusers%2Fsimple-user-icon&psig=AOvVaw2D2V8bEv10fhLoL5laMMoQ&ust=1680935822867000&source=images&cd=vfe&ved=0CA4QjRxqFwoTCODBooiUl_4CFQAAAAAdAAAAABAD');
+            $table->string('foto')->default('');
             $table->string('level')->default(100);                                    
         });        
     }
