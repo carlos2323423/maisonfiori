@@ -128,26 +128,26 @@ class EmpleadosController extends Controller
         ]);
     }
    
-    protected function create(array $data)
-    {
+    // protected function create(array $data)
+    // {
         
-    }
+    // }
     
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'hotel' => 'required|string',
-            'nivel' => 'required|string',
-            'rol' => 'required|string',
-            'foto' => 'nullable|image|max:2048',
-            'nombre' => 'required|string',
-            'ci' => 'required|string|unique:empleados',
-            'email' => 'required|string|email|unique:empleados',
-            'celular' => 'required|string|unique:empleados',
-            'ingreso' => 'required|date',
-            'genero' => 'required|string',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+        // $validatedData = $request->validate([
+        //     'hotel' => 'required|string',
+        //     'nivel' => 'required|string',
+        //     'rol' => 'required|string',
+        //     'foto' => 'nullable|image|max:2048',
+        //     'nombre' => 'required|string',
+        //     'ci' => 'required|string|unique:empleados',
+        //     'email' => 'required|string|email|unique:empleados',
+        //     'celular' => 'required|string|unique:empleados',
+        //     'ingreso' => 'required|date',
+        //     'genero' => 'required|string',
+        //     'password' => 'required|string|min:8|confirmed',
+        // ]);
 
         $data = $request->except(['_token', 'password_confirmation']);
         $data['password'] = Hash::make($request->password);

@@ -9,15 +9,23 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Authenticatable
 {
     use HasFactory;
-    protected $fillable = [
-        'firstname',
-        'lastname',
-        'ci',
-        'email',
-        'password',
-        'remember_token',
+    
+    protected $guarded = [];
+    
+    public function getFillableFields()
+    {
+        return $this->getFillable();
+    }
+    
+    // protected $fillable = [
+    //     'firstname',
+    //     'lastname',
+    //     'ci',
+    //     'email',
+    //     'password',
+    //     'remember_token',
         
-        'tipo_usuario'
+    //     'tipo_usuario'
         
-    ];
+    // ];
 }

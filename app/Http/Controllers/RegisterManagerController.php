@@ -151,14 +151,30 @@ class RegisterManagerController extends Controller
     public function store(Request $request)
     {
         // store all data sent by blade
-        $data = [
-            'firstname' => $request->firstname,            
-            'lastname' => $request->lastname,
-            'ci' => $request->ci,
-            'email' => $request->email,            
-            'password' => $request->password,
-        ];
-        return $this->create($data);        
+        // $data = [
+        //     'firstname' => $request->firstname,            
+        //     'lastname' => $request->lastname,
+        //     'ci' => $request->ci,
+        //     'email' => $request->email,            
+        //     'password' => $request->password,
+        // ];
+        // return $this->create($data);        
+
+
+
+        $data = $request->except(['_token', 'password_confirmation']);
+        $data['password'] = Hash::make($request->password);
+
+        if ($request->hasFile('foto')) {
+            $extension = $request->file('foto')->getClientOriginalExtension();
+            $filename = 'foto_' . $request->nombre . '.' . $extension;
+            $imagePath = $request->file('foto')->storeAs('avatar_img', $filename, 'public');
+            $data['foto'] = $imagePath;
+        }
+        // dd($data);
+        User::create($data);
+
+        return redirect()->route('usuarios');
     }
 
     public function show($id)

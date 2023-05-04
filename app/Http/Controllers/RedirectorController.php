@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\DB;
 
 class RedirectorController extends Controller
 {
-    // public function login() {
-    //     //
-    //     return view('login', ['title' => 'Home Page']);
-    // }
+    public function login() {
+        //
+        return view('login', ['title' => 'Home Page']);
+    }
 
-    // public function register() {
-    //     return view('register', ['title' => 'Home Page']);
-    // }    
+    public function register() {
+        return view('register', ['title' => 'Home Page']);
+    }    
 
     public function getTableColumns($tableName) {
         $columns = DB::getSchemaBuilder()->getColumnListing($tableName);
@@ -25,12 +25,26 @@ class RedirectorController extends Controller
         $spaces = [];                
         // foreach($columns as $i => $column) {
         //     $spaces['c' . ($i+1)] = $column;
-        // }
-        foreach($columns as $index => $column) {
-            $spaces['c' . ($index+1)] = $column;
-        }
-        
-        
+        // }        
+        $i = 0;
+        $excludeColumns = ['foto', 'password']; // columnas a excluir
+        foreach($columns as $index => $column) {            
+            if (in_array($column, $excludeColumns)) {
+                continue;
+            }
+            $i++;
+            $spaces['c' . $i] = $column;            
+        }                  
+        $count = count($spaces);        
+        foreach($excludeColumns as $value) {
+            $i++;            
+            $spaces['c' . ($i)] = $value;
+        }            
+
+        $excludeColumns = ['created_at', 'updated_at', 'remember_token', 'id'];
+        $spaces = array_diff($spaces, $excludeColumns);
+        // $spaces = array_values($filteredSpaces);
+
         // dd($spaces); // Imprime el contenido de $columns y detiene la ejecución del código
         return $spaces;
     }    
@@ -42,6 +56,7 @@ class RedirectorController extends Controller
     public function users() {
         $spaces = $this->getTableColumns('users');          
         // selection query        
+        // dd($spaces);                
         $list = User::all();        
         $name = 'usuario';
         return view('usuarios', [
@@ -51,22 +66,9 @@ class RedirectorController extends Controller
             'route_name' => $name,
         ]);
     }    
+
     public function empleados() {      
-        $spaces = $this->getTableColumns('empleados');          
-        // $spaces = [
-        //     'c1' => 'hotel',
-        //     'c2' => 'nivel',
-        //     'c3' => 'rol',            
-        //     'c4' => 'nombre',
-        //     'c5' => 'ci',
-        //     'c6' => 'celular',
-        //     'c7' => 'email',
-        //     'c8' => 'ingreso',
-        //     'c9' => 'genero',
-        //     'c10'=> 'foto',
-        //     'c11'=> 'password',
-        // ];
-        // selection query                      
+        $spaces = $this->getTableColumns('empleados');                  
         $list = Empleado::all();  
         $name = 'empleado';
         return view('empleados', [
@@ -75,82 +77,5 @@ class RedirectorController extends Controller
             'spaces' => $spaces,
             'route_name' => $name,
         ]);
-    }    
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-      
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(array $data)
-    {        
-      
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-      
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\UserModel  $userModel
-     * @return \Illuminate\Http\Response
-     */
-    public function show(UserModel $userModel)
-    {
-        // selection query        
-        $usuarios = User::all();
-        return view('profesores.index', ['profesores' => $profesores]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\UserModel  $userModel
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(UserModel $userModel)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\UserModel  $userModel
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, UserModel $userModel)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\UserModel  $userModel
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(UserModel $userModel)
-    {
-        //
-    }
+    }       
 }

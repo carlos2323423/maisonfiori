@@ -1,185 +1,62 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\HomeController;
-
 use App\Http\Controllers\AboutController;
-
 use App\Http\Controllers\TareasController;
-
 use App\Http\Controllers\EvaluacionGController;
-
 use App\Http\Controllers\EvaluacionController;
-
 use App\Http\Controllers\EmpleadosController;
-
 use App\Http\Controllers\AdminController;
-
 use App\Http\Controllers\UsersController;
-
 use App\Http\Controllers\UserModelController;
-
 use App\Http\Controllers\RedirectorController;
-
 use App\Http\Controllers\RegisterManagerController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 Route::get('/clear', function() {
-
-   Artisan::call('cache:clear');
-   Artisan::call('config:clear');
-   Artisan::call('config:cache');
-   Artisan::call('view:clear');
-   Artisan::call('route:clear');
-
-   return "Cleared!";
-
-});
-
-
-// // Authentication Routes...
-// Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-// Route::post('login', 'Auth\LoginController@login');
-// Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-
-// // Registration Routes...
-// Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-// Route::post('register', 'Auth\RegisterController@register');
-
-// // Password Reset Routes...
-// Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-// Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-// Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-// Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
-
-// // Confirm Password (added in v6.2)
-// Route::get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
-// Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
-
-// // Email Verification Routes...
-// Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
-// Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify'); // v6.x
-// /* Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify'); // v5.x */
-// Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
-
-
-// Route::redirect('/', '/home');
-
-      // Route::get('/home', [HomeController::class, 'index']);
-
-// START CONTROLLERS ROUTES
-
-   // START GETING BLADES
-      Route::get('/about', [AboutController::class, 'index']);
-
-      Route::get('/tareas', [TareasController::class, 'index']);
-
-      Route::get('/evaluaciong', [EvaluacionGController::class, 'index']);
-
-      Route::get('/evaluacion', [EvaluacionController::class, 'index']);
-      
-      Route::get('/empleados', [RedirectorController::class, 'empleados'])->name('empleados');
-      // Route::get('/empleados', [EmpleadosController::class, 'index']);
-
-// START ROUTES REDIRECTOR CONTROLLER
-
-   // Route::get('/register', [UserModelController::class, 'index']);
-   // Route::get('/register', [RedirectorController::class, 'register'])->name('register');
-
-   // Route::get('/login', [RedirectorController::class, 'login'])->name('login');      
-   Route::get('/', [RedirectorController::class, 'welcome'])->name('welcome');      
-   Route::get('/users', [RedirectorController::class, 'users'])->name('usuarios');
-// END ROUTES REDIRECTOR CONTROLLER
-
-   // END GETING BLADES
-// END CONTROLLERS ROUTES
-// queryes sql
-Route::get('/insert', [HomeController::class, 'insert']);
-Route::get('/edit', [EmpleadosController::class, 'edit']);
-Route::get('/read', [EmpleadosController::class, 'read']);
-Route::get('/delete', [EmpleadosController::class, 'delete']);
-
-   // START UserModelController
-      // Route::get('/insert', [HomeController::class, 'create']);
-
-      Route::get('/edit', [EmpleadosController::class, 'edit']);
-      Route::get('/read', [EmpleadosController::class, 'read']);
-      Route::get('/delete', [EmpleadosController::class, 'delete']);      
-      // START form receptor REGISTER MANNAGER
-      Route::post('/register_user', [UserModelController::class, 'store'])->name('registersent');
-      
-      // $this->post('register', 'Auth\RegisterController@register');
-      Route::post('/login', [UserModelController::class, 'store_login'])->name('loginsent');
-      // END form receptor REGISTER MANNAGER
-   // END UserModelController
-Route::group(['prefix'=>'admin', 'as'=>'admin'], function() {
-   Route::get('/', [AdminController::class, 'index']);
-   Route::get('/usuarios', [UsersController::class, 'index']);
-});
-// Middleware START
-Route::get('profile', function () {
-   // Only authenticated users may enter...
-})->middleware('auth');
-
-// Middleware END
-
-Auth::routes(
-   
-);
-// Auth::routes(['register' => false]);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// START FORMS
-   // START FORM BY USERS
-      // CREATE
-         Route::post('/register_user', [RegisterManagerController::class, 'store'])->name('usuario_registersent');
-      // DELETE
-         Route::delete('/destroy_user/{id}', [RegisterManagerController::class, 'destroy'])->name('user_destroysent');
-      // SHOW
-         Route::get('/profesores/{id}/ver', [RegisterManagerController::class, 'show'])->name('user.show');
-      // EDIT
-      // Route::get('/user/{id}/editar', [RegisterManagerController::class, 'edit'])->name('usuario.edit');
-         Route::post('/user/{id}/editar', [RegisterManagerController::class, 'edit'])->name('usuario.edit');
-         Route::put('/user/{id}', [RegisterManagerController::class, 'update'])->name('usuario.update');         
-   // END FORM BY USERS
-   // START FORM BY EMPLEADOS
-      // CREATE
-         Route::post('/register_empleado', [EmpleadosController::class, 'create'])->name('empleado_registersent');
-      // DELETE
-         Route::delete('/destroy_user/{id}', [EmpleadosController::class, 'destroy'])->name('empleado_destroysent');
-      // SHOW
-         Route::get('/profesores/{id}/ver', [RegisterManagerController::class, 'show'])->name('user.show');
-      // EDIT
-      // Route::get('/user/{id}/editar', [RegisterManagerController::class, 'edit'])->name('usuario.edit');
-         Route::post('/user/{id}/editar', [RegisterManagerController::class, 'edit'])->name('usuario.edit');
-         Route::put('/user/{id}', [EmpleadosController::class, 'update'])->name('empleado.update');         
-   // END FORM BY EMPLEADOS
-// END FORMS
-
-
-// START FILES
-Route::get('avatar/{filename}', function ($filename) {
-   $path = storage_path('public/' . $filename);
-   dd($path); // Imprime el contenido de $columns y detiene la ejecución del código
-   if (!File::exists($path)) {
-       abort(404);
+   $commands = ['cache:clear', 'config:clear', 'config:cache', 'view:clear', 'route:clear'];
+   foreach ($commands as $command) {
+      Artisan::call($command);
    }
-   $file = File::get($path);
-   $type = File::mimeType($path);
-   $response = Response::make($file, 200);
-   $response->header("Content-Type", $type);
-   return $response;
-})->name('avatar');
-// END FILES
+      return "Cleared!";
+});
+
+$routes_get = [
+   'users',
+   'empleados',
+   'welcome',
+   'register',
+   'login',
+];
+// array_push($routes_get, 'pera');
+
+Route::prefix('/')->group(function () use ($routes_get) {
+
+   foreach ($routes_get as $route) {
+      if ($route == 'welcome') {
+         Route::get('/', [RedirectorController::class, $route])->name($route);
+         continue;
+      }
+      Route::get($route, [RedirectorController::class, $route])->name($route);      
+   }   
+
+});
+
+Route::post('/register_user', [RegisterManagerController::class, 'store'])->name('usuario_registersent');
+// Route::post('/user/{id}/editar', [RegisterManagerController::class, 'edit'])->name('usuario.edit');
+Route::post('/register_empleado', [EmpleadosController::class, 'store'])->name('empleado_registersent');
+// Route::post('/empleado/{id}/editar', [EmpleadosController::class, 'edit'])->name('empleado.edit');
+Route::put('/user/{id}', [RegisterManagerController::class, 'update'])->name('usuario.update');  
+Route::put('/empleado/{id}', [EmpleadosController::class, 'update'])->name('empleado.update');   
+Route::delete('/destroy_user/{id}', [RegisterManagerController::class, 'destroy'])->name('user_destroysent');
+Route::delete('/destroy_empleado/{id}', [EmpleadosController::class, 'destroy'])->name('empleado_destroysent');
 
 
+// Route::get('/about', [AboutController::class, 'ABOUT']);
+
+// Route::get('/tareas', [TareasController::class, 'index']);
+
+// Route::get('/evaluaciong', [EvaluacionGController::class, 'index']);
+
+// Route::get('/evaluacion', [EvaluacionController::class, 'index']);
+
+// Route::get('/usuarios', [UsersController::class, 'index']); 
