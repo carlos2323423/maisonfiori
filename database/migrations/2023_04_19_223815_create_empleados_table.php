@@ -19,7 +19,8 @@ class CreateEmpleadosTable extends Migration
             $table->string('nivel', 255);      
             $table->string('rol', 255);
             $table->string('foto', 255);               
-            $table->string('nombre', 255);            
+            $table->string('LastName', 255); 
+            $table->string('FirstName', 255);         
             $table->integer('ci');            
             $table->string('email', 255); 
             $table->integer('celular');                    

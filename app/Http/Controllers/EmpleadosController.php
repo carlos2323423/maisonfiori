@@ -1,132 +1,86 @@
 <?php
-// ESENCIASLES INPORTS
-namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Models\Empleado;
-// END ESENCIASLES INPORTS
-// EXTAS ADITION 
-use Illuminate\Support\Facades\Auth;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\RedirectorController;
-// END EXTAS ADITION 
-/** START ADITIONS */
-if (Auth::check()) {
-    // The user is logged in...
-}
-// Get the currently authenticated user...
-$user = Auth::user();
-// Get the currently authenticated user's ID...
-// $id = Auth::UserID();
-$id = Auth::id();
-/** END ADITIONS */
+    // ESENCIASLES INPORTS
+        namespace App\Http\Controllers;
+        use Illuminate\Http\Request;
+        use App\Models\Empleado;
+    // END ESENCIASLES INPORTS
+    // EXTAS ADITION 
+        use Illuminate\Support\Facades\Auth;
+        use App\Providers\RouteServiceProvider;
+        use Illuminate\Support\Facades\Hash;
+        // use Illuminate\Validation\Validator;
+        use Illuminate\Support\Facades\Validator;        
+        // use Illuminate\Support\MessageBag;
+        use Illuminate\Contracts\Support\MessageProvider;
+        use Illuminate\Contracts\Support\MessageBag;
+        // START TRAITS        
+        use App\Traits\CrudmodalTrait;        
+        use App\Traits\RedirectorTrait;
+        // END TRAITS
+    // END EXTAS ADITION     
+
 class EmpleadosController extends Controller
 {
-    public const HOME = '/home';
-    
-    /**
-    * The user has been authenticated.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  mixed  $user
-    * @return mixed
-    */
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
+    use CrudmodalTrait;
+    use RedirectorTrait;
 
-    use RegistersUsers;
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }                
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-
-     /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-
-     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-
-    public function authenticate(Request $request) {          
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('/');
-        }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
-    }
-
-    protected function authenticated(Request $request, $user)
-    {
-        return response([
-            //
-        ]);
-    }
-
-    public function index()
-    {
-        //
-        return view('register', ['title' => 'Tareas Page']);
-    }
-
-    public function username()
-    {
-        return 'username';
-    }
-
-    protected function guard()
-    {
-        // return Auth::guard('guard-name');
-    }
-
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-        // $this->middleware('guest');
-    }
+    public function otros() {
+        // Get the currently authenticated user...
+        $user = Auth::user();
+        // Get the currently authenticated user's ID...    
+        $id = Auth::id();
+    }                                      
 
     protected function validator(array $data)
     {
-        return Validator::make($data, [            
-            // 'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        $messages = [
+            'FirstName.required' => 'El campo nombre es requerido',
+            'LastName.required' => 'El campo apellido es requerido',
+            'celular.required' => 'El campo celular es requerido',
+            'celular.unique' => 'El número de celular ya está en uso',
+            'ci.required' => 'El campo CI es requerido',
+            'ci.unique' => 'El número de CI ya está en uso',
+            'email.required' => 'El campo email es requerido',
+            'email.email' => 'El formato de email no es válido',
+            'email.unique' => 'El email ya está en uso',
+            'genero.required' => 'El campo género es requerido',
+            'hotel.required' => 'El campo hotel es requerido',
+            'ingreso.required' => 'El campo ingreso es requerido',
+            'ingreso.date' => 'El formato de fecha de ingreso no es válido',
+            'nivel.required' => 'El campo nivel es requerido',
+            'rol.required' => 'El campo rol es requerido',
+            'foto.image' => 'El archivo debe ser una imagen',
+            'foto.max' => 'El tamaño máximo del archivo es 2MB',
+            'password.required' => 'El campo contraseña es requerido',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres',
+            'password.confirmed' => 'La confirmación de contraseña no coincide',
+        ];
+    
+        return Validator::make($data, [
+            'FirstName' => ['required', 'string', 'max:255'],
+            'LastName' => ['required', 'string', 'max:255'],
+            'celular' => 'required|string|unique:empleados',
+            'ci' => 'required|string|unique:empleados',
+            'email' => 'required|string|email|unique:empleados',
+            'genero' => 'required|string',
+            'hotel' => 'required|string',
+            'ingreso' => 'required|date',
+            'nivel' => 'required|string',
+            'rol' => 'required|string',
+            'foto' => 'nullable|image|max:2048',            
+            'password' => 'required|string|min:8|confirmed',
+        ], $messages);
     }
+
+
+
+
+
    
     // protected function create(array $data)
     // {
@@ -134,76 +88,36 @@ class EmpleadosController extends Controller
     // }
     
     public function store(Request $request)
-    {
-        // $validatedData = $request->validate([
-        //     'hotel' => 'required|string',
-        //     'nivel' => 'required|string',
-        //     'rol' => 'required|string',
-        //     'foto' => 'nullable|image|max:2048',
-        //     'nombre' => 'required|string',
-        //     'ci' => 'required|string|unique:empleados',
-        //     'email' => 'required|string|email|unique:empleados',
-        //     'celular' => 'required|string|unique:empleados',
-        //     'ingreso' => 'required|date',
-        //     'genero' => 'required|string',
-        //     'password' => 'required|string|min:8|confirmed',
-        // ]);
-
-        $data = $request->except(['_token', 'password_confirmation']);
-        $data['password'] = Hash::make($request->password);
-
-        if ($request->hasFile('foto')) {
-            $extension = $request->file('foto')->getClientOriginalExtension();
-            $filename = 'foto_' . $request->nombre . '.' . $extension;
-            $imagePath = $request->file('foto')->storeAs('avatar_img', $filename, 'public');
-            $data['foto'] = $imagePath;
-        }
-
-        Empleado::create($data);
-
-        return redirect()->route('empleados');
-    }
-
-
-
-    // protected function create(array $data)
-    // {
-    //     $data['password'] = Hash::make($data['password']);
-
-    //     if ($data['foto'] && $data['foto'] instanceof UploadedFile) {
-    //         $extension = $data['foto']->getClientOriginalExtension();
-    //         $filename = 'foto_' . $data['nombre'] . '.' . $extension;
-    //         $imagePath = $data['foto']->storeAs('avatar_img', $filename, 'public');
-    //         $data['foto'] = $imagePath;
-    //     }
-
-    //     return Empleado::create($data);
-    // }
-
-    // public function store(Request $request)
-    // {
-    //     $validatedData = $request->validate([
-    //         'hotel' => 'required|string',
-    //         'nivel' => 'required|string',
-    //         'rol' => 'required|string',
-    //         'foto' => 'nullable|image|max:2048',
-    //         'nombre' => 'required|string',
-    //         'ci' => 'required|string|unique:empleados',
-    //         'email' => 'required|string|email|unique:empleados',
-    //         'celular' => 'required|string|unique:empleados',
-    //         'ingreso' => 'required|date',
-    //         'genero' => 'required|string',
-    //         'password' => 'required|string|min:8|confirmed',
-    //     ]);
-
-    //     $data = $request->all();
-    //     $this->create($data);
-
-    //     return redirect()->route('empleados');
-    // }
-
-
-
+    {       
+        // dd($request->all());              
+        $empleado = new Empleado;
+        $validator = $this->validator($request->all());
+        $viewvariables = $this->traitempleados();                 
+        if ($validator->fails()) {
+            // dd(redirect()->back()->withErrors($validator)->withInput());
+            // return redirect()->back()->withErrors($validator)->withInput();            
+            // return redirect()->route('empleados')->withErrors($validator)->withInput();
+            
+            // $errors = $validator->errors();
+            // dd($errors->all(), $errors->keys());
+            // return view('empleados')->withErrors($validator)->withInput();            
+            
+            if (isset($validator)) {
+                // $viewvariables['errors'] = $validator->errors();
+                // dd($viewvariables['errors']);
+                return view('empleados', $viewvariables)->withErrors($validator)->withInput();   
+                // return view('empleados', $viewvariables)->withInput();   
+                // return view('empleados', $viewvariables)->withErrors($viewvariables['errors'])->withInput();
+                // return view('empleados', $viewvariables);           
+            } else {
+                dd('NO EXITE EL VALIDATOR EN EMPLEADOS CONTROLLER');
+            }
+            
+        }               
+        $this->storeTrait($request, $empleado);        
+        return view('empleados', $viewvariables);           
+    }    
+    
     public function show($id)
     {
         // selection query        

@@ -23,6 +23,6 @@
     @endsection
     
     @section('table_row_list')
-    @include('layouts.parts.table_row_list')     
+        @include('layouts.parts.table_row_list')     
     @endsection
 --}}

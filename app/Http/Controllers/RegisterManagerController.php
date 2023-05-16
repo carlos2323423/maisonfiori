@@ -128,25 +128,19 @@ class RegisterManagerController extends Controller
         ]);
     }
    
-    protected function create(array $data)
-    {
-        $user = User::create([                     
-        // return User::create([                     
-            'firstname' => $data['firstname'],
-            'lastname' => $data['lastname'],
-            'ci' => $data['ci'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            // 'created_at' => date('m-d-y H:i:s'),
-            'created_at' => date('y-m-d H:i:s'),
-            'updated_at' => date('y-m-d H:i:s')
-            // 'created_at' => time(),
-        ]);
-        // return route('usuarios');
-        return redirect()->route('usuarios');
-        // auth()->login($user);    
-        // return $user;    
-    }
+    // protected function create(array $data)
+    // {
+    //     $user = User::create([                             
+    //         'firstname' => $data['firstname'],
+    //         'lastname' => $data['lastname'],
+    //         'ci' => $data['ci'],
+    //         'email' => $data['email'],
+    //         'password' => Hash::make($data['password']),            
+    //         'created_at' => date('y-m-d H:i:s'),
+    //         'updated_at' => date('y-m-d H:i:s')            
+    //     ]);        
+    //     return redirect()->route('usuarios');                
+    // }
 
     public function store(Request $request)
     {
@@ -174,7 +168,7 @@ class RegisterManagerController extends Controller
         // dd($data);
         User::create($data);
 
-        return redirect()->route('usuarios');
+        return redirect()->route('users');
     }
 
     public function show($id)
@@ -186,29 +180,24 @@ class RegisterManagerController extends Controller
     }
 
     public function edit($id)
-    {
-        //        
-        $usuarios = User::findOrFail($id);
-        // return view('alumnos.editar', ['alumno' => $alumno]);        
-        $usuarios->nombre_apellido = $request->nombre_apellido;
-        $usuarios->edad = $request->edad;
-        $usuarios->telefono = $request->telefono;
-        $usuarios->direccion = $request->direccion;
-        $usuarios->save();
-        return redirect()->action([AlumnoController::class, 'index']);
+    {        
     }    
     
     public function update(Request $request, $id)
     {        
-         $usuarios = User::findOrFail($id);
-         // return view('alumnos.editar', ['alumno' => $alumno]);                          
-         $usuarios->firstname = $request->firstname;
-         $usuarios->lastname = $request->lastname;
-         $usuarios->ci = $request->ci;
-         $usuarios->email = $request->email;
-         $usuarios->password = Hash::make($request->password);         
-         $usuarios->save();
-         return redirect()->action([RedirectorController::class, 'users']);             
+        $usuario = User::findOrFail($id);
+        $usuario->fill($request->all());
+
+        if ($request->hasFile('foto')) {
+            $imagePath = $request->file('foto')->store('avatar_img', 'public');
+            $usuario->foto = $imagePath;
+        } else {
+            $imagePath = null; // o cualquier otro valor predeterminado que desee usar
+        }        
+    
+        $usuario->save();         
+        // $usuarios->password = Hash::make($request->password);         
+        return redirect()->action([RedirectorController::class, 'users']);                       
     }
 
     // public function destroy(User $usuarios)

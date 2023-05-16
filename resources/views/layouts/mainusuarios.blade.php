@@ -1,7 +1,14 @@
 <ul>
-    @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-    @endforeach
+    {{--
+        --}}
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+        @error('FirstName')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 </ul>
 
 <!DOCTYPE html>
@@ -9,7 +16,20 @@
 
 <head>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> -->
+    <style>
+        #dropzone {
+            margin: 20px;
+            padding: 20px;
+            border: 2px dashed #4e73df;
+            color: #4e73df;
+        }
+        #dropzone.dragover {
+            border: 2px dashed #c6c6c6;
+            background-color: #f1f1f1;
+            color: #f1f1f1;
+        }
 
+    </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,18 +37,7 @@
     <meta name="author" content="">
 
     <title>SB Admin 2 - Tables</title>
-
-    <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    @yield('styles1')                  
 
 </head>
 
@@ -371,21 +380,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->                    
-                    @yield('Page Heading')   
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.
-                    </p>
-                    <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                        <i class="fas fa-user fa-sm text-white-50"></i> 
-                        Agregar Usuario
-                    </a> -->                    
-                    @yield('boton_agragar')                    
-                    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Usuarios</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-user fa-sm text-white-50"></i> Agregar Usuario</a>
-                    </div> -->
+                    @yield('Page Heading_introducction')                                                               
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -397,7 +392,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">                                    
                                     @yield('table_head_foot')                                                                                                                               
                                     <tbody>
-                                        @yield('edit_modal')                                  
+                                        @yield('modal')                                  
                                         
                                         @yield('table_row_list')                                                                                                                                                          
                                     </tbody>
@@ -432,12 +427,10 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-       
+              
     {{--
-        @yield('modal')
+        @yield('edit_modal')   
     --}}
-    @include('layouts.parts.modal')     
-
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -455,7 +448,17 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
     <script>
+        function setGenero(genero) {
+            document.getElementById('generoInput').value = genero;
+        }
+    </script>
+    <script>        
         function resturar_modal(acction) {
+            // console.log(acction);
+            {{--
+                --}}
+                
+                var spaces = @json($spaces);
             for (const property in spaces) {
                 const elementId = "MODAL_id_" + spaces[property];
                 const element = document.getElementById(elementId);
@@ -472,8 +475,8 @@
                 } else {
                 element.value = "";
                 }
-            }
-            cambia_metodo_form ('POST');            
+            }            
+            // cambia_metodo_form ('POST', acction);                     
         }
 
         function foto_restaur(id) {
@@ -481,52 +484,131 @@
             element.type = "file";                            
         }                      
 
-        function cambiaValores(acction, data) {
+        function cambiaValores(acction, data) {            
             for (const [property, value] of Object.entries(data)) {
                 if (property === 'id') continue;
                 const elementId = `MODAL_id_${property}`;
                 const element = document.getElementById(elementId);
                 if (!element) continue;
                 switch (property) {
-                case 'foto': {
-                    const image = document.getElementById('MODAL_id_avatar');
-                    image.src = `{{ asset('storage/') }}/${value}`;
-                    break;
-                }
-                case 'password': {
-                    const element2 = document.getElementById(`Repeat_${elementId}`);
-                    element.value = value;
-                    element2.value = value;
-                    break;
-                }
-                default: {
-                    const inputType = element.type;
-                    if (inputType === 'file') {
-                    element.remove();
-                    const newFileInput = document.createElement('input');
-                    newFileInput.id = elementId;
-                    newFileInput.name = property;
-                    newFileInput.className = 'form-control d-none';
-                    newFileInput.value = value;
-                    const form = document.getElementById('foto_imputcontainer');
-                    form.appendChild(newFileInput);
-                    } else {
-                    element.value = value;
+                    case 'foto': {
+                        const image = document.getElementById('MODAL_id_avatar');
+                        image.src = `{{ asset('storage/') }}/${value}`;
+                        break;
+                    }
+                    case 'password': {                    
+                        const element2 = document.getElementById(`Repeat_${elementId}`);
+                        element.value = value;
+                        element2.value = value;
+                        break;
+                    }
+                    default: {                    
+                        const inputType = element.type;
+                        if (inputType === 'file') {
+                            element.remove();
+                            const newFileInput = document.createElement('input');
+                            newFileInput.id = elementId;
+                            newFileInput.name = property;
+                            newFileInput.className = 'form-control d-none';
+                            newFileInput.value = value;
+                            const form = document.getElementById('foto_imputcontainer');
+                        form.appendChild(newFileInput);
+                        } else {
+                            // console.log(element, typeof value);
+                            if (element.readOnly) {
+                                console.log('El input es de solo lectura');
+                            } else {
+                                // console.log('El input no es de solo lectura');
+                                // console.log(element, element.value);
+                                element.value = value;
+                                element.dispatchEvent(new Event('change'));
+                            }
+                        }
                     }
                 }
-                }
             }
-            cambia_metodo_form ('PUT');            
+            cambia_metodo_form ('PUT', acction);            
         }
 
         function cambia_metodo_form(method, action) {
+            console.log(method, action);
             const edit_list_form = document.getElementById("register_list_form");
             edit_list_form.method = "POST";
-            edit_list_form.innerHTML += `<input type="hidden" name="_method" value="${method}">`;
+            
+            console.log(`<input type="hidden" name="_method" value="${method}">`);
+            // edit_list_form.innerHTML += `<input type="hidden" name="_method" value="${method}">`;
+            var methodField = document.createElement("input");
+            methodField.setAttribute("type", "hidden");
+            methodField.setAttribute("name", "_method");
+            methodField.setAttribute("value", method);
+            edit_list_form.appendChild(methodField);
             edit_list_form.action = action;
         }
 
 
+
+    </script>
+
+    <script>
+        // Obtener el elemento dropzone
+        var dropzone = document.getElementById('dropzone');
+
+        // Manejar el evento 'dragover' para permitir soltar
+        dropzone.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropzone.classList.add('dragover');
+        });
+
+        // Manejar el evento 'dragenter' para resaltar el dropzone
+        dropzone.addEventListener('dragenter', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropzone.classList.add('dragover');
+        });
+
+        // Manejar el evento 'dragleave' para quitar el resaltado del dropzone
+        dropzone.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropzone.classList.remove('dragover');
+        });
+
+        // dropzone.addEventListener('drop', function(e) {
+            //     e.preventDefault();
+            //     e.stopPropagation();
+            //     dropzone.classList.remove('dragover');
+            
+            //     // Obtener los archivos soltados
+            //     var files = e.dataTransfer.files;
+            
+            //     // Iterar sobre los archivos y realizar la acción deseada
+            //     for (var i = 0; i < files.length; i++) {
+                //         // Realizar la acción deseada con el archivo
+                //     }
+                // });
+        // Manejar el evento 'drop' para manejar los archivos soltados
+        dropzone.addEventListener('drop', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropzone.classList.remove('dragover');
+
+            // Verificar si hay solo un archivo
+            if (e.dataTransfer.files.length !== 1) {
+                alert("Solo se permite un archivo a la vez");
+                return;
+            }
+
+            // Si solo hay un archivo, continuar con la lógica del evento
+            var file = e.dataTransfer.files[0];
+            // Realizar la acción deseada con el archivo
+            // Obtener los archivos soltados            
+            
+            // Agregar el archivo al objeto FormData
+            var formData = new FormData();
+            formData.append('foto', file);
+    
+        });
 
     </script>
 

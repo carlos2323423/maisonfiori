@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-// use Illuminate\Support\MessageBag;
-use Illuminate\Contracts\Support\MessageBag;
 // START TRAITS        
 use App\Traits\RedirectorTrait;        
 // END TRAITS
@@ -64,12 +62,52 @@ class RedirectorController extends Controller
     }    
 
     public function users() {
-        return $this->traitusers();                
+        $spaces = $this->getTableColumns('users');          
+        // selection query        
+        // dd($spaces);                
+        $list = User::all();     
+        $lelementos = array(
+            'styles1', 
+            'Page Heading_introducction', 
+            'modal',
+            'table_head_foot',
+            'table_row_list',
+        );    
+        $name = 'usuario';
+        return view('usuarios', [
+            'title' => 'Welcome',            
+            'list' => $list,
+            'spaces' => $spaces,
+            'route_name' => $name,
+            'elementos' => $lelementos,
+        ]);
     }    
 
-    public function empleados() {     
-        $viewvariables = $this->traitempleados();     
-        return view('empleados', $viewvariables);   
+    public function empleados() {      
+        $spaces = $this->getTableColumns('empleados');                  
+        // dd($spaces);    
+        $list = Empleado::all();  
+        $lelementos = array(
+            'styles1', 
+            'Page Heading_introducction', 
+            'modal',
+            'table_head_foot',
+            'table_row_list',
+        );    
+        $name = 'empleado';
+        // view()->share('spaces', $spaces);
+        $errors = $request->session()->get('errors');
+        $oldInput = $request->session()->get('oldInput');
+    
+        return view('empleados', [
+            'title' => 'Welcome',
+            'list' => $list,
+            'spaces' => $spaces,
+            'route_name' => $name,
+            'elementos' => $lelementos,
+            'errors' => $errors,
+            'oldInput' => $oldInput,
+        ]);
     } 
 
     public function about() {      

@@ -128,87 +128,11 @@ class EmpleadosController extends Controller
         ]);
     }
    
-    protected function create(array $data)
-    {
-        $user = Empleado::create([                     
-        // return User::create([        
-            'hotel' => $data['hotel'],             
-            'nivel' => $data['nivel'],
-            'rol' => $data['rol'],
-            'foto' => $data['foto'],
-            'nombre' => $data['nombre'],
-            'ci' => $data['ci'],             
-            'email' => $data['email'],            
-            'celular' => $data['celular'],
-            'ingreso' => $data['ingreso'],
-            'genero' => $data['genero'],
-            'password' => Hash::make($data['password']),            
-            'created_at' => date('y-m-d H:i:s'),
-            'updated_at' => date('y-m-d H:i:s')            
-        ]);
-        // return route('usuarios');
-        return redirect()->route('empleados');
-        // auth()->login($user);    
-        // return $user;    
-    }
-
-    // public function store(Request $request)
-    // {        
-    //     // $request->validate([
-    //     //     'foto' => 'required|image|max:2048', // validación de la imagen
-    //     // ]);
-    
-    //     // guardar la imagen en el servidor
-    //     if ($request->hasFile('foto')) {
-    //         // $empleado = Empleado::findOrFail($id);
-    //         // $timestamp = time();
-
-    //         $extension = $request->file('foto')->getClientOriginalExtension();
-    //         // $filename = 'foto_' . $empleado->id . '_' . $nombre . '.' . $extension;
-    //         // $filename = 'foto_' . $empleado->id . '_' . $request->nombre . '.' . $extension;
-    //         $filename = 'foto_' . $request->nombre . '.' . $extension;
-    //         $imagePath = $request->file('foto')->storeAs('avatar_img', $filename, 'public');
-
-    //     } else {
-    //         $imagePath = null; // o cualquier otro valor predeterminado que desee usar
-    //     }        
-    
-    //     // $keys = array_keys($request->all());
+    // protected function create(array $data)
+    // {
         
-    //     $keys = array_keys($request->except('_token'));
-    //     // dd($keys);
-
-    //     $data = [];
-    //     foreach ($keys as $key) {
-    //         // dd($key, $request->input($key));            
-    //         $data[$key] = $request->input($key);
-    //     }        
-
-    //     // $data = [
-    //     //     'hotel' => $request->hotel,            
-    //     //     'nivel' => $request->nivel,
-    //     //     'rol' => $request->rol,                      
-    //     //     'foto' => $imagePath, // guardar la ruta de la imagen en la base de datos
-    //     //     'nombre' => $request->nombre,
-    //     //     'ci' => $request->ci,            
-    //     //     'email' => $request->email,            
-    //     //     'celular' => $request->celular,
-    //     //     'ingreso' => $request->ingreso,
-    //     //     'genero' => $request->genero,            
-    //     //     'password' => $request->password,
-    //     //     'image' => $imagePath, // guardar la ruta de la imagen en la base de datos
-    //     // ];
-    //     $data['foto'] = $imagePath; // guardar la ruta de la imagen en la base de datos
-    //     $data['password'] = Hash::make($request->password);
-    //     $data['created_at'] = date('y-m-d H:i:s');
-    //     $data['updated_at'] = date('y-m-d H:i:s');
-        
-    //     // dd($data); // Imprime el contenido de $columns y detiene la ejecución del código
-    //     // return $this->create($data);           
-    //     // return $this->create($data)->withErrors(['foto' => 'Hubo un problema al subir la imagen']); 
-    //     return $this->create($data); 
     // }
-
+    
     public function store(Request $request)
     {
         // $validatedData = $request->validate([
@@ -239,6 +163,45 @@ class EmpleadosController extends Controller
 
         return redirect()->route('empleados');
     }
+
+
+
+    // protected function create(array $data)
+    // {
+    //     $data['password'] = Hash::make($data['password']);
+
+    //     if ($data['foto'] && $data['foto'] instanceof UploadedFile) {
+    //         $extension = $data['foto']->getClientOriginalExtension();
+    //         $filename = 'foto_' . $data['nombre'] . '.' . $extension;
+    //         $imagePath = $data['foto']->storeAs('avatar_img', $filename, 'public');
+    //         $data['foto'] = $imagePath;
+    //     }
+
+    //     return Empleado::create($data);
+    // }
+
+    // public function store(Request $request)
+    // {
+    //     $validatedData = $request->validate([
+    //         'hotel' => 'required|string',
+    //         'nivel' => 'required|string',
+    //         'rol' => 'required|string',
+    //         'foto' => 'nullable|image|max:2048',
+    //         'nombre' => 'required|string',
+    //         'ci' => 'required|string|unique:empleados',
+    //         'email' => 'required|string|email|unique:empleados',
+    //         'celular' => 'required|string|unique:empleados',
+    //         'ingreso' => 'required|date',
+    //         'genero' => 'required|string',
+    //         'password' => 'required|string|min:8|confirmed',
+    //     ]);
+
+    //     $data = $request->all();
+    //     $this->create($data);
+
+    //     return redirect()->route('empleados');
+    // }
+
 
 
     public function show($id)

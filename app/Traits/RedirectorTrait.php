@@ -1,21 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Traits;
 use App\Models\User;
 use App\Models\Empleado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-// use Illuminate\Support\MessageBag;
 use Illuminate\Contracts\Support\MessageBag;
-// START TRAITS        
-use App\Traits\RedirectorTrait;        
-// END TRAITS
 
-class RedirectorController extends Controller
+trait RedirectorTrait
 {
-    use RedirectorTrait;
     public function login() {
         //
         return view('login', ['title' => 'Home Page']);
@@ -63,13 +58,50 @@ class RedirectorController extends Controller
         return view('welcome2', ['title' => 'Welcome']);
     }    
 
-    public function users() {
-        return $this->traitusers();                
+    public function traitusers() {
+        $spaces = $this->getTableColumns('users');          
+        // selection query        
+        // dd($spaces);                
+        $list = User::all();     
+        $lelementos = array(
+            'styles1', 
+            'Page Heading_introducction', 
+            'modal',
+            'table_head_foot',
+            'table_row_list',
+        );    
+        $name = 'usuario';
+        return view('usuarios', [
+            'title' => 'Welcome',            
+            'list' => $list,
+            'spaces' => $spaces,
+            'route_name' => $name,
+            'elementos' => $lelementos,
+        ]);
     }    
 
-    public function empleados() {     
-        $viewvariables = $this->traitempleados();     
-        return view('empleados', $viewvariables);   
+    public function traitempleados() {      
+        $spaces = $this->getTableColumns('empleados');                  
+        // dd($spaces);    
+        $list = Empleado::all();  
+        $lelementos = array(
+            'styles1', 
+            'Page Heading_introducction', 
+            'modal',
+            'table_head_foot',
+            'table_row_list',
+        );    
+        $name = 'empleado';
+        // view()->share('spaces', $spaces);        
+            
+        $viewvariables = [
+            'title' => 'Welcome',
+            'list' => $list,
+            'spaces' => $spaces,
+            'route_name' => $name,
+            'elementos' => $lelementos,                        
+        ];
+        return $viewvariables;
     } 
 
     public function about() {      

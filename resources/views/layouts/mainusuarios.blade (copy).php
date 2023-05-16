@@ -433,8 +433,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
        
-    @yield('modal')
-        
+    @yield('modal')    
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -453,171 +452,94 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
     <script>
-        function resturar_modal(acction) {            
-
-            for (const property in spaces) {  
+        function resturar_modal(acction) {
+            for (const property in spaces) {
                 const elementId = "MODAL_id_" + spaces[property];
-                const element = document.getElementById(elementId); 
-                // alert(property);   
-                if (element === null) {
-                    // console.log("retorno nulo en " + spaces[property]);           
-                    continue;
-                }                
-                
-                if (spaces[property] == 'password') { 
-                    // const elementId = "MODAL_id_" + spaces[property];
-                    const elementId2 = "Repeat_MODAL_id_" + spaces[property];
-                    // const element = document.getElementById(elementId); 
-                    const element2 = document.getElementById(elementId2);
-                    element.value = "";
-                    element2.value = "";
-                    continue;    
-                } 
-                
-                if (spaces[property] == 'foto') {  
-                    // const elementId = "MODAL_id_" + spaces[property];
-
-                    let image = document.getElementById("MODAL_id_avatar");                                                            
-                    image.src = "https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" ;
-                    foto_restaur(elementId);
+                const element = document.getElementById(elementId);
+                if (!element) continue;
+                if (spaces[property] === 'password') { 
+                const elementId2 = "Repeat_MODAL_id_" + spaces[property];
+                const element2 = document.getElementById(elementId2);
+                element.value = "";
+                element2.value = "";
+                } else if (spaces[property] === 'foto') {  
+                let image = document.getElementById("MODAL_id_avatar");                                                            
+                image.src = "https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" ;
+                foto_restaur(elementId);
+                } else {
+                element.value = "";
                 }
-                // alert(spaces[property]);                   
-                // const elementId = "MODAL_id_" + spaces[property];
-                // const element = document.getElementById(elementId); 
-                element.value = "";                
-
             }
-
-            var edit_list_form = document.getElementById("register_list_form");                                    
-            edit_list_form.method = "POST";
-
-            var methodField = document.createElement("input");
-            methodField.setAttribute("type", "hidden");
-            methodField.setAttribute("name", "_method");
-            methodField.setAttribute("value", "POST");
-            edit_list_form.appendChild(methodField);            
-
-            edit_list_form.setAttribute('action', acction);        
-            // alert("¡Has ingresado a la función!");                            
-        }        
+            cambia_metodo_form ('POST');            
+        }
 
         function foto_restaur(id) {
-            // alert("¡Has ingresado a la función!");
             const element = document.getElementById(id);            
             element.type = "file";                            
-            
-        }        
-        function cambiaValores(acction, data) {
-            var entidades = data;
-            // console.log(typeof entidades);
-            // console.log(entidades);
-            for (const property in entidades) {                
-                if (property == 'id') {
+        }                      
 
-                } else {
-                    if (entidades.hasOwnProperty(property)) {
-                        if (property == 'foto') {
-                            let image = document.getElementById("MODAL_id_avatar");
-                            var foto = entidades[property];
-                            // image.src = foto;
-                            {{--
-                                // image.src = "{{ route('avatar', ':filename') }}".replace(':filename', foto);                            
-                            --}}
-                            image.src = "{{ asset('storage/') }}/" + foto;
-
-                            {{--
-                                // image.src = "{{ asset('storage/' + foto) }}";
-                                // <img src="{{ asset('storage/images/mi_imagen.jpg') }}" alt="Mi imagen">
-                                // <img src="{{ asset('storage/' . $foto) }}">
-                            --}}
-                        }
-                        if (property == 'password') {
-                            const elementId = "MODAL_id_" + property;
-                            const elementId2 = "Repeat_MODAL_id_" + property;                        
-                            const element = document.getElementById(elementId);
-                            if (element === null) {
-                                continue;
-                            }
-                            const element2 = document.getElementById(elementId2);
-                            element.value = entidades[property];                            
-                            element2.value = entidades[property];
+        function cambiaValores(acction, data) {            
+            for (const [property, value] of Object.entries(data)) {
+                if (property === 'id') continue;
+                const elementId = `MODAL_id_${property}`;
+                const element = document.getElementById(elementId);
+                if (!element) continue;
+                switch (property) {
+                    case 'foto': {
+                        const image = document.getElementById('MODAL_id_avatar');
+                        image.src = `{{ asset('storage/') }}/${value}`;
+                        break;
+                    }
+                    case 'password': {                    
+                        const element2 = document.getElementById(`Repeat_${elementId}`);
+                        element.value = value;
+                        element2.value = value;
+                        break;
+                    }
+                    default: {                    
+                        const inputType = element.type;
+                        if (inputType === 'file') {
+                            element.remove();
+                            const newFileInput = document.createElement('input');
+                            newFileInput.id = elementId;
+                            newFileInput.name = property;
+                            newFileInput.className = 'form-control d-none';
+                            newFileInput.value = value;
+                            const form = document.getElementById('foto_imputcontainer');
+                        form.appendChild(newFileInput);
                         } else {
-                            const elementId = "MODAL_id_" + property;                        
-                            // console.log(elementId);
-                            const element = document.getElementById(elementId);   
-                            if (element === null) {
-                                continue;
-                            }                     
-                            const inputType = element.type;
-                            if (inputType === "file") {
-                                // hacer algo si el input es de tipo file                            
-                                element.remove();                            
-                                const newFileInput = document.createElement("input");
-                                // newFileInput.type = "file";                            
-                                newFileInput.id = elementId;
-                                newFileInput.name = property;
-                                newFileInput.className = "form-control d-none";
-                                newFileInput.value = entidades[property];
-                                
-                                // newFileInput.type = "file";
-                                const form = document.getElementById("foto_imputcontainer");
-                                form.appendChild(newFileInput);
-    
+                            // console.log(element, typeof value);
+                            if (element.readOnly) {
+                                console.log('El input es de solo lectura');
                             } else {
-                                // hacer algo si el input no es de tipo file
-                                element.value = entidades[property];
-                            }                        
+                                // console.log('El input no es de solo lectura');
+                                // console.log(element, element.value);
+                                element.value = value;
+                                element.dispatchEvent(new Event('change'));
+                            }
                         }
-
-                    } else {
-                    console.log("La propiedad " + property + " no está definida en el objeto");
-                    }                
+                    }
                 }
             }
-            {{-- 
-                // entidades.forEach(function(element) {
-                //     var element = document.getElementById("MODAL_id_{{ $space }}");    
-                //     element.value = entidad;                
-                // });
-                // for (let entidad of entidades) {
-                //     var element = document.getElementById("MODAL_id_{{ $space }}");    
-                //     element.value = entidad;                
-                // }
-            --}}
+            cambia_metodo_form ('PUT', acction);            
+        }
 
-
-            // var editFirstName = document.getElementById("editFirstName");
-            // var editLastName = document.getElementById("editLastName");
-            // var editCI = document.getElementById("editCI");
-            // var editInputEmail = document.getElementById("editInputEmail");
-            // var editInputPassword = document.getElementById("editInputPassword");
-            // var editRepeatPassword = document.getElementById("editRepeatPassword");
-            // console.log(user);
-            
-            
-            
-            
-            // editFirstName.value = user.FirstName;
-            // editLastName.value = user.LastName;
-            // editCI.value = user.CI;
-            // editInputEmail.value = user.Email;
-            // editInputPassword.value = user.password;
-            // editRepeatPassword.value = user.password;                                    
-            // console.log(acction);
-            
-            // var edit_list_form = document.getElementById("edit_list_form");   
-
-            var edit_list_form = document.getElementById("register_list_form");                                    
-            
+        function cambia_metodo_form(method, action) {
+            console.log(method, action);
+            const edit_list_form = document.getElementById("register_list_form");
             edit_list_form.method = "POST";
+            
+            console.log(`<input type="hidden" name="_method" value="${method}">`);
+            // edit_list_form.innerHTML += `<input type="hidden" name="_method" value="${method}">`;
             var methodField = document.createElement("input");
             methodField.setAttribute("type", "hidden");
             methodField.setAttribute("name", "_method");
-            methodField.setAttribute("value", "PUT");
+            methodField.setAttribute("value", method);
             edit_list_form.appendChild(methodField);
-
-            edit_list_form.setAttribute('action', acction);            
+            edit_list_form.action = action;
         }
+
+
 
     </script>
 

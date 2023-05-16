@@ -26,6 +26,12 @@ $routes_get = [
    'welcome',
    'register',
    'login',
+   'about',
+   'tareas',
+   'evaluaciong',
+   'evaluacion',
+   'calificacion_empleados',
+
 ];
 // array_push($routes_get, 'pera');
 
@@ -50,13 +56,17 @@ Route::put('/empleado/{id}', [EmpleadosController::class, 'update'])->name('empl
 Route::delete('/destroy_user/{id}', [RegisterManagerController::class, 'destroy'])->name('user_destroysent');
 Route::delete('/destroy_empleado/{id}', [EmpleadosController::class, 'destroy'])->name('empleado_destroysent');
 
-
-// Route::get('/about', [AboutController::class, 'ABOUT']);
-
-// Route::get('/tareas', [TareasController::class, 'index']);
-
-// Route::get('/evaluaciong', [EvaluacionGController::class, 'index']);
-
-// Route::get('/evaluacion', [EvaluacionController::class, 'index']);
-
-// Route::get('/usuarios', [UsersController::class, 'index']); 
+// START FILES
+Route::get('avatar/{filename}', function ($filename) {
+   $path = storage_path('public/' . $filename);
+   dd($path); // Imprime el contenido de $columns y detiene la ejecución del código
+   if (!File::exists($path)) {
+       abort(404);
+   }
+   $file = File::get($path);
+   $type = File::mimeType($path);
+   $response = Response::make($file, 200);
+   $response->header("Content-Type", $type);
+   return $response;
+})->name('avatar');
+// END FILES
