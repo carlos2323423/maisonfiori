@@ -1,5 +1,7 @@
 <!-- USERS Modal-->
-<div class="modal fade" id="register_userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="register_userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">    
+<!-- <div class="modal fade show" id="register_userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="padding-right: 15px; display: block;" aria-modal="true"> -->
+<!-- <div class="modal fade @if ($errors->any()) show @endif" id="register_userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="@if ($errors->any()) padding-right: 15px; display: block; @endif" aria-modal="@if ($errors->any()) true @endif"> -->
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -24,26 +26,10 @@
                                         <input name="{{ $space }}" type="date" class="form-control form-control-user" id="MODAL_id_{{ $space }}" placeholder="ingreso">
                                     </div>
                                 </div>
+                            @elseif ($space === 'hotel')
+                                @include('layouts.parts.dropdown_form')                                     
                             @elseif ($space === 'genero')
-                                <!-- Campo oculto para el género -->
-                                <input type="hidden" name="genero" id="generoInput">
-
-                                <!-- Bloque del campo de género visible -->
-                                <div class="form-group row">
-                                    <div class="col-sm-6">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="generoDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Seleccionar género
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="generoDropdown">
-                                                <a class="dropdown-item" href="#" onclick="setGenero('Masculino')">Masculino</a>
-                                                <a class="dropdown-item" href="#" onclick="setGenero('Femenino')">Femenino</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#" onclick="setGenero('Otros')">Otros</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @include('layouts.parts.dropdown_form')                                     
                             @elseif ($space === 'foto')
                                 <div class="form-group">
                                     <div>
@@ -71,8 +57,8 @@
                                     </div>
                                 </div>
                             @else
-                                <div class="form-group">
-                                    <input name="{{ $space }}" type="" class="form-control form-control-user" id="MODAL_id_{{ $space }}" placeholder="{{ $space }}">
+                                <div class="form-group">                                    
+                                    <input name="{{ $space }}" type="" class="form-control form-control-user" id="MODAL_id_{{ $space }}" placeholder="{{ $space }}" value="{{ old( $space ) }}">
                                 </div>
                             @endif
 
@@ -85,11 +71,13 @@
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
-                            --}}
-                            @error('FirstName')
-                                <span class="invalid-feedback" role="alert">
+                                --}}
+                            @error($space)
+                            <div>
+                                <span class="invalid-feedback" role="alert" style="@if ($errors->any()) display: block; @endif">
                                     <strong>{{ $message }}</strong>
                                 </span>
+                            </div>                            
                             @enderror
 
                             <script>

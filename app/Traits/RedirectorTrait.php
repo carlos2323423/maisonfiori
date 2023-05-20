@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Contracts\Support\MessageBag;
 
 trait RedirectorTrait
 {
@@ -65,19 +64,25 @@ trait RedirectorTrait
         $list = User::all();     
         $lelementos = array(
             'styles1', 
+            'styles2',
+            'script1',
+            'script2',
             'Page Heading_introducction', 
             'modal',
             'table_head_foot',
             'table_row_list',
         );    
-        $name = 'usuario';
-        return view('usuarios', [
+        $route_name = 'usuario';
+        $name = 'usuario';        
+        $viewvariables = [
             'title' => 'Welcome',            
             'list' => $list,
             'spaces' => $spaces,
-            'route_name' => $name,
+            'route_name' => $route_name,
+            'name' => $name,
             'elementos' => $lelementos,
-        ]);
+        ];
+        return $viewvariables;
     }    
 
     public function traitempleados() {      
@@ -86,20 +91,37 @@ trait RedirectorTrait
         $list = Empleado::all();  
         $lelementos = array(
             'styles1', 
+            'styles2',
+            'script1',
+            'script2',
             'Page Heading_introducction', 
             'modal',
             'table_head_foot',
             'table_row_list',
-        );    
+        );
+        $route_name = 'empleado';
         $name = 'empleado';
+        $list_options = [
+            'hoteles' => $hoteles = array(
+                'prado',
+                'recoleta',
+                'centro',
+            ),
+            'generoes' => $generos = array(
+                'masculino',
+                'femenino',                
+            ),
+        ];        
         // view()->share('spaces', $spaces);        
             
         $viewvariables = [
             'title' => 'Welcome',
             'list' => $list,
             'spaces' => $spaces,
-            'route_name' => $name,
-            'elementos' => $lelementos,                        
+            'route_name' => $route_name,
+            'name' => $name,
+            'elementos' => $lelementos,
+            'list_options' => $list_options,
         ];
         return $viewvariables;
     } 
