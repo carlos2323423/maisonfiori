@@ -19,7 +19,7 @@ trait RedirectorTrait
         return view('register', ['title' => 'Home Page']);
     }    
 
-    public function getTableColumns($tableName) {
+    public function getTableColumns($tableName, bool $total) {
         $columns = DB::getSchemaBuilder()->getColumnListing($tableName);
         // dd($columns); // Imprime el contenido de $columns y detiene la ejecución del código
         $spaces = [];                
@@ -28,29 +28,34 @@ trait RedirectorTrait
         // }        
         $i = 0;
         $complate_name = ['FirstName', 'LastName'];
-        $excludeColumns = ['foto', 'password']; // columnas a excluir
+        $lastvaluesform = ['foto', 'password']; // columnas a excluir
+        $excludeColumns = ['created_at', 'updated_at', 'remember_token', 'id'];
         foreach($complate_name as $value) {
             $i++;            
             $spaces['c' . ($i)] = $value;
         }                               
         foreach($columns as $index => $column) {            
-            if (in_array($column, $excludeColumns) || in_array($column, $complate_name)) {
+            if (in_array($column, $lastvaluesform) || in_array($column, $complate_name) || in_array($column, $excludeColumns)) {
                 continue;
             }            
             $i++;
-            $spaces['c' . $i] = $column;            
+            $spaces['c' . $i] = $column;
         }                                
-        foreach($excludeColumns as $value) {
-            $i++;            
+        foreach($lastvaluesform as $value) {
+            $i++;
             $spaces['c' . ($i)] = $value;
         }            
-
-        $excludeColumns = ['created_at', 'updated_at', 'remember_token', 'id'];
-        $spaces = array_diff($spaces, $excludeColumns);
-        // $spaces = array_values($filteredSpaces);
-
-        // dd($spaces); // Imprime el contenido de $columns y detiene la ejecución del código
-        return $spaces;
+        if($total) {            
+            foreach($excludeColumns as $value) {
+                $i++;
+                $spaces['c' . ($i)] = $value;
+            }
+            return $spaces;
+        } else {                            
+            // $spaces = array_diff($spaces, $excludeColumns);
+            return $spaces;
+        }
+        dd('ERROR function getTableColumns');
     }    
 
     public function welcome() {
@@ -86,8 +91,9 @@ trait RedirectorTrait
     }    
 
     public function traitempleados() {      
-        $spaces = $this->getTableColumns('empleados');                  
-        // dd($spaces);    
+        $spaces = $this->getTableColumns('empleados', false);
+        $spacesTotal = $this->getTableColumns('empleados', true);
+        // dd($spaces);
         $list = Empleado::all();  
         $lelementos = array(
             'styles1', 
@@ -102,6 +108,16 @@ trait RedirectorTrait
         $route_name = 'empleado';
         $name = 'empleado';
         $list_options = [
+            'roles' => $hoteles = array(
+                'recepcionista',
+                'camarero',
+                'cocinenero',
+            ),
+            'niveles' => $hoteles = array(
+                'alto',
+                'medio',
+                'bajo',
+            ),
             'hoteles' => $hoteles = array(
                 'prado',
                 'recoleta',
@@ -118,6 +134,7 @@ trait RedirectorTrait
             'title' => 'Welcome',
             'list' => $list,
             'spaces' => $spaces,
+            'spacesTotal' => $spacesTotal,
             'route_name' => $route_name,
             'name' => $name,
             'elementos' => $lelementos,

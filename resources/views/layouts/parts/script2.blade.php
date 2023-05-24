@@ -1,50 +1,193 @@
 <script>
-    function setDropdownValor(genero, id) {
-        document.getElementById(id).value = genero;
+    function ucfirst(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    function setDropdownValor(selectedvalor, id) {
+        generoDropdown = "generoDropdown_" + id;
+        input = "MODAL_id_" + id;
+        document.getElementById(generoDropdown).textContent = ucfirst(id) + ': ' + selectedvalor;
+        document.getElementById(input).value = selectedvalor;
     }
 </script>
 <script>        
         function resturar_modal(acction) {
+            var spaces = @json($spaces);
+            console.log(spaces);                        
             // console.log(acction);
-            {{--
-                --}}
-                
-                var spaces = @json($spaces);
-            for (const property in spaces) {
-                const elementId = "MODAL_id_" + spaces[property];
-                const element = document.getElementById(elementId);
-                if (!element) continue;
-                if (spaces[property] === 'password') { 
-                const elementId2 = "Repeat_MODAL_id_" + spaces[property];
-                const element2 = document.getElementById(elementId2);
-                element.value = "";
-                element2.value = "";
-                } else if (spaces[property] === 'foto') {  
-                let image = document.getElementById("MODAL_id_avatar");                                                            
-                image.src = "https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" ;
-                foto_restaur(elementId);
-                } else {
-                element.value = "";
+            @if ($errors->any())
+                var valor_deretorno = input_typecheck(
+                    getidsarray(
+                        Object.values(
+                            spaces)));
+                var old = @json(old());
+                console.log(old);
+                for (const property in spaces) {
+                    // console.log(property);
+                    var column = spaces[property];
+                    const elementId = "MODAL_id_" + column;
+                    const element = document.getElementById(elementId);
+                    if (!element) continue;
+                    switch (column) {
+                        case 'password':
+                            const elementId2 = "Repeat_MODAL_id_" + column;
+                            const element2 = document.getElementById(elementId2);
+                            element.value = old[column];
+                            element2.value = old[column];
+                            break;
+                        case 'foto':
+                            let image = document.getElementById("MODAL_id_avatar");                                                            
+                            image.src = "https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg";
+                            element.value = old[column];
+                            // inputfile_restaur(elementId);
+                            break;
+                        default:
+                            element.value = old[column];
+                            break;                            
+                    }                    
+                }                
+            @else
+                for (const property in spaces) {                    
+                    const elementId = "MODAL_id_" + spaces[property];
+                    const element = document.getElementById(elementId);
+                    if (!element) continue;
+
+                    if (spaces[property] === 'password') { 
+                        const elementId2 = "Repeat_MODAL_id_" + spaces[property];
+                        const element2 = document.getElementById(elementId2);
+                        element.value = "";
+                        element2.value = "";
+                    } else if (spaces[property] === 'foto') {  
+                        let image = document.getElementById("MODAL_id_avatar");                                                            
+                        image.src = "https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" ;
+                        // inputfile_restaur(elementId);
+                    } else {
+                        element.value = "";
+                    }
                 }
-            }            
+            @endif
+            // inputfile_restaur(valor_deretorno['inputfile']);
             // cambia_metodo_form ('POST', acction);                     
         }
 
-        function foto_restaur(id) {
-            const element = document.getElementById(id);            
-            element.type = "file";                            
-        }                      
+        function inputfile_restaur(IdElements) {            
+            switch (typeof IdElements) {
+                case 'object': {                        
+                    for (const id of IdElements) {
+                        const element = document.getElementById(id);
+                        if (!element) break;
+                        element.className = 'form-control d-none';
+                        element.type = "file";
+                    }
+                    break;
+                }
+                case 'string': {
+                    const element = document.getElementById(IdElements);
+                    if (!element) break;
+                    element.className = 'form-control d-none';
+                    element.type = "file";
+                    break;
+                }
+            }            
+        }              
 
-        function cambiaValores(acction, data) {            
+        function input_typecheck (IdElements) {                                    
+            var valor_deretorno = {
+                'inputfile': [],
+                'readonly': [],
+            };
+            var typevar = typeof IdElements;
+            console.log(typevar);
+            switch (typevar) {
+                case 'object': {          
+                    for (const elementId of IdElements) {
+                    // for (const [elementId, elementName] of IdElements) {
+                        const element = document.getElementById(elementId);
+                        if (!element) continue;
+                        if (element.type === 'file') {                            
+                            const elementName = element.name;
+                            const elementclassName = element.className;
+                            const containerElement = element.parentNode;
+                            element.remove();
+                            const newFileInput = document.createElement('input');
+                            newFileInput.id = elementId;
+                            newFileInput.name = elementName;
+                            // newFileInput.className = elementclassName;
+                            newFileInput.className = 'form-control';
+                            // newFileInput.value = value;                                                        
+                            console.log(newFileInput);
+                            containerElement.appendChild(newFileInput);
+                            valor_deretorno['inputfile'].push(elementId);
+                            // valor_deretorno['file'] = elementId;
+                        }
+                        if (element.readOnly) {
+                            valor_deretorno['readonly'].push(elementId);
+                            // valor_deretorno['readonly'] = elementId;
+                            console.log('El input es de solo lectura');
+                        }                
+                    }
+                    break;
+                }
+                case 'string': {
+                    const element = document.getElementById(IdElements);                    
+                    if (!element) break;
+                    const elementId = element.id;                    
+                    if (element.type === 'file') {                        
+                        const elementName = element.name;
+                        const elementclassName = element.className;
+                        const containerElement = element.parentNode;                        
+                        element.remove();
+                        const newFileInput = document.createElement('input');
+                        newFileInput.id = elementId;
+                        newFileInput.name = elementName;
+                        // newFileInput.className = elementclassName;
+                        newFileInput.className = 'form-control';
+                        containerElement.appendChild(newFileInput);
+                        valor_deretorno['inputfile'].push(elementId);
+                        // valor_deretorno['file'] = elementId;
+                    }
+                    if (element.readOnly) {
+                        valor_deretorno['readonly'].push(elementId);                        
+                        console.log('El input es de solo lectura');
+                    }
+                    break;
+                }
+            }                                      
+            return valor_deretorno;
+        }
+
+        function getidsarray(names) {                        
+            // console.log(names);
+            var ids = [];
+            for (const value of names) {
+                const elementId = `MODAL_id_${value}`;
+                ids.push(elementId);
+                // ids[elementId] = value;
+                // ids.push([elementId, value]);
+            }
+            console.log(ids);
+            // return Object.entries(ids);
+            return ids;
+        }
+
+        function cambiaValores(acction, data) {                              
+            var valor_deretorno = input_typecheck(
+                getidsarray(
+                    Object.keys(
+                        data)));
             for (const [property, value] of Object.entries(data)) {
                 if (property === 'id') continue;
-                const elementId = `MODAL_id_${property}`;
+                const elementId = `MODAL_id_${property}`;                
                 const element = document.getElementById(elementId);
-                if (!element) continue;
+                if (!element) continue;                
+                // if (!element) {
+                //     console.log('NO EXISTE');
+                // };                
                 switch (property) {
-                    case 'foto': {
+                    case 'foto': {                        
                         const image = document.getElementById('MODAL_id_avatar');
                         image.src = `{{ asset('storage/') }}/${value}`;
+                        element.value = value;
                         break;
                     }
                     case 'password': {                    
@@ -53,31 +196,13 @@
                         element2.value = value;
                         break;
                     }
-                    default: {                    
-                        const inputType = element.type;
-                        if (inputType === 'file') {
-                            element.remove();
-                            const newFileInput = document.createElement('input');
-                            newFileInput.id = elementId;
-                            newFileInput.name = property;
-                            newFileInput.className = 'form-control d-none';
-                            newFileInput.value = value;
-                            const form = document.getElementById('foto_imputcontainer');
-                        form.appendChild(newFileInput);
-                        } else {
-                            // console.log(element, typeof value);
-                            if (element.readOnly) {
-                                console.log('El input es de solo lectura');
-                            } else {
-                                // console.log('El input no es de solo lectura');
-                                // console.log(element, element.value);
-                                element.value = value;
-                                element.dispatchEvent(new Event('change'));
-                            }
-                        }
+                    default: {  
+                        element.value = value;
+                        element.dispatchEvent(new Event('change'));                                          
                     }
                 }
             }
+            // inputfile_restaur(valor_deretorno['inputfile']);
             cambia_metodo_form ('PUT', acction);            
         }
 

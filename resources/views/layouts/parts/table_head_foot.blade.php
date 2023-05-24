@@ -1,6 +1,6 @@
 <thead>
         <tr>
-            @foreach ($spaces as $name)  
+            @foreach ($spacesTotal as $name)  
                 <th>{{ $name }}</th>
             @endforeach
             <th>Action</th>
@@ -13,7 +13,7 @@
     </thead>                                    
     <tfoot>
         <tr>
-            @foreach ($spaces as $name)  
+            @foreach ($spacesTotal as $name)  
                 <th>{{ $name }}</th>
             @endforeach
             <th>Action</th>

@@ -26,6 +26,10 @@
                                         <input name="{{ $space }}" type="date" class="form-control form-control-user" id="MODAL_id_{{ $space }}" placeholder="ingreso">
                                     </div>
                                 </div>
+                            @elseif ($space === 'rol')
+                                @include('layouts.parts.dropdown_form')
+                            @elseif ($space === 'nivel')
+                                @include('layouts.parts.dropdown_form')                                     
                             @elseif ($space === 'hotel')
                                 @include('layouts.parts.dropdown_form')                                     
                             @elseif ($space === 'genero')
@@ -41,8 +45,8 @@
                                         </div>
                                         <div class="d-flex justify-content-center">
                                             <div class="btn btn-primary btn-rounded" id="foto_imputcontainer">
-                                                <label class="form-label text-white m-1" for="MODAL_id_{{ $space }}" onclick="foto_restaur('MODAL_id_{{ $space }}')">Choose file</label>
-                                                <input name="{{ $space }}" type="file" class="form-control" id="MODAL_id_{{ $space }}" />                                                
+                                                <label class="form-label text-white m-1" for="MODAL_id_{{ $space }}" onclick="inputfile_restaur('MODAL_id_{{ $space }}')">Choose file</label>
+                                                <input name="{{ $space }}" type="file" class="form-control d-none" id="MODAL_id_{{ $space }}" />                                                
                                             </div>
                                         </div>
                                     </div>
