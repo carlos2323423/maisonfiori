@@ -4,13 +4,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\MainparentController;
 use App\Models\Empleado;
 use App\Traits\CrudmodalTrait;
-use App\Traits\RedirectorTrait;
 use App\Helpers\ValidationHelper;
-class EmpleadosController extends MainparentController
+
+class Evaluacion_administradorController extends MainparentController
 {        
 
     public function store(Request $request)
     {               
+        dd('estoy en evaluacion controller');
         $empleado = new Empleado;
         // $validator = $this->validator($request->all());
         $validator = ValidationHelper::validator('empleado', $request->all());

@@ -16,56 +16,65 @@
                     {{ dd(route($route_name.'_registersent')) }}
                     {{ dd($spaces); }}
                 --}}
-                <form id="register_list_form" class="user" method="POST" action="{{ route($route_name.'_registersent') }}" enctype="multipart/form-data">
+                <form id="register_list_form" class="user" method="POST" action="{{ $accionform }}" enctype="multipart/form-data">
                     @csrf
                     @foreach ($spaces as $space)
+                    @php
+                        $foundMatch = false;
+                    @endphp
                         @if (!in_array($space, ['created_at', 'updated_at', 'id']))
-                            @if ($space === 'ingreso')
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input name="{{ $space }}" type="date" class="form-control form-control-user" id="MODAL_id_{{ $space }}" placeholder="ingreso">
-                                    </div>
-                                </div>
-                            @elseif ($space === 'rol')
-                                @include('layouts.parts.dropdown_form')
-                            @elseif ($space === 'nivel')
-                                @include('layouts.parts.dropdown_form')                                     
-                            @elseif ($space === 'hotel')
-                                @include('layouts.parts.dropdown_form')                                     
-                            @elseif ($space === 'genero')
-                                @include('layouts.parts.dropdown_form')                                     
-                            @elseif ($space === 'foto')
-                                <div class="form-group">
-                                    <div>
-                                        <div class="d-flex justify-content-center mb-4">
-                                            <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" class="rounded-circle" alt="example placeholder" style="width: 200px;" id="MODAL_id_avatar" />
-                                        </div>
-                                        <div id="dropzone" class="dropzone">
-                                            <p>Arrastre y suelte los archivos aquí o haga clic para seleccionar los archivos</p>
-                                        </div>
-                                        <div class="d-flex justify-content-center">
-                                            <div class="btn btn-primary btn-rounded" id="foto_imputcontainer">
-                                                <label class="form-label text-white m-1" for="MODAL_id_{{ $space }}" onclick="inputfile_restaur('MODAL_id_{{ $space }}')">Choose file</label>
-                                                <input name="{{ $space }}" type="file" class="form-control d-none" id="MODAL_id_{{ $space }}" />                                                
+                            @foreach ($list_options as $propiedad => $valores)
+                                @if ($propiedad === $space.'es')
+                                    @include('layouts.parts.dropdown_form')
+                                    @php
+                                        $foundMatch = true;
+                                    @endphp
+                                @endif                                    
+                            @endforeach
+                            @if (!$foundMatch)
+                                @switch($space)                                    
+                                    @case('ingreso')
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input name="{{ $space }}" type="date" class="form-control form-control-user" id="MODAL_id_{{ $space }}" placeholder="ingreso">
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            @elseif ($space === 'password')
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input name="{{ $space }}" type="password" class="form-control form-control-user" id="MODAL_id_{{ $space }}" placeholder="Password">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user" id="Repeat_MODAL_id_{{ $space }}" placeholder="Repeat Password">
-                                    </div>
-                                </div>
-                            @else
-                                <div class="form-group">                                    
-                                    <input name="{{ $space }}" type="" class="form-control form-control-user" id="MODAL_id_{{ $space }}" placeholder="{{ $space }}" value="{{ old( $space ) }}">
-                                </div>
+                                        @break
+                                    @case('foto')
+                                        <div class="form-group">
+                                            <div>
+                                                <div class="d-flex justify-content-center mb-4">
+                                                    <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" class="rounded-circle" alt="example placeholder" style="width: 200px;" id="MODAL_id_avatar" />
+                                                </div>
+                                                <div id="dropzone" class="dropzone">
+                                                    <p>Arrastre y suelte los archivos aquí o haga clic para seleccionar los archivos</p>
+                                                </div>
+                                                <div class="d-flex justify-content-center">
+                                                    <div class="btn btn-primary btn-rounded" id="foto_imputcontainer">
+                                                        <label class="form-label text-white m-1" for="MODAL_id_{{ $space }}" onclick="inputfile_restaur('MODAL_id_{{ $space }}')">Choose file</label>
+                                                        <input name="{{ $space }}" type="file" class="form-control d-none" id="MODAL_id_{{ $space }}" />                                                
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @break        
+                                    @case('password')
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input name="{{ $space }}" type="password" class="form-control form-control-user" id="MODAL_id_{{ $space }}" placeholder="Password" value="{{ old( $space ) }}">
+                                            </div>
+                                            <div class="col-sm-6">                                                                                                
+                                                <input name="password_confirmation" type="password" class="form-control form-control-user" id="Repeat_MODAL_id_{{ $space }}" placeholder="Repeat Password" value="{{ old('password_confirmation') }}">
+                                            </div>
+                                        </div>
+                                        @break 
+                                    @default
+                                        <div class="form-group">                                    
+                                            <input name="{{ $space }}" type="" class="form-control form-control-user" id="MODAL_id_{{ $space }}" placeholder="{{ $space }}" value="{{ old( $space ) }}">
+                                        </div>
+                                        @break                           
+                                @endswitch                                        
                             @endif
-
                             {{--
                                 @if ($errors->has($space))
                                     <span class="invalid-feedback" role="alert">
@@ -77,20 +86,12 @@
                                 @endforeach
                                 --}}
                             @error($space)
-                            <div>
-                                <span class="invalid-feedback" role="alert" style="@if ($errors->any()) display: block; @endif">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            </div>                            
-                            @enderror
-
-                            <script>
-                                console.log("Campo: {{ $space }}");
-                                {{--
-                                    console.log("Mensaje de error: {{ $message }}");
-                                --}}
-                            </script>
-
+                                <div>
+                                    <span class="invalid-feedback" role="alert" style="@if ($errors->any()) display: block; @endif">
+                                        <strong>{{ $message }}</strong>                                        
+                                    </span>
+                                </div>                                          
+                            @enderror                            
                         @endif
                     @endforeach
                     <button type="submit" class="btn btn-primary btn-user btn-block">

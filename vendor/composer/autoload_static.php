@@ -322,8 +322,8 @@ class ComposerStaticInitd8901ff493b43a5deb59cb78ae1e8fa4
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -513,6 +513,7 @@ class ComposerStaticInitd8901ff493b43a5deb59cb78ae1e8fa4
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Helpers\\ValidationHelper' => __DIR__ . '/../..' . '/app/Helpers/ValidationHelper.php',
         'App\\Http\\Controllers\\AboutController' => __DIR__ . '/../..' . '/app/Http/Controllers/AboutController.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
@@ -526,11 +527,16 @@ class ComposerStaticInitd8901ff493b43a5deb59cb78ae1e8fa4
         'App\\Http\\Controllers\\EmpleadosController' => __DIR__ . '/../..' . '/app/Http/Controllers/EmpleadosController.php',
         'App\\Http\\Controllers\\EvaluacionController' => __DIR__ . '/../..' . '/app/Http/Controllers/EvaluacionController.php',
         'App\\Http\\Controllers\\EvaluacionGController' => __DIR__ . '/../..' . '/app/Http/Controllers/EvaluacionGController.php',
+        'App\\Http\\Controllers\\Evaluacion_administradorController' => __DIR__ . '/../..' . '/app/Http/Controllers/Evaluacion_administradorController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\ImageController' => __DIR__ . '/../..' . '/app/Http/Controllers/ImageController.php',
+        'App\\Http\\Controllers\\MainparentController' => __DIR__ . '/../..' . '/app/Http/Controllers/MainparentController.php',
+        'App\\Http\\Controllers\\PreguntaController' => __DIR__ . '/../..' . '/app/Http/Controllers/PreguntaController.php',
         'App\\Http\\Controllers\\RedirectorController' => __DIR__ . '/../..' . '/app/Http/Controllers/RedirectorController.php',
         'App\\Http\\Controllers\\RegisterManagerController' => __DIR__ . '/../..' . '/app/Http/Controllers/RegisterManagerController.php',
+        'App\\Http\\Controllers\\StoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/StoreController.php',
         'App\\Http\\Controllers\\TareasController' => __DIR__ . '/../..' . '/app/Http/Controllers/TareasController.php',
+        'App\\Http\\Controllers\\UpdateController' => __DIR__ . '/../..' . '/app/Http/Controllers/UpdateController.php',
         'App\\Http\\Controllers\\UserModelController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserModelController.php',
         'App\\Http\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/UsersController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -545,6 +551,7 @@ class ComposerStaticInitd8901ff493b43a5deb59cb78ae1e8fa4
         'App\\Logo' => __DIR__ . '/../..' . '/app/Logo.php',
         'App\\Models\\DateTime' => __DIR__ . '/../..' . '/app/Models/DateTime.php',
         'App\\Models\\Empleado' => __DIR__ . '/../..' . '/app/Models/Empleado.php',
+        'App\\Models\\Pregunta' => __DIR__ . '/../..' . '/app/Models/Pregunta.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\UserModel' => __DIR__ . '/../..' . '/app/Models/UserModel.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',

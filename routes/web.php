@@ -11,6 +11,8 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\UserModelController;
 use App\Http\Controllers\RedirectorController;
 use App\Http\Controllers\RegisterManagerController;
+use App\Http\Controllers\Evaluacion_administradorController;
+use App\Http\Controllers\StoreController;
 
 Route::get('/clear', function() {
    $commands = ['cache:clear', 'config:clear', 'config:cache', 'view:clear', 'route:clear'];
@@ -31,7 +33,8 @@ $routes_get = [
    'evaluaciong',
    'evaluacion',
    'calificacion_empleados',
-
+   'crud_cuestionario',
+   'preguntas',
 ];
 // array_push($routes_get, 'pera');
 
@@ -47,12 +50,37 @@ Route::prefix('/')->group(function () use ($routes_get) {
 
 });
 
-Route::post('/register_user', [RegisterManagerController::class, 'store'])->name('usuario_registersent');
-// Route::post('/user/{id}/editar', [RegisterManagerController::class, 'edit'])->name('usuario.edit');
-Route::post('/register_empleado', [EmpleadosController::class, 'store'])->name('empleado_registersent');
-// Route::post('/empleado/{id}/editar', [EmpleadosController::class, 'edit'])->name('empleado.edit');
-Route::put('/user/{id}', [RegisterManagerController::class, 'update'])->name('usuario.update');  
-Route::put('/empleado/{id}', [EmpleadosController::class, 'update'])->name('empleado.update');   
+$routes_post = [   
+   'empleado_registersent',
+   'usuario_registersent',
+   'preguntas_registersent',
+];
+
+Route::prefix('/')->group(function () use ($routes_post) {
+   foreach ($routes_post as $route) {            
+      Route::post($route, function () use ($route) {
+         $storeController = resolve(StoreController::class);
+         return $storeController->store(request(), $route);
+         // return app()->call([StoreController::class, 'store'], ['tipo_tabla' => $route]);
+     })->name($route);
+   }   
+});
+
+$routes_update = [   
+   'usuario.update',
+   'empleado.update',
+   'preguntas.update',   
+];
+
+Route::prefix('/')->group(function () use ($routes_update) {
+   foreach ($routes_update as $route) {                       
+      Route::post($route, function ($route) {
+         return app()->call([StoreController::class, 'store'], ['tipo_tabla' => $route]);
+     })->name($route);
+   }   
+
+});
+
 Route::delete('/destroy_user/{id}', [RegisterManagerController::class, 'destroy'])->name('user_destroysent');
 Route::delete('/destroy_empleado/{id}', [EmpleadosController::class, 'destroy'])->name('empleado_destroysent');
 

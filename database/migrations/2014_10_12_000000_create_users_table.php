@@ -12,7 +12,7 @@ class CreateUsersTable extends Migration
      * @return void
      */
     public function up()
-    {        
+    {                
         Schema::create('users', function (Blueprint $table) {
             $table->id('id')->unique();
             $table->string('LastName', 255); 
@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('remember_token', 100)->nullable();
             // $table->string('img')->default('https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.stickpng.com%2Fimg%2Ficons-logos-emojis%2Fusers%2Fsimple-user-icon&psig=AOvVaw2D2V8bEv10fhLoL5laMMoQ&ust=1680935822867000&source=images&cd=vfe&ved=0CA4QjRxqFwoTCODBooiUl_4CFQAAAAAdAAAAABAD');
             $table->string('foto')->default('');
-            $table->string('level')->default(100);                                    
+            $table->string('nivel')->default(100);                                    
         });        
     }
 
@@ -37,7 +37,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('users');
-        Schema::dropIfExists('User');
+        Schema::dropIfExists('users');        
     }
 }

@@ -15,7 +15,6 @@ class RedirectorController extends Controller
 {
     use RedirectorTrait;
     public function login() {
-        //
         return view('login', ['title' => 'Home Page']);
     }
 
@@ -34,7 +33,7 @@ class RedirectorController extends Controller
 
     public function empleados() {     
         $viewvariables = $this->traitempleados();     
-        return view('empleados', $viewvariables);   
+        return view('empleados', $viewvariables, );
     } 
 
     public function about() {      
@@ -56,24 +55,19 @@ class RedirectorController extends Controller
 
     public function calificacion_empleados()
     {
-        return view('calificacion_empleados', ['title' => 'Home Page']);        
-        
-        $name = 'empleado';
-        $lelementos = array(
-            'styles1', 
-            'Page Heading_introducction', 
-            'modal',
-            'edit_modal',
-            'table_head_foot',
-            'table_row_list'
-        ); 
+        $viewvariables = $this->trait_calificacion_empleados();
+        return view('calificacion_empleados', $viewvariables);                
+    }
 
-        return view('empleados', [
-            'title' => 'Welcome',
-            'list' => $list,
-            'spaces' => $spaces,
-            'route_name' => $name,
-            'elementos' => $lelementos,
-        ]);        
+    public function crud_cuestionario()
+    {
+        $viewvariables = $this->trait_crud_cuestionario();
+        return view('crud_cuestionario', $viewvariables);                
+    }
+
+    public function preguntas()
+    {
+        $viewvariables = $this->traitpreguntas();
+        return view('preguntas', $viewvariables);                
     }
 }

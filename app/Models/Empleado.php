@@ -7,19 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Empleado extends Model
 {
-    use HasFactory;
+    use HasFactory;    
     protected $fillable = [                                
         'hotel',
         'nivel',
-        'rol',
+        'cargo',
+        'superior',
+        'area',
         'foto',
-        'FirstName',
-        'LastName',
+        'firstname',
+        'lastname',
         'ci',
         'email',        
         'celular',
         'ingreso',                
         'genero',        
         'password',       
+    ];
+    protected $guarded = [        
     ];
 }

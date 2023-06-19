@@ -1,0 +1,6 @@
+@include('layouts.parts.scripts.dropdown')
+@include('layouts.parts.scripts.error')
+@include('layouts.parts.scripts.input')
+@include('layouts.parts.scripts.script_modal')
+@include('layouts.parts.scripts.scriptsID')
+@include('layouts.parts.scripts.text')
