@@ -57,41 +57,47 @@
         // inputfile_restaur(valor_deretorno['inputfile']);
         // cambia_metodo_form ('POST', acction);                     
     }
-    function cambiaValores(acction, data) {                              
-        var valor_deretorno = input_typecheck(
-            getidsarray(
-                Object.keys(
-                    data)));
+    function cambiaValores(acction, data) {
+        var valor_deretorno = input_typecheck(getidsarray(Object.keys(data)));
+        var list_options = @json($list_options);
+
         for (const [property, value] of Object.entries(data)) {
             if (property === 'id') continue;
-            const elementId = `MODAL_id_${property}`;                
+
+            const elementId = `MODAL_id_${property}`;
             const element = document.getElementById(elementId);
-            if (!element) continue;                
-            // if (!element) {
-            //     console.log('NO EXISTE');
-            // };                
+
+            if (!element) continue;
+
             switch (property) {
-                case 'foto': {                        
+                case 'foto': {
                     const image = document.getElementById('MODAL_id_avatar');
                     image.src = `{{ asset('storage/') }}/${value}`;
                     element.value = value;
                     break;
                 }
-                case 'password': {                    
+                case 'password': {
                     const element2 = document.getElementById(`Repeat_${elementId}`);
                     element.value = value;
                     element2.value = value;
                     break;
                 }
-                default: {  
+                default: {
                     element.value = value;
-                    element.dispatchEvent(new Event('change'));                                                              
+
+                    if (list_options[property + 'es']) {
+                        ButtonDropdownValorSee(value, property);
+                    }
+
+                    element.dispatchEvent(new Event('change'));
                 }
             }
         }
+
         // inputfile_restaur(valor_deretorno['inputfile']);
-        cambia_metodo_form ('PUT', acction);            
+        cambia_metodo_form('PUT', acction);
     }
+
     function cambia_metodo_form(method, action) {
         console.log(method, action);
         const edit_list_form = document.getElementById("register_list_form");

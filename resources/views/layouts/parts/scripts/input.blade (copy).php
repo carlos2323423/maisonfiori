@@ -84,65 +84,6 @@
         return valor_deretorno;
     }    
 </script>
-<script>
-    // Obtener el elemento dropzone
-    var dropzone = document.getElementById('dropzone');
-
-    // Manejar el evento 'dragover' para permitir soltar
-    dropzone.addEventListener('dragover', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        dropzone.classList.add('dragover');
-    });
-
-    // Manejar el evento 'dragenter' para resaltar el dropzone
-    dropzone.addEventListener('dragenter', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        dropzone.classList.add('dragover');
-    });
-
-    // Manejar el evento 'dragleave' para quitar el resaltado del dropzone
-    dropzone.addEventListener('dragleave', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        dropzone.classList.remove('dragover');
-    });
-
-    // dropzone.addEventListener('drop', function(e) {
-        //     e.preventDefault();
-        //     e.stopPropagation();
-        //     dropzone.classList.remove('dragover');
-        
-        //     // Obtener los archivos soltados
-        //     var files = e.dataTransfer.files;
-        
-        //     // Iterar sobre los archivos y realizar la acción deseada
-        //     for (var i = 0; i < files.length; i++) {
-            //         // Realizar la acción deseada con el archivo
-            //     }
-            // });
-    // Manejar el evento 'drop' para manejar los archivos soltados
-    dropzone.addEventListener('drop', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        dropzone.classList.remove('dragover');
-
-        // Verificar si hay solo un archivo
-        if (e.dataTransfer.files.length !== 1) {
-            alert("Solo se permite un archivo a la vez");
-            return;
-        }
-
-        // Si solo hay un archivo, continuar con la lógica del evento
-        var file = e.dataTransfer.files[0];
-        // Realizar la acción deseada con el archivo
-        // Obtener los archivos soltados            
-        
-        // Agregar el archivo al objeto FormData
-        var formData = new FormData();
-        formData.append('foto', file);
-
-    });
+<script>    
 
 </script>

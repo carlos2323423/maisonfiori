@@ -27,4 +27,16 @@ trait CrudmodalTrait
 
         $model::create($data);        
     }
+
+    public function updateTrait(Request $request, Model $model)    
+    {                                
+        $model->fill($request->all());
+        if ($request->hasFile('foto')) {
+          $imagePath = $request->file('foto')->store('avatar_img', 'public');
+          $model->foto = $imagePath;
+        } if ($request->hasFile('password')) {
+          $model->password = Hash::make($request->password);
+        }           
+        $model->save();        
+    }
 }

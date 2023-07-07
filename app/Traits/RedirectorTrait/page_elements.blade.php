@@ -8,7 +8,7 @@ switch ($page) {
             'styles2',
             // PARAMETROS SCRIPTS
             'script1',
-            'scripts.script2',
+            'scripts.SCRIPT_script2',
             // PARTES HTML
             'Page Heading_introducction', 
             'slidebarmain', 

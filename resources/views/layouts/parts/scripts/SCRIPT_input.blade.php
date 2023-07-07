@@ -1,4 +1,44 @@
 <script>
+    function inputfile_create(containerElement, type, sub, name, value, className) {
+        const elementId = "Id_" + type + "_Extra_" + name;
+        const existe = document.getElementById(elementId);
+        if (existe) {
+        // El elemento existe en el DOM
+        } else {
+            // El elemento no existe en el DOM
+            const elementName = "Name_" + type + "_Extra_" + name;        
+            const newFileInput1 = document.createElement("div");        
+            newFileInput1.className = 'col-sm-6 mb-3 mb-sm-0'; 
+            const newFileInput2 = document.createElement(type);        
+            newFileInput2.id = elementId;
+            newFileInput2.name = elementName;
+            newFileInput2.className = className;                                                
+            newFileInput2.type = sub;
+            newFileInput2.value = value;    
+            newFileInput2.readOnly = true;   
+            if (type == 'spam') {
+                newFileInput2.style.display = "block";
+                newFileInput2.style.textAlign = "center";
+                newFileInput2.textContent = value;
+            }
+            containerElement.appendChild(newFileInput1);        
+            newFileInput1.appendChild(newFileInput2);        
+        }
+    }
+
+    function inputfile_replace (IdElements, type) {
+        const element = document.getElementById(elementId);
+        const elementName = element.name;
+        const elementclassName = element.className;
+        const containerElement = element.parentNode;                        
+        element.remove();
+        const newFileInput = document.createElement(type);
+        newFileInput.id = elementId;
+        newFileInput.name = elementName;
+        newFileInput.className = elementclassName;
+        containerElement.appendChild(newFileInput);                
+    }
+
     function inputfile_restaur(IdElements) {            
         switch (typeof IdElements) {
             case 'object': {                        
@@ -28,23 +68,24 @@
         console.log(typevar);
         switch (typevar) {
             case 'object': {          
-                for (const elementId of IdElements) {
-                // for (const [elementId, elementName] of IdElements) {
+                for (const elementId of IdElements) {                
                     const element = document.getElementById(elementId);
                     if (!element) continue;
                     if (element.type === 'file') {                            
                         const elementName = element.name;
+                        element.classList.remove('d-none');
                         const elementclassName = element.className;
                         const containerElement = element.parentNode;
                         element.remove();
                         const newFileInput = document.createElement('input');
                         newFileInput.id = elementId;
                         newFileInput.name = elementName;
-                        // newFileInput.className = elementclassName;
-                        newFileInput.className = 'form-control';
+                        newFileInput.className = elementclassName;                                                
+                        newFileInput.type = 'text';
                         // newFileInput.value = value;                                                        
-                        console.log(newFileInput);
-                        containerElement.appendChild(newFileInput);
+                        // console.log(newFileInput);
+                        // containerElement.appendChild(newFileInput);
+                        containerElement.replaceChild(newFileInput, element);
                         valor_deretorno['inputfile'].push(elementId);
                         // valor_deretorno['file'] = elementId;
                     }

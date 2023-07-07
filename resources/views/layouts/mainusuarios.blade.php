@@ -293,7 +293,7 @@
         @yield('edit_modal')   
     --}}
     @yield('script1')   
-    @yield('scripts.script2')
+    @yield('scripts.SCRIPT_script2')
 </body>
 
 </html>    

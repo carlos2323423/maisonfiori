@@ -8,7 +8,9 @@
     $lelementos = $this->page_elements('empleados');
     $route_name = 'empleado';
     $name = 'empleado';
-    $accionform = 'empleado_registersent';
+    $accionformsent = 'empleado_registersent';
+    $accionformupdate = 'empleado_registerupdate';
+    $imageuser = 'https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg';
     $list_options = [
         'cargoes' => $cargoes = array(
             'recepcionista',
@@ -51,7 +53,9 @@
         'name' => $name,
         'elementos' => $lelementos,
         'list_options' => $list_options,
-        'accionform' => $accionform,
+        'accionformsent' => $accionformsent,
+        'accionformupdate' => $accionformupdate,        
+        'imageuser' => $imageuser,
     ];
     return $viewvariables;
     

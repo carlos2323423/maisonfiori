@@ -13,6 +13,7 @@ use App\Http\Controllers\RedirectorController;
 use App\Http\Controllers\RegisterManagerController;
 use App\Http\Controllers\Evaluacion_administradorController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\UpdateController;
 
 Route::get('/clear', function() {
    $commands = ['cache:clear', 'config:clear', 'config:cache', 'view:clear', 'route:clear'];
@@ -67,18 +68,18 @@ Route::prefix('/')->group(function () use ($routes_post) {
 });
 
 $routes_update = [   
-   'usuario.update',
-   'empleado.update',
-   'preguntas.update',   
+   'empleado_registerupdate',   
+   'usuario_registerupdate',
+   'preguntas_registerupdate',   
 ];
 
 Route::prefix('/')->group(function () use ($routes_update) {
    foreach ($routes_update as $route) {                       
-      Route::post($route, function ($route) {
-         return app()->call([StoreController::class, 'store'], ['tipo_tabla' => $route]);
-     })->name($route);
+       Route::put($route.'/{id}', function ($id) use ($route) {
+            $updateController = resolve(UpdateController::class);
+            return $updateController->update(request(), $route, $id);           
+       })->name($route);
    }   
-
 });
 
 Route::delete('/destroy_user/{id}', [RegisterManagerController::class, 'destroy'])->name('user_destroysent');

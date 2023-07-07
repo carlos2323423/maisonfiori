@@ -79,6 +79,7 @@ class ValidationHelper
         } else {          
           // dd("No se encontró la regla 'max:255' en el array.");          
         }   
+        // dd($Charlong);
         $originmessages = 
         [
           'required' => 'El campo :attribute es requerido.',
@@ -128,9 +129,29 @@ class ValidationHelper
           $row_name . '.confirmed' => $confirmed,
         ];   
         $messages = array_merge($messages, $mesaje_pack);
-      }      
+      }
+      // dd($messages);
       return $messages;  
-    }    
+    }
+    // public static function getMessages(): array
+    // {
+    //   return 
+    //     [
+    //       'required' => 'El campo :attribute es requerido.',
+    //       'string' => 'El campo :attribute debe ser una cadena de texto y usted está enviando un tipo :datatype.',
+    //       'integer' => 'El campo :attribute debe ser un número entero y usted está enviando un tipo :datatype.',
+    //       'max' => [
+    //         'string' => 'El campo :attribute no debe exceder los :max caracteres y usted está enviando una longitud de :longitud caracteres.',
+    //         'file' => 'El campo :attribute el tamaño máximo permitido para el archivo es :max Kilobites',
+    //       ],
+    //       'min' => 'La :attribute debe tener al menos :min caracteres y usted está enviando una longitud de :longitud caracteres.',
+    //       'email' => 'El formato de :attribute no es válido. Debe enviar un formato tipo email.',
+    //       'date' => 'El formato de :attribute no es válido. Debe enviar un formato tipo date.',
+    //       'unique' => 'El valor de :attribute ya está en uso',           
+    //       'image' => 'El archivo de :attribute debe ser una imagen',         
+    //       'confirmed' => 'La confirmación de :attribute no coincide',
+    //     ];                
+    // }
     public static function rules1(string $tipo_tabla, array $data) {      
       // dd($data);
       $rules = [];      
@@ -202,7 +223,8 @@ class ValidationHelper
       default:              
         dd("Validator Helper invalid table option");
         break;
-    }    
+    }
+    // return Validator::make($data, $rules, $messages);  
   }
 
   public static function validator(string $tipo_tabla, array $data)

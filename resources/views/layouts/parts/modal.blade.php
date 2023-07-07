@@ -16,7 +16,7 @@
                     {{ dd(route($route_name.'_registersent')) }}
                     {{ dd($spaces); }}
                 --}}
-                <form id="register_list_form" class="user" method="POST" action="{{ $accionform }}" enctype="multipart/form-data">
+                <form id="register_list_form" class="user" method="POST" action="{{ $accionformsent }}" enctype="multipart/form-data">
                     @csrf
                     @foreach ($spaces as $space)
                     @php
@@ -36,15 +36,21 @@
                                     @case('ingreso')
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input name="{{ $space }}" type="date" class="form-control form-control-user" id="MODAL_id_{{ $space }}" placeholder="ingreso">
+                                                <input name="{{ $space }}" type="date" class="form-control form-control-user" id="MODAL_id_{{ $space }}" placeholder="ingreso" value="{{ old( $space ) }}">
                                             </div>
                                         </div>
                                         @break
                                     @case('foto')
                                         <div class="form-group">
                                             <div>
-                                                <div class="d-flex justify-content-center mb-4">
+                                                <div class="d-flex justify-content-center mb-4">                                                
+                                                    <img src="{{ $imageuser }}" class="rounded-circle" alt="example placeholder" style="width: 200px;" id="MODAL_id_avatar" />
                                                     <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" class="rounded-circle" alt="example placeholder" style="width: 200px;" id="MODAL_id_avatar" />
+                                                    @if (session()->has('foo'))
+                                                        <p>Valor de foo: {{ session('foo') }}</p>
+                                                    @endif
+
+
                                                 </div>
                                                 <div id="dropzone" class="dropzone">
                                                     <p>Arrastre y suelte los archivos aquí o haga clic para seleccionar los archivos</p>
@@ -52,7 +58,7 @@
                                                 <div class="d-flex justify-content-center">
                                                     <div class="btn btn-primary btn-rounded" id="foto_imputcontainer">
                                                         <label class="form-label text-white m-1" for="MODAL_id_{{ $space }}" onclick="inputfile_restaur('MODAL_id_{{ $space }}')">Choose file</label>
-                                                        <input name="{{ $space }}" type="file" class="form-control d-none" id="MODAL_id_{{ $space }}" />                                                
+                                                        <input name="{{ $space }}" type="file" class="form-control d-none" id="MODAL_id_{{ $space }}" />                                                                                                                
                                                     </div>
                                                 </div>
                                             </div>
@@ -86,11 +92,13 @@
                                 @endforeach
                                 --}}
                             @error($space)
-                                <div>
-                                    <span class="invalid-feedback" role="alert" style="@if ($errors->any()) display: block; @endif">
+                                <div style="display: flex; justify-content: center;">
+                                    <div>
+                                        <span class="invalid-feedback" role="alert" style="display: block; text-align: center;">
                                         <strong>{{ $message }}</strong>                                        
-                                    </span>
-                                </div>                                          
+                                        </span>
+                                    </div>
+                                </div>                                
                             @enderror                            
                         @endif
                     @endforeach
