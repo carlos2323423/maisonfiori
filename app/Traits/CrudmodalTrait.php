@@ -39,4 +39,9 @@ trait CrudmodalTrait
         }           
         $model->save();        
     }
+
+    public function destroyTrait(Model $model)
+    {
+        $model->delete();
+    }
 }

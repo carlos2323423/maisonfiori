@@ -1,21 +1,22 @@
 <script>
-    function resturar_modal(acction) {
+    function clear_errors() {
+        location.reload();
+    }
+    function resturar_modal(acction) {        
+        if (document.getElementById('Id_spam_Extra_foto-preview')) {
+            inputfile_delete('Id_spam_Extra_foto-preview', true);
+        }
         var spaces = @json($spaces);
-        console.log(spaces);                        
-        // console.log(acction);
+        
         @if ($errors->any())
-            var valor_deretorno = input_typecheck(
-                getidsarray(
-                    Object.values(
-                        spaces)));
             var old = @json(old());
             console.log(old);
             for (const property in spaces) {
-                // console.log(property);
                 var column = spaces[property];
                 const elementId = "MODAL_id_" + column;
                 const element = document.getElementById(elementId);
                 if (!element) continue;
+                
                 switch (column) {
                     case 'password':
                         const elementId2 = "Repeat_MODAL_id_" + column;
@@ -24,40 +25,39 @@
                         element2.value = old[column];
                         break;
                     case 'foto':
-                        let image = document.getElementById("MODAL_id_avatar");                                                            
-                        image.src = "https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg";                        
-                        element.value = old[column];
-                        // inputfile_restaur(elementId);
+                        let image = document.getElementById("MODAL_id_avatar");                        
+                        image.src = old['imageuser'];                        
                         break;
                     default:
                         element.value = old[column];
-                        break;                            
-                }                    
-            }                
+                        break;
+                }
+            }
         @else
-            for (const property in spaces) {                    
+            for (const property in spaces) {
                 const elementId = "MODAL_id_" + spaces[property];
                 const element = document.getElementById(elementId);
                 if (!element) continue;
 
-                if (spaces[property] === 'password') { 
+                if (spaces[property] === 'password') {
                     const elementId2 = "Repeat_MODAL_id_" + spaces[property];
                     const element2 = document.getElementById(elementId2);
                     element.value = "";
                     element2.value = "";
-                } else if (spaces[property] === 'foto') {  
-                    let image = document.getElementById("MODAL_id_avatar");                                                            
-                    image.src = "https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" ;
-                    // inputfile_restaur(elementId);
+                } else if (spaces[property] === 'foto') {
+                    let image = document.getElementById("MODAL_id_avatar");
+                    image.src = "https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg";
                 } else {
                     element.value = "";
                 }
             }
         @endif
-        // inputfile_restaur(valor_deretorno['inputfile']);
-        cambia_metodo_form ('POST', acction);                     
+        
+        cambia_metodo_form('POST', acction);
     }
-    function cambiaValores(acction, data) {        
+
+    
+    function cambiaValores(acction, data, form_id) {        
         // var valor_deretorno = input_typecheck(getidsarray(Object.keys(data)));
         var list_options = @json($list_options);
 
@@ -77,7 +77,7 @@
                         const elementclassName = element.className;                        
                         containerElement = element.parentNode;                        
                         containerElement = containerElement.parentNode;                        
-                        inputfile_create(containerElement, 'spam', '', value, value, '');
+                        inputfile_create(containerElement, 'spam', '', 'foto-preview', value, '');
                         // element.value = value;
                     break;
                 }
@@ -100,12 +100,12 @@
         }
 
         // inputfile_restaur(valor_deretorno['inputfile']);
-        cambia_metodo_form('PUT', acction);
+        cambia_metodo_form('PUT', acction, form_id);
     }
 
-    function cambia_metodo_form(method, action) {
+    function cambia_metodo_form(method, action, form_id) {
         console.log(method, action);
-        const edit_list_form = document.getElementById("register_list_form");
+        const edit_list_form = document.getElementById(form_id);
         edit_list_form.method = "POST";
         
         console.log(`<input type="hidden" name="_method" value="${method}">`);

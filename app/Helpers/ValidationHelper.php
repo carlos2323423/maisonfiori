@@ -49,6 +49,7 @@ class ValidationHelper
         break;
       }           
     }
+
     private static function getSpecialRule(string $row_name, array $specialRules, string $tipo_tabla): array
     {
         if (array_key_exists($row_name, $specialRules)) {
@@ -131,13 +132,17 @@ class ValidationHelper
       }      
       return $messages;  
     }    
-    public static function rules1(string $tipo_tabla, array $data) {      
+    public static function rules1(string $tipo_tabla, array $data, $unique, $request) {      
       // dd($data);
+      // dd($request);
+      if ($unique) {
+        $rowtypeunique = self::def_campos('rowtypeunique');
+      }
       $rules = [];      
+      $rowtypeunique = [];
       $rowtypeintegrer = self::def_campos('rowtypeintegrer');      
       $rowtypedate = self::def_campos('rowtypedate');
       $rowtypeimage = self::def_campos('rowtypeimage');
-      $rowtypeunique = self::def_campos('rowtypeunique');
       $rowtypeemail = self::def_campos('rowtypeemail');
       $rowpassword = self::def_campos('rowpassword');
   
@@ -160,7 +165,11 @@ class ValidationHelper
             $rowRules[] = 'date';
         } 
         if (in_array($row_name, $rowtypeimage)) {
+          // dd($row_name);          
+            if (!$request->hasFile($row_name)) {                
+            } 
             $rowRules = ['nullable', 'image', 'max:2048'];
+            // $rowRules = ['nullable', 'image', 'max:2048'];
         }                
         if (in_array($row_name, $rowtypeemail)) {
             $rowRules[] = 'email';
@@ -176,9 +185,9 @@ class ValidationHelper
       return $rules;               
     }
 
-  public static function rules(string $tipo_tabla, array $data) {
-    // dd(self::rules1($tipo_tabla, $data));
-    $rules = self::rules1($tipo_tabla, $data);
+  public static function rules(string $tipo_tabla, array $data, $unique, $request) {    
+    // dd(self::rules1($tipo_tabla, $data));    
+    $rules = self::rules1($tipo_tabla, $data, $unique, $request);
     $messages = self::getMessages($rules, $data);
     switch ($tipo_tabla) {
       case 'empleado':                  
@@ -205,8 +214,8 @@ class ValidationHelper
     }    
   }
 
-  public static function validator(string $tipo_tabla, array $data)
+  public static function validator(string $tipo_tabla, array $data, $unique, $request)
   {        
-    return self::rules($tipo_tabla, $data);        
+    return self::rules($tipo_tabla, $data, $unique, $request);        
   }    
 }

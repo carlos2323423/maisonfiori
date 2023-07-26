@@ -49,12 +49,13 @@ switch ($page) {
             'styles1', 
             'styles2',
             // PARAMETROS SCRIPTS
-            'script1',
-            'scripts.script2',
+            'script1',            
+            'scripts.SCRIPT_script2',
             // PARTES HTML
             'Page Heading_introducction', 
             'slidebarmain', 
-            'modal',
+            // 'modal',
+            'EvaluacionAdministrador',
             'table_head_foot',
             'table_row_list',
         );        
@@ -65,10 +66,10 @@ switch ($page) {
             'styles1', 
             'styles2',
             // PARAMETROS SCRIPTS
-            'script1',
-            'scripts.script2',
+            'script1',            
+            'scripts.SCRIPT_script2',
             // PARTES HTML
-            'Page Heading_introducction', 
+            'Page Heading_introducction',             
             'slidebarmain', 
             'modal',
             'table_head_foot',

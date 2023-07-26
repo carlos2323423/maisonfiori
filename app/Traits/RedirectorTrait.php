@@ -53,17 +53,8 @@ trait RedirectorTrait
     }
 
     public function trait_calificacion_empleados()
-    {                        
-        $route_name = 'evaluacionadministrador';        
-        $name = 'evaluacionadministrador';
-        $lelementos = $this->page_elements('calificacion_empleados');        
-        $viewvariables = [
-            'title' => 'Welcome',                        
-            'route_name' => $route_name,
-            'name' => $name,
-            'elementos' => $lelementos,                        
-        ];
-        return $viewvariables;
+    {   
+        return require 'RedirectorTrait/trait_calificacion_empleados.php';        
     }
 
     public function trait_crud_cuestionario()

@@ -14,6 +14,7 @@ use App\Http\Controllers\RegisterManagerController;
 use App\Http\Controllers\Evaluacion_administradorController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UpdateController;
+use App\Http\Controllers\DeleteController;
 
 Route::get('/clear', function() {
    $commands = ['cache:clear', 'config:clear', 'config:cache', 'view:clear', 'route:clear'];
@@ -55,6 +56,7 @@ $routes_post = [
    'empleado_registersent',
    'usuario_registersent',
    'preguntas_registersent',
+   'evaluacionadministrador_registersent',
 ];
 
 Route::prefix('/')->group(function () use ($routes_post) {
@@ -78,6 +80,21 @@ Route::prefix('/')->group(function () use ($routes_update) {
        Route::put($route.'/{id}', function ($id) use ($route) {
             $updateController = resolve(UpdateController::class);
             return $updateController->update(request(), $route, $id);           
+       })->name($route);
+   }   
+});
+
+$routes_delete = [
+   'empleado_registerdelete',
+   'usuario_registerdelete',
+   'preguntas_registerdelete',
+];
+
+Route::prefix('/')->group(function () use ($routes_delete) {
+   foreach ($routes_delete as $route) {                       
+       Route::delete($route.'/{id}', function ($id) use ($route) {
+            $deleteController = resolve(DeleteController::class);
+            return $deleteController->delete(request(), $route, $id);           
        })->name($route);
    }   
 });

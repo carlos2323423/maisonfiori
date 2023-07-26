@@ -1,13 +1,48 @@
 <script>
-    function inputfile_create(containerElement, type, sub, name, value, className) {
-        const elementId = "Id_" + type + "_Extra_" + name;
-        const existe = document.getElementById(elementId);
+    function getElementTypeById(elementId) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            return element.tagName.toLowerCase();
+        }
+        return null;
+    }
+
+    function inputfile_delete(id, parent) {
+        element = document.getElementById(id);
+        if (parent == true) {
+            const containerElement = element.parentNode;                        
+            containerElement.remove();
+        } else {
+            element.remove();
+        }
+    }
+    
+    function inputfile_create(containerElement, type, sub, name, value, className) {        
+        const elementId = "Id_" + type + "_Extra_" + name;        
+        existe = document.getElementById(elementId);
         if (existe) {
-        // El elemento existe en el DOM
+        // El elemento existe en el DOM       
+            if (type !== getElementTypeById(elementId)) {            
+                inputfile_replace(elementId, type);
+                existe = document.getElementById(elementId);
+                type = getElementTypeById(elementId);
+            }
+            const elementName = "Name_" + type + "_Extra_" + name;
+            existe.id = elementId;
+            existe.name = elementName;
+            existe.className = className;                                                
+            existe.type = sub;
+            existe.value = value;    
+            existe.readOnly = true;   
+            if (type == 'spam') {
+                existe.style.display = "block";
+                existe.style.textAlign = "center";
+                existe.textContent = value;
+            }            
         } else {
             // El elemento no existe en el DOM
             const elementName = "Name_" + type + "_Extra_" + name;        
-            const newFileInput1 = document.createElement("div");        
+            const newFileInput1 = document.createElement("div");            
             newFileInput1.className = 'col-sm-6 mb-3 mb-sm-0'; 
             const newFileInput2 = document.createElement(type);        
             newFileInput2.id = elementId;

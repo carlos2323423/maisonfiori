@@ -1,7 +1,7 @@
 <script>
     function resturar_modal(acction) {
         var spaces = @json($spaces);
-        console.log(spaces);                        
+        // console.log(spaces);                        
         // console.log(acction);
         @if ($errors->any())
             var valor_deretorno = input_typecheck(
@@ -25,7 +25,7 @@
                         break;
                     case 'foto':
                         let image = document.getElementById("MODAL_id_avatar");                                                            
-                        image.src = "https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg";
+                        image.src = "https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg";                        
                         element.value = old[column];
                         // inputfile_restaur(elementId);
                         break;
@@ -55,10 +55,10 @@
             }
         @endif
         // inputfile_restaur(valor_deretorno['inputfile']);
-        // cambia_metodo_form ('POST', acction);                     
+        cambia_metodo_form ('POST', acction);                     
     }
-    function cambiaValores(acction, data) {
-        var valor_deretorno = input_typecheck(getidsarray(Object.keys(data)));
+    function cambiaValores(acction, data) {        
+        // var valor_deretorno = input_typecheck(getidsarray(Object.keys(data)));
         var list_options = @json($list_options);
 
         for (const [property, value] of Object.entries(data)) {
@@ -73,7 +73,12 @@
                 case 'foto': {
                     const image = document.getElementById('MODAL_id_avatar');
                     image.src = `{{ asset('storage/') }}/${value}`;
-                    element.value = value;
+                    const elementName = element.name;
+                        const elementclassName = element.className;                        
+                        containerElement = element.parentNode;                        
+                        containerElement = containerElement.parentNode;                        
+                        inputfile_create(containerElement, 'spam', '', value, value, '');
+                        // element.value = value;
                     break;
                 }
                 case 'password': {

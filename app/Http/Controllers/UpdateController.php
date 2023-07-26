@@ -20,17 +20,19 @@ class UpdateController extends Controller
     
     public function update(Request $request, $tipo_tabla, $id)
     {        
+        // dd($request->all());
         $modeTable = '';
         $redir = '';        
         switch ($tipo_tabla) {
             case 'empleado_registerupdate':                
-                $request->merge(['foto' => $request->filled('foto') ? $request->file('foto') : null]);
                 $modeTable = Empleado::findOrFail($id);                
-                $imageuser = $modeTable->foto;
+                $imageuser = $modeTable->foto;                
+                // $request->merge(['foto' => $request->hasFile('foto') ? $request->file('foto') : $imageuser]);
+                // $request->merge(['foto' => $request->filled('foto') ? $request->file('foto') : $imageuser]);
                 $imageuser = asset('storage/' . $imageuser);
-                $validator = ValidationHelper::validator('empleado', $request->all());
+                $validator = ValidationHelper::validator('empleado', $request->all(), false, $request);
                 $viewvariables = $this->traitempleados();
-                $redir = 'empreados';
+                $redir = 'empleados';
                 break;
                 
             case 'usuario_registerupdate':
@@ -49,9 +51,10 @@ class UpdateController extends Controller
         }
         
         if (isset($validator)) {
-            if ($validator->fails()) {       
-                // dd($imageuser);         
-                return redirect()->back()->withErrors($validator)->withInput(['imageuser' => $imageuser]);
+            if ($validator->fails()) {                                       
+                $oldData = array_merge($request->all(), ['imageuser' => $imageuser]);                  
+                return redirect()->back()->withErrors($validator)->withInput($oldData);
+
             }
         } else {
             dd("NO EXISTE EL VALIDATOR PARA " . $tipo_tabla . " EN EL CONTROLADOR");

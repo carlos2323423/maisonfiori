@@ -10,7 +10,10 @@
     $name = 'empleado';
     $accionformsent = 'empleado_registersent';
     $accionformupdate = 'empleado_registerupdate';
+    $accionformdelete = 'empleado_registerdelete';
     $imageuser = 'https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg';
+    $Modal_target = '#register_userModal';
+    $form_data_toggle_list = 'register_list_form';
     $list_options = [
         'cargoes' => $cargoes = array(
             'recepcionista',
@@ -54,8 +57,11 @@
         'elementos' => $lelementos,
         'list_options' => $list_options,
         'accionformsent' => $accionformsent,
-        'accionformupdate' => $accionformupdate,        
+        'accionformupdate' => $accionformupdate,
+        'accionformdelete' => $accionformdelete,
         'imageuser' => $imageuser,
+        'Modal_target' => $Modal_target,
+        'form_data_toggle_list' => $form_data_toggle_list,
     ];
     return $viewvariables;
     

@@ -252,7 +252,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">                                    
                                     @yield('table_head_foot')                                                                                                                               
                                     <tbody>
-                                        @yield('modal')
+                                        @yield('modal')                                        
                                         @yield('EvaluacionAdministrador')
                                         
                                         @yield('table_row_list')

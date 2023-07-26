@@ -25,11 +25,11 @@ class StoreController extends Controller
         $redir = '';
         switch ($tipo_tabla) {
             case 'empleado_registersent':
-                $request->merge(['foto' => $request->filled('foto') ? $request->file('foto') : null]);
+                // $request->merge(['foto' => $request->filled('foto') ? $request->file('foto') : null]);
                 $modeTable = new Empleado;
-                $validator = ValidationHelper::validator('empleado', $request->all());
+                $validator = ValidationHelper::validator('empleado', $request->all(), true, $request);
                 $viewvariables = $this->traitempleados();
-                $redir = 'empreados';
+                $redir = 'empleados';
                 break;
             case 'usuario_registersent':
                 $modeTable = new User;
@@ -64,6 +64,7 @@ class StoreController extends Controller
         }
         // END CONPROBACIONES
         $this->storeTrait($request, $modeTable);
-        return view($redir, $viewvariables);
+        // return view($redir, $viewvariables);
+        return redirect('empleados');
     }
 }
