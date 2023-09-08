@@ -12,6 +12,7 @@ use App\Http\Controllers\UserModelController;
 use App\Http\Controllers\RedirectorController;
 use App\Http\Controllers\RegisterManagerController;
 use App\Http\Controllers\Evaluacion_administradorController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UpdateController;
 use App\Http\Controllers\DeleteController;
@@ -25,7 +26,7 @@ Route::get('/clear', function() {
 });
 
 $routes_get = [
-   'users',
+   'usuarios',
    'empleados',
    'welcome',
    'register',
@@ -50,6 +51,18 @@ Route::prefix('/')->group(function () use ($routes_get) {
       Route::get($route, [RedirectorController::class, $route])->name($route);      
    }   
 
+});
+$routes_comprovate = [   
+   'user_loginsent',   
+];
+Route::prefix('/')->group(function () use ($routes_comprovate) {
+   foreach ($routes_comprovate as $route) {            
+      Route::post($route, function () use ($route) {
+         $storeController = resolve(LoginController::class);
+         return $storeController->login(request(), $route);
+         // return app()->call([StoreController::class, 'store'], ['tipo_tabla' => $route]);
+     })->name($route);
+   }   
 });
 
 $routes_post = [   

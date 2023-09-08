@@ -11,6 +11,8 @@
     $accionformsent = 'empleado_registersent';
     $accionformupdate = 'empleado_registerupdate';
     $accionformdelete = 'empleado_registerdelete';
+    $stora_url = asset('storage/');
+    // $stora_url = "{{ asset('storage/') . '/' . 'image/miason_logo.png' }}"
     $imageuser = 'https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg';
     $Modal_target = '#register_userModal';
     $form_data_toggle_list = 'register_list_form';
@@ -59,9 +61,11 @@
         'accionformsent' => $accionformsent,
         'accionformupdate' => $accionformupdate,
         'accionformdelete' => $accionformdelete,
+        'stora_url' => $stora_url,
         'imageuser' => $imageuser,
         'Modal_target' => $Modal_target,
         'form_data_toggle_list' => $form_data_toggle_list,
+        
     ];
     return $viewvariables;
     

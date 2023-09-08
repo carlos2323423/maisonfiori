@@ -33,8 +33,8 @@ class StoreController extends Controller
                 break;
             case 'usuario_registersent':
                 $modeTable = new User;
-                $validator = ValidationHelper::validator('usuario', $request->all());
-                $viewvariables = $this->traitusers();
+                $validator = ValidationHelper::validator('usuario', $request->all(), true, $request);
+                $viewvariables = $this->traitusuarios();
                 $redir = 'usuarios';
                 break;
             case 'preguntas_registersent':

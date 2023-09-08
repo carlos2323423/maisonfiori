@@ -4,7 +4,8 @@ use App\Http\Controllers\MainparentController;
 use Illuminate\Http\Request;
 //START MODELOS
 use App\Models\Empleado;
-use App\Models\User;
+// use App\Models\User;
+use App\Models\Usuario;
 use App\Models\Pregunta;
 //END MODELOS
 //START TRAITS
@@ -36,7 +37,12 @@ class UpdateController extends Controller
                 break;
                 
             case 'usuario_registerupdate':
-                $modeTable = User::findOrFail($id);
+                $modeTable = Usuario::findOrFail($id);
+                $imageuser = $modeTable->foto;
+                // dd($imageuser);
+                $imageuser = asset('storage/' . $imageuser);
+                $validator = ValidationHelper::validator('usuario', $request->all(), false, $request);
+                $viewvariables = $this->traitempleados();
                 $redir = 'usuarios';
                 break;
                 
@@ -65,6 +71,7 @@ class UpdateController extends Controller
         if ($request->hasFile('foto')) {
             $imagePath = $request->file('foto')->store('avatar_img', 'public');
             $modeTable->foto = $imagePath;
+            // dd($modeTable);
         }
         
         if ($request->hasFile('password')) {

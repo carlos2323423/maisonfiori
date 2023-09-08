@@ -23,11 +23,13 @@ class RedirectorController extends Controller
     }    
 
     public function welcome() {
-        return view('welcome2', ['title' => 'Welcome']);
+        $viewvariables = $this->traitwelcome();
+        return view('welcome2', $viewvariables, ['title' => 'Welcome']);        
     }    
 
-    public function users() {
-        $viewvariables = $this->traitusers();  
+    public function usuarios() {
+        // $viewvariables = $this->traitusers();
+        $viewvariables = $this->traitusuarios();
         return view('usuarios', $viewvariables);
     }    
 

@@ -1,9 +1,9 @@
-<!-- USERS Modal -->
+<!-- Modal de USUARIOS -->
 <div class="modal fade" id="register_userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">    
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="h4 text-gray-900 mb-4">Crear un empleado</h1>
+                <h1 class="h4 text-gray-900 mb-4">Crear un {{ucfirst($name)}}</h1>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     @if ($errors->any())
                         <span aria-hidden="true" onclick="clear_errors()">×</span>
@@ -13,7 +13,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                Select "Logout" below if you are ready to end your current session.                    
+                <p>Selecciona "Cerrar sesión" a continuación si estás listo para finalizar tu sesión actual.</p>                    
                 <form id="register_list_form" class="user" method="POST" action="{{ $accionformsent }}" enctype="multipart/form-data">
                     @csrf
                     @foreach ($spaces as $space)
@@ -34,7 +34,7 @@
                                     @case('ingreso')
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input name="{{ $space }}" type="date" class="form-control form-control-user" id="MODAL_id_{{ $space }}" placeholder="ingreso" value="{{ old( $space ) }}">
+                                                <input name="{{ $space }}" type="date" class="form-control form-control-user" id="MODAL_id_{{ $space }}" placeholder="Fecha de ingreso" value="{{ old( $space ) }}">
                                             </div>
                                         </div>
                                         @break
@@ -42,14 +42,14 @@
                                         <div class="form-group">
                                             <div>
                                                 <div class="d-flex justify-content-center mb-4">                                                                                                    
-                                                    <img src="{{ old('imageuser') ? old('imageuser') : $imageuser }}" class="rounded-circle" alt="example placeholder" style="width: 200px;" id="MODAL_id_avatar" />                                                                                                        
+                                                    <img src="{{ old('imageuser') ? old('imageuser') : $imageuser }}" class="rounded-circle" alt="ejemplo de avatar" style="width: 200px;" id="MODAL_id_avatar" />                                                                                                        
                                                 </div>
                                                 <div id="dropzone" class="dropzone">
-                                                    <p>Arrastre y suelte los archivos aquí o haga clic para seleccionar los archivos</p>
+                                                    <p>Arrastra y suelta los archivos aquí o haz clic para seleccionar los archivos</p>
                                                 </div>
                                                 <div class="d-flex justify-content-center">
                                                     <div class="btn btn-primary btn-rounded" id="foto_imputcontainer">
-                                                        <label class="form-label text-white m-1" for="MODAL_id_{{ $space }}" onclick="inputfile_restaur('MODAL_id_{{ $space }}')">Choose file</label>
+                                                        <label class="form-label text-white m-1" for="MODAL_id_{{ $space }}" onclick="inputfile_restaur('MODAL_id_{{ $space }}')">Seleccionar archivo</label>
                                                         <input name="{{ $space }}" type="file" class="form-control d-none" id="MODAL_id_{{ $space }}" />                                                                                                                
                                                     </div>
                                                 </div>
@@ -59,10 +59,10 @@
                                     @case('password')
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input name="{{ $space }}" type="password" class="form-control form-control-user" id="MODAL_id_{{ $space }}" placeholder="Password" value="{{ old( $space ) }}">
+                                                <input name="{{ $space }}" type="password" class="form-control form-control-user" id="MODAL_id_{{ $space }}" placeholder="Contraseña" value="{{ old( $space ) }}">
                                             </div>
                                             <div class="col-sm-6">                                                                                                
-                                                <input name="password_confirmation" type="password" class="form-control form-control-user" id="Repeat_MODAL_id_{{ $space }}" placeholder="Repeat Password" value="{{ old('password_confirmation') }}">
+                                                <input name="password_confirmation" type="password" class="form-control form-control-user" id="Repeat_MODAL_id_{{ $space }}" placeholder="Repetir contraseña" value="{{ old('password_confirmation') }}">
                                             </div>
                                         </div>
                                         @break 
@@ -79,30 +79,28 @@
                                         <span class="invalid-feedback" role="alert" style="display: block; text-align: center;">
                                             <strong>{{ $message }}</strong>                                        
                                         </span>
-                                    </div>
-                                </div>                                
-                            @enderror                            
-                        @endif
-                    @endforeach
-                    <button type="submit" class="btn btn-primary btn-user btn-block">
-                        {{ __('Register Account') }}
-                    </button>
-                    <hr>
-                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                        <i class="fab fa-google fa-fw"></i> Register with Google
-                    </a>
-                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                        <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                    </a>                    
-                </form>  
-                <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                </div>
-                <div class="text-center">
-                    <a class="small" href="login.html">Already have an account? Login!</a>                
-                </div>                
+                                        </div>
+                            </div>                                
+                        @enderror                            
+                    @endif
+                @endforeach
+                <button type="submit" class="btn btn-primary btn-user btn-block">
+                    {{ __('Registrar cuenta') }}
+                </button>
+                <hr>
+                <a href="index.html" class="btn btn-google btn-user btn-block">
+                    <i class="fab fa-google fa-fw"></i> Registrarse con Google
+                </a>
+                <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                    <i class="fab fa-facebook-f fa-fw"></i> Registrarse con Facebook
+                </a>                    
+            </form>  
+            <div class="text-center">
+                <a class="small" href="forgot-password.html">¿Olvidaste tu contraseña?</a>
             </div>
-        </div>        
-    </div>
+            <div class="text-center">
+                <a class="small" href="login.html">¿Ya tienes una cuenta? ¡Inicia sesión!</a>                
+            </div>                
+        </div>
+    </div>        
 </div>
-<!-- END USERS Modal -->

@@ -1,15 +1,13 @@
 <?php
+
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Usuario extends Authenticatable
+class Graphic extends Model
 {
     use HasFactory;
-    
-    protected $guarded = [];
     
     public function getFillableFields()
     {
@@ -18,15 +16,14 @@ class Usuario extends Authenticatable
     
     protected $fillable = [        
         'id',
-        'lastname',
-        'firstname',
-        'password',
-        'ci',
-        'email',
+        'competencies',
+        'competency_levels',
+        'employee_skills',
+        'graphical_representation',
+        'description',
         'created_at',
-        'updated_at',
-        'remember_token',
-        'foto',
-        'nivel',        
+        'updated_at',        
+    ];
+    protected $guarded = [        
     ];
 }

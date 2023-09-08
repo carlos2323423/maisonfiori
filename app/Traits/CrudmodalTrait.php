@@ -36,7 +36,8 @@ trait CrudmodalTrait
           $model->foto = $imagePath;
         } if ($request->hasFile('password')) {
           $model->password = Hash::make($request->password);
-        }           
+        }                   
+        // dd($model);
         $model->save();        
     }
 

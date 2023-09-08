@@ -23,12 +23,17 @@ trait RedirectorTrait
         return require 'RedirectorTrait/getTableColumns.php';
     }    
 
-    public function welcome() {
-        return view('welcome2', ['title' => 'Welcome']);
+    public function traitwelcome() {
+        return require 'RedirectorTrait/traitwelcome.php';  
+        // return view('welcome2', ['title' => 'Welcome']);
     }    
 
-    public function traitusers() {                
-        return require 'RedirectorTrait/traitusers.php';  
+    // public function traitusers() {                
+    //     return require 'RedirectorTrait/traitusers.php';  
+    // }    
+
+    public function traitusuarios() {                
+        return require 'RedirectorTrait/traitusuarios.php';  
     }    
 
     public function traitempleados() {              

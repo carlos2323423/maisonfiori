@@ -15,9 +15,8 @@ class Cuestionario extends Migration
     {
         Schema::create('cuestionarios', function (Blueprint $table) {
             $table->id('id', 255)->unique();
-            $table->string('keyunic')->unique();
-            $table->string('name', 255);
-            $table->string('firstname', 255);         
+            $table->string('keyunic')->unique();            
+            $table->dropForeign(['campo_id ']); 
             $table->string('hotel', 255);
             $table->string('nivel', 255);                  
             $table->string('cargo', 255);

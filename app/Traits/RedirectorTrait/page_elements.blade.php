@@ -11,20 +11,21 @@ switch ($page) {
             'scripts.SCRIPT_script2',
             // PARTES HTML
             'Page Heading_introducction', 
+            'topbar', 
             'slidebarmain', 
             'modal',
             'table_head_foot',
             'table_row_list',
         );        
         break;
-    case 'ususarios':        
+    case 'usuarios':        
         $lelementos = array(
             // PARAMEROS STYLES
             'styles1', 
             'styles2',
             // PARAMETROS SCRIPTS
             'script1',
-            'scripts.script2',
+            'scripts.SCRIPT_script2',
             // PARTES HTML
             'Page Heading_introducction', 
             'slidebarmain', 
@@ -74,6 +75,14 @@ switch ($page) {
             'modal',
             'table_head_foot',
             'table_row_list',
+        );        
+        break;
+    case 'welcome':        
+        $lelementos = array(
+            'top_bars.store', 
+            'banners.store_banner', 
+            'tables.store_table',
+            'tables.pictures.store_picture',            
         );        
         break;
     default:        

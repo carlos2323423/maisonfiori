@@ -1,16 +1,17 @@
-<?php
-    use App\Models\User;
-    $spaces = $this->getTableColumns('users', false);
-    $spacesTotal = $this->getTableColumns('users', true);        
+<?php        
+    use App\Models\Graphic;
+    $spaces = $this->getTableColumns('usuarios', false);
+    $spacesTotal = $this->getTableColumns('usuarios', true);        
     // selection query        
     // dd($spaces);                
-    $list = User::all();         
-    $lelementos = $this->page_elements('ususarios');
-    $route_name = 'usuario';
-    $name = 'usuario';        
-    $accionformsent = 'usuario_registersent';
-    $accionformupdate = 'usuario_registerupdate';
-    $accionformdelete = 'usuario_registerdelete';
+    $list = Graphic::all();
+    $lelementos = $this->page_elements('welcome');
+    $route_name = 'welcome';
+    $name = 'welcome';        
+    $accionformsent = 'welcome_registersent';
+    $accionformupdate = 'welcome_registerupdate';
+    $accionformdelete = 'welcome_registerdelete';
+    $stora_url = asset('storage/');
     $imageuser = 'https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg';
     $Modal_target = '#register_userModal';
     $form_data_toggle_list = 'register_list_form';
@@ -47,6 +48,7 @@
         'accionformsent' => $accionformsent,
         'accionformupdate' => $accionformupdate,
         'accionformdelete' => $accionformdelete,
+        'stora_url' => $stora_url,
         'imageuser' => $imageuser,
         'Modal_target' => $Modal_target,
         'form_data_toggle_list' => $form_data_toggle_list,

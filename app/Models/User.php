@@ -10,22 +10,22 @@ class User extends Authenticatable
 {
     use HasFactory;
     
-    protected $guarded = [];
-    
     public function getFillableFields()
     {
         return $this->getFillable();
     }
     
-    // protected $fillable = [
-    //     'firstname',
-    //     'lastname',
-    //     'ci',
-    //     'email',
-    //     'password',
-    //     'remember_token',
-        
-    //     'tipo_usuario'
-        
-    // ];
+    protected $fillable = [        
+        'id',
+        'lastname',
+        'firstname',
+        'password',
+        'ci',
+        'email',
+        'created_at',
+        'updated_at',
+        'remember_token',
+        'foto',
+        'nivel',        
+    ];
 }

@@ -1,27 +1,16 @@
 <thead>
-        <tr>
-            @foreach ($spacesTotal as $name)  
-                <th>{{ $name }}</th>
-            @endforeach
-            <th>Action</th>
-            <!-- <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Action</th> -->
-        </tr>
-    </thead>                                    
-    <tfoot>
-        <tr>
-            @foreach ($spacesTotal as $name)  
-                <th>{{ $name }}</th>
-            @endforeach
-            <th>Action</th>
-            <!-- <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th> -->
-        </tr>
-    </tfoot> 
+    <tr>
+        @foreach ($spacesTotal as $name)  
+            <th>{{ $name }}</th>
+        @endforeach
+        <th style="min-width: 100px;">Acción</th>
+    </tr>
+</thead>                                    
+<tfoot>
+    <tr>
+        @foreach ($spacesTotal as $name)  
+            <th>{{ $name }}</th>
+        @endforeach
+        <th style="min-width: 100px;">Acción</th>
+    </tr>
+</tfoot>
