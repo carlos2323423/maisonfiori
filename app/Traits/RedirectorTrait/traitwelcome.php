@@ -1,10 +1,13 @@
 <?php        
     use App\Models\Graphic;
+    use App\Charts\Charts;
     $spaces = $this->getTableColumns('usuarios', false);
     $spacesTotal = $this->getTableColumns('usuarios', true);        
     // selection query        
-    // dd($spaces);                
+    // dd($spaces);      
+    $chart = new Charts;          
     $list = Graphic::all();
+    $this->getChartFunctions($chart, 'line', ['Jan', 'Feb', 'Mar'], 'Users by trimester', [10, 25, 13]);
     $lelementos = $this->page_elements('welcome');
     $route_name = 'welcome';
     $name = 'welcome';        
@@ -52,5 +55,6 @@
         'imageuser' => $imageuser,
         'Modal_target' => $Modal_target,
         'form_data_toggle_list' => $form_data_toggle_list,
+        'chart' => $chart,        
     ];
     return $viewvariables;

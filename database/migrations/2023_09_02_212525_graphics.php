@@ -12,14 +12,16 @@ class Graphics extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('graphics', function (Blueprint $table) {
-            $table->id('id')->unique();                                    
-            $table->string('competencies', 255); 
-            $table->string('competency_levels', 255); 
-            $table->string('employee_skills', 255); 
+    {        
+        Schema::create('graphics', function (Blueprint $table) {                    
+            $table->id('id')->unique();   
+            $table->string('nombre_grafico');                                  
             $table->string('graphical_representation', 255); 
-            $table->string('description', 255);             
+            $table->string('competencies', 255);                         
+            $table->string('competency_levels', 255);             
+            $table->string('employee_skills', 255); 
+            $table->string('representacion_grafica', 255);
+            $table->string('descripcion', 255);
             $table->timestamps();
         });
     }

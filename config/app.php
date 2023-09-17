@@ -175,6 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //PROVIDERS CHARACTERS
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
     ],
 
     /*

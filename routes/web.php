@@ -16,6 +16,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UpdateController;
 use App\Http\Controllers\DeleteController;
+use App\Http\Controllers\ChartController;
 
 Route::get('/clear', function() {
    $commands = ['cache:clear', 'config:clear', 'config:cache', 'view:clear', 'route:clear'];
@@ -114,6 +115,10 @@ Route::prefix('/')->group(function () use ($routes_delete) {
 
 Route::delete('/destroy_user/{id}', [RegisterManagerController::class, 'destroy'])->name('user_destroysent');
 Route::delete('/destroy_empleado/{id}', [EmpleadosController::class, 'destroy'])->name('empleado_destroysent');
+
+// laravel charts
+// Route::get('/chart', 'ChartController@index');
+Route::get('/chart', [ChartController::class, 'index'])->name('chart');
 
 // START FILES
 Route::get('avatar/{filename}', function ($filename) {

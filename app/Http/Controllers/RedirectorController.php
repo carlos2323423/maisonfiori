@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\DB;
 // START TRAITS        
 use App\Traits\RedirectorTrait;        
 // END TRAITS
-
+// START CHARTS
+use App\Charts\Charts;
+// END CHARTS
 class RedirectorController extends Controller
 {
     use RedirectorTrait;
