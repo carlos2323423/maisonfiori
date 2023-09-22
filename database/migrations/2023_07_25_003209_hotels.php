@@ -12,7 +12,7 @@ class Hotels extends Migration
             $table->string('name', 255);
             $table->string('direccion', 255);
             $table->integer('telefono');
-            $table->boolean('activo')->default(false);
+            $table->boolean('activo')->default(false);            
             $table->timestamps();
         });
     }
