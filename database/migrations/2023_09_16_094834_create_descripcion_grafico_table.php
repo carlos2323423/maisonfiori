@@ -7,11 +7,11 @@ class CreateDescripcionGraficoTable extends Migration
 {
     public function up()
     {        
-        Schema::create('descripcion_grafico', function (Blueprint $table) {
-            $table->id('id_descripcion');
+        Schema::table('descripcion_grafico', function (Blueprint $table) {
+            // $table->id('id_descripcion');
+            // $table->timestamps();
             $table->foreignId('id_grafico')->constrained('graphics');
             $table->text('descripcion');
-            $table->timestamps();
         });
     }
 

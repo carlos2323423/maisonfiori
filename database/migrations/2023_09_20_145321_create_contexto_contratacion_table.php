@@ -7,11 +7,11 @@ class CreateContextoContratacionTable extends Migration
 {
     public function up()
     {
-        Schema::create('contexto_contratacion', function (Blueprint $table) {
-            $table->id();            
+        Schema::table('contexto_contratacion', function (Blueprint $table) {
+            // $table->id();            
+            // $table->timestamps();            
             $table->text('contexto');
             $table->text('cualidades_positivas');
-            $table->timestamps();            
         });
     }
 

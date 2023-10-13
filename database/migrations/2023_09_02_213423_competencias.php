@@ -7,11 +7,12 @@ class Competencias extends Migration
 {
     public function up()
     {
-        Schema::create('competencias', function (Blueprint $table) {
-            $table->id();
+        Schema::table('competencias', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();
             $table->string('name');
+            $table->boolean('state')->nullable();
             $table->string('descripcion', 255);
-            $table->timestamps();
         });
     }
 

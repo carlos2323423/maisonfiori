@@ -7,13 +7,13 @@ class CreatePersonalAccessTokensTable extends Migration
 {
     public function up()
     {
-        Schema::create('personal_access_tokens', function (Blueprint $table) {
-            $table->id();
+        Schema::table('personal_access_tokens', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();
             $table->morphs('tokenable');
             $table->string('name');
             $table->string('token', 64)->unique();
             $table->text('abilities')->nullable();
-            $table->timestamps();
         });
     }
 

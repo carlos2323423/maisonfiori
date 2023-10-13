@@ -7,8 +7,9 @@ class Graphics extends Migration
 {
     public function up()
     {
-        Schema::create('graphics', function (Blueprint $table) {
-            $table->id();
+        Schema::table('graphics', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();
             $table->string('nombre_grafico');
             $table->string('graphical_representation', 255);
             $table->string('competencies', 255);
@@ -16,7 +17,6 @@ class Graphics extends Migration
             $table->string('employee_skills', 255);
             $table->string('representacion_grafica', 255);
             $table->string('descripcion', 255);
-            $table->timestamps();
         });
     }
 

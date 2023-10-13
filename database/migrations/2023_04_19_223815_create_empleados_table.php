@@ -7,8 +7,9 @@ class CreateEmpleadosTable extends Migration
 {
     public function up()
     {
-        Schema::create('empleados', function (Blueprint $table) {
-            $table->id();
+        Schema::table('empleados', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();
             $table->string('lastname', 255);
             $table->string('firstname', 255);            
             $table->foreignId('hotel_id')->constrained('hotels')->onDelete('cascade');                         
@@ -22,7 +23,6 @@ class CreateEmpleadosTable extends Migration
             $table->foreignId('contratacion_id')->constrained('contrataciones')->onDelete('cascade');
             $table->string('genero', 255);
             $table->string('password', 60);
-            $table->timestamps();
         });        
     }
 

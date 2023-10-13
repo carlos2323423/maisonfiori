@@ -7,8 +7,9 @@ class CreateCuestionariosTable extends Migration
 {
     public function up()
     {
-        Schema::create('cuestionarios', function (Blueprint $table) {
-            $table->id();
+        Schema::table('cuestionarios', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();
             $table->string('keyunic')->unique();       
             $table->foreignId('empleado_id')->references('id')->on('empleados')->onDelete('cascade');     
             $table->foreignId('hotel_id')->constrained('hotels')->onDelete('cascade'); 
@@ -16,7 +17,6 @@ class CreateCuestionariosTable extends Migration
             $table->foreignId('cargo_id')->constrained('cargos')->onDelete('cascade');                                     
             $table->foreignId('manager_id')->constrained('empleados')->onDelete('cascade');
             $table->foreignId('area_id')->constrained('areas')->onDelete('cascade');                         
-            $table->timestamps();
         });
     }
 

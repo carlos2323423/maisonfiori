@@ -7,8 +7,9 @@ class CreateEvaluaciones360Table extends Migration
 {
     public function up()
     {
-        Schema::create('evaluaciones_360', function (Blueprint $table) {
-            $table->id();
+        Schema::table('evaluaciones_360', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();
             $table->unsignedBigInteger('empleado_id');
             $table->unsignedBigInteger('evaluador_id');
             $table->date('fecha_evaluacion');
@@ -16,7 +17,6 @@ class CreateEvaluaciones360Table extends Migration
             $table->integer('trabajo_equipo');
             $table->integer('puntualidad');
             $table->integer('resolucion_problemas');
-            $table->timestamps();
 
             $table->foreign('empleado_id')->references('id')->on('empleados')->onDelete('cascade');
             $table->foreign('evaluador_id')->references('id')->on('empleados')->onDelete('cascade');

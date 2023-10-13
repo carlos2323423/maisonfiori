@@ -7,11 +7,11 @@ class CreateTareasTable extends Migration
 {
     public function up()
     {
-        Schema::create('tareas', function (Blueprint $table) {
-            $table->id();
+        Schema::table('tareas', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();
             $table->string('nombre');
             $table->string('descripcion');
-            $table->timestamps();
         });
     }
 

@@ -7,10 +7,10 @@ class CreateIndicadoresTable extends Migration
 {
     public function up()
     {
-        Schema::create('indicadores', function (Blueprint $table) {
-            $table->id();
+        Schema::table('indicadores', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();
             $table->string('nombre');
-            $table->timestamps();
         });
     }
 

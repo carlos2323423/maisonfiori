@@ -7,13 +7,13 @@ class CreateCalificacionesTable extends Migration
 {
     public function up()
     {        
-        Schema::create('calificaciones', function (Blueprint $table) {
-            $table->id('id_calificacion');
+        Schema::table('calificaciones', function (Blueprint $table) {
+            // $table->id('id_calificacion');
+            // $table->timestamps();
             $table->foreignId('id_empleado')->constrained('empleados');
             // $table->foreignId('id_aspecto')->constrained('aspectos', 'id_aspecto');
-            $table->foreignId('id_criterios')->constrained('criterios');
+            $table->foreignId('id_criterios')->constrained('competencias');
             $table->integer('calificacion');
-            $table->timestamps();
         });
     }
 

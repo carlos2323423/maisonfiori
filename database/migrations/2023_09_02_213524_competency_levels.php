@@ -7,11 +7,11 @@ class CompetencyLevels extends Migration
 {
     public function up()
     {
-        Schema::create('competency_levels', function (Blueprint $table) {
-            $table->id();
+        Schema::table('competency_levels', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();
             $table->foreignId('competency_id')->constrained('competencias')->onDelete('cascade');            
             $table->string('name');
-            $table->timestamps();
         });
     }
 

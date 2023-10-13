@@ -7,9 +7,9 @@ class Competenciaslaborales extends Migration
 {
     public function up()
     {
-        Schema::create('competenciaslaborales', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('competenciaslaborales', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();
             $table->integer('liderazgo');
             $table->integer('proactivo');
             $table->integer('dinamico');

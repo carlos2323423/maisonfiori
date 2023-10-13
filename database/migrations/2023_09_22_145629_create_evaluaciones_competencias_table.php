@@ -7,12 +7,12 @@ class CreateEvaluacionesCompetenciasTable extends Migration
 {
     public function up()
     {
-        Schema::create('evaluaciones_competencias', function (Blueprint $table) {
-            $table->id();
+        Schema::table('evaluaciones_competencias', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();
             $table->unsignedBigInteger('empleado_id');
             $table->unsignedBigInteger('competencia_id');
             $table->integer('calificacion');
-            $table->timestamps();
 
             $table->foreign('empleado_id')->references('id')->on('empleados')->onDelete('cascade');
             $table->foreign('competencia_id')->references('id')->on('competencias')->onDelete('cascade');

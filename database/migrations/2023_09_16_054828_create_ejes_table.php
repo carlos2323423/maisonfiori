@@ -7,12 +7,12 @@ class CreateEjesTable extends Migration
 {
     public function up()
     {
-        Schema::create('ejes', function (Blueprint $table) {
-            $table->id();            
+        Schema::table('ejes', function (Blueprint $table) {
+            // $table->id();            
+            // $table->timestamps();
             $table->string('vertical');
             $table->string('horizontal');            
             $table->foreignId('id_grafico')->constrained('graphics');
-            $table->timestamps();
         });
     }
 

@@ -7,11 +7,11 @@ class CamposDeEvaluacions extends Migration
 {
     public function up()
     {
-        Schema::create('campos_de_evaluacions', function (Blueprint $table) {
-            $table->id();
+        Schema::table('campos_de_evaluacions', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();
             $table->string('campo', 255);
             $table->string('escala', 255);
-            $table->timestamps();
         });
     }
 

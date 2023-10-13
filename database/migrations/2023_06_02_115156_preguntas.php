@@ -7,9 +7,9 @@ class Preguntas extends Migration
 {
     public function up()
     {
-        Schema::create('preguntas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('preguntas', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();
             $table->string('type', 255);
             $table->string('valor', 255);
         });

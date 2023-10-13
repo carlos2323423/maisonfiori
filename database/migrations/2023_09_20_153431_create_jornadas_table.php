@@ -7,12 +7,12 @@ class CreateJornadasTable extends Migration
 {
     public function up()
     {
-        Schema::create('jornadas', function (Blueprint $table) {
-            $table->id();            
+        Schema::table('jornadas', function (Blueprint $table) {
+            // $table->id();            
+            // $table->timestamps();
             $table->string('dias_semana');
             $table->time('hora_inicio');
             $table->time('hora_fin');
-            $table->timestamps();
             $table->foreignId('empleado_id')->references('id')->on('empleados')->onDelete('cascade');
             $table->foreignId('area_id')->references('id')->on('areas')->onDelete('cascade');
         });

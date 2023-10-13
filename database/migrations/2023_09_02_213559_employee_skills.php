@@ -7,12 +7,12 @@ class EmployeeSkills extends Migration
 {
     public function up()
     {
-        Schema::create('employee_skills', function (Blueprint $table) {
-            $table->id();
+        Schema::table('employee_skills', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();
             $table->foreignId('employee_id')->constrained('empleados')->onDelete('cascade');
             $table->foreignId('competency_id')->constrained('competencias')->onDelete('cascade');
             $table->foreignId('competency_level_id')->constrained('competency_levels')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

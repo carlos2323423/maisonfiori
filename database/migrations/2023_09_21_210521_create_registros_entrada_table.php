@@ -13,12 +13,12 @@ class CreateRegistrosEntradaTable extends Migration
      */
     public function up()
     {                
-        Schema::create('registros_entrada', function (Blueprint $table) {
-            $table->id();            
+        Schema::table('registros_entrada', function (Blueprint $table) {
+            // $table->id();            
+            // $table->timestamps();
             $table->date('fecha');
             $table->string('dia');
             $table->time('hora');
-            $table->timestamps();
 
             $table->foreignId('empleado_id')->references('id')->on('empleados')->onDelete('cascade');
             $table->foreignId('hotel_id')->references('id')->on('hotels')->onDelete('cascade');

@@ -7,15 +7,15 @@ class EscalaCalificacions extends Migration
 {
     public function up()
     {
-        Schema::create('escala_calificacions', function (Blueprint $table) {
-            $table->id();
+        Schema::table('escala_calificacions', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();
             $table->string('name', 255);
             $table->string('e1', 255);
             $table->string('e2', 255);
             $table->string('e3', 255);
             $table->string('e4', 255);
             $table->string('e5', 255);
-            $table->timestamps();
         });
     }
 

@@ -7,12 +7,12 @@ class CreateAsignacionesTable extends Migration
 {
     public function up()
     {
-        Schema::create('asignaciones', function (Blueprint $table) {
-            $table->id();
+        Schema::table('asignaciones', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();
             $table->foreignId('empleado_id')->constrained('empleados')->onDelete('cascade');
             $table->foreignId('tarea_id')->constrained('tareas')->onDelete('cascade');
             $table->date('fecha');
-            $table->timestamps();
         });
     }
 

@@ -7,14 +7,14 @@ class CreateDatosGraficoTable extends Migration
 {
     public function up()
     {        
-        Schema::create('datos_grafico', function (Blueprint $table) {
-            $table->id('id_dato');
+        Schema::table('datos_grafico', function (Blueprint $table) {
+            // $table->id('id_dato');
+            // $table->timestamps();
             $table->foreignId('id_grafico')->constrained('graphics');
             $table->foreignId('id_eje')->constrained('ejes');
             $table->foreignId('empleado')->nullable()->constrained('empleados');            
-            $table->foreignId('id_aspecto')->nullable()->constrained('aspectos', 'id_aspecto');
+            $table->foreignId('id_competencias')->nullable()->constrained('competencias');
             $table->integer('nivel');
-            $table->timestamps();
         });
     }
 
