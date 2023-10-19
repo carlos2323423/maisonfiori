@@ -14,8 +14,8 @@ class CreateEmpleadosTable extends Migration
             $table->string('firstname', 255);            
             $table->foreignId('hotel_id')->constrained('hotels')->onDelete('cascade');                         
             $table->foreignId('nivel_id')->constrained('niveles')->onDelete('cascade');             
-            $table->foreignId('cargo_id')->constrained('cargos')->onDelete('cascade');                         
-            $table->foreignId('area_id')->constrained('areas')->onDelete('cascade');             
+            $table->foreignId('cargo_id')->constrained('cargos')->onDelete('cascade');                                     
+            // $table->foreignId('area_id')->nullable()->constrained('areas')->onDelete('cascade');
             $table->string('foto', 255);
             $table->integer('ci');
             $table->string('email', 255);

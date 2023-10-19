@@ -26,6 +26,7 @@ return array(
     'App\\Http\\Controllers\\EvaluacionController' => $baseDir . '/app/Http/Controllers/EvaluacionController.php',
     'App\\Http\\Controllers\\EvaluacionGController' => $baseDir . '/app/Http/Controllers/EvaluacionGController.php',
     'App\\Http\\Controllers\\Evaluacion_administradorController' => $baseDir . '/app/Http/Controllers/Evaluacion_administradorController.php',
+    'App\\Http\\Controllers\\FillContentTablesController' => $baseDir . '/app/Http/Controllers/FillContentTablesController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\ImageController' => $baseDir . '/app/Http/Controllers/ImageController.php',
     'App\\Http\\Controllers\\LoginController' => $baseDir . '/app/Http/Controllers/LoginController.php',

@@ -13,6 +13,7 @@ class CreateNivelesTable extends Migration
             $table->string('nombre', 50);
             $table->text('descripcion')->nullable();
             $table->integer('puntos_requeridos');
+            $table->text('state');
         });
     }
 

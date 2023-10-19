@@ -10,7 +10,7 @@ class CreateAreasTable extends Migration
         Schema::table('areas', function (Blueprint $table) {
             // $table->id();
             // $table->timestamps();
-            $table->foreignId('manager_id')->constrained('empleados')->onDelete('cascade');
+            // $table->foreignId('manager_id')->nullable()->constrained('empleados')->onDelete('cascade');            
             $table->string('ah_nombre', 20)->nullable();
             $table->string('ah_descripcion', 50)->nullable();
             $table->string('ah_ah_activo', 255)->nullable();

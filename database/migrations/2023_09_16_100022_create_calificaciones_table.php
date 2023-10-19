@@ -11,9 +11,12 @@ class CreateCalificacionesTable extends Migration
             // $table->id('id_calificacion');
             // $table->timestamps();
             $table->foreignId('id_empleado')->constrained('empleados');
-            // $table->foreignId('id_aspecto')->constrained('aspectos', 'id_aspecto');
-            $table->foreignId('id_criterios')->constrained('competencias');
-            $table->integer('calificacion');
+            // $table->foreignId('id_aspecto')->constrained('aspectos', 'id_aspecto');                        
+            $table->decimal('valor', 5, 2); // Utiliza el tipo de dato decimal para valores con decimales
+            $table->foreignId('id_competencia')->constrained('competencias')->onDelete('cascade');
+            // Otras columnas si son necesarias
+
+            $table->timestamps();
         });
     }
 

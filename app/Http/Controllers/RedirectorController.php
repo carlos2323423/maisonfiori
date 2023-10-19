@@ -16,6 +16,12 @@ use App\Charts\Charts;
 class RedirectorController extends Controller
 {
     use RedirectorTrait;
+    
+    public function filled_tables() {
+        $name = 'fill_content tables';
+        return view($name, ['title' => $name]);
+    }
+
     public function login() {
         return view('login', ['title' => 'Home Page']);
     }

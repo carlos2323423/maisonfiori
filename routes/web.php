@@ -17,6 +17,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UpdateController;
 use App\Http\Controllers\DeleteController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\FillContentTablesController;
 
 Route::get('/clear', function() {
    $commands = ['cache:clear', 'config:clear', 'config:cache', 'view:clear', 'route:clear'];
@@ -24,6 +25,24 @@ Route::get('/clear', function() {
       Artisan::call($command);
    }
       return "Cleared!";
+});
+
+$routes_filled = [
+   'fill_empleados',
+   'fill_hotels',
+   'fill_nivels',   
+   'fill_areas',      
+];
+
+Route::prefix('/')->group(function () use ($routes_filled) {
+
+   foreach ($routes_filled as $route) {            
+      Route::get($route, function () use ($route) {
+         $fillContentTablesController = resolve(FillContentTablesController::class);
+         return $fillContentTablesController->filled($route);         
+     })->name($route);
+   }   
+
 });
 
 $routes_get = [
@@ -39,6 +58,7 @@ $routes_get = [
    'calificacion_empleados',
    'crud_cuestionario',
    'preguntas',
+   'filled_tables',
 ];
 // array_push($routes_get, 'pera');
 
