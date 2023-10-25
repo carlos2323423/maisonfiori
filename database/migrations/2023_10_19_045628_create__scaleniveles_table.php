@@ -13,11 +13,17 @@ class CreateScalenivelesTable extends Migration
      */
     public function up()
     {
-        Schema::create('_scaleniveles', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table ('scaleniveles', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();            
+            $table->foreignId('name')->constrained('competencias')->onDelete('cascade');
+            $table->foreignId('Deficiente')->nullable()->constrained('competencias')->onDelete('cascade');
+            $table->foreignId('Mejorable')->nullable()->constrained('competencias')->onDelete('cascade');
+            $table->foreignId('Aceptable')->nullable()->constrained('competencias')->onDelete('cascade');
+            $table->foreignId('Bueno')->nullable()->constrained('competencias')->onDelete('cascade');
+            $table->foreignId('Excelente')->nullable()->constrained('competencias')->onDelete('cascade');                                                
         });
-    }
+    }    
 
     /**
      * Reverse the migrations.
@@ -26,6 +32,6 @@ class CreateScalenivelesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_scaleniveles');
+        Schema::dropIfExists('scaleniveles');
     }
 }

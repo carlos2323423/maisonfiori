@@ -8,13 +8,6 @@
         --}}
         <!-- Product image-->
         <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-        <div style="width: 50%">
-        {{--
-            --}}
-            {!! $chart->container() !!} <!-- Contenedor del gráfico se coloca primero -->
-            {!! $chart->container('chart-' . uniqid()) !!} <!-- Contenedor del gráfico con identificador único -->            
-            
-        </div>
         <!-- Product details-->
         <div class="card-body p-4">
             <div class="text-center">
@@ -27,6 +20,16 @@
         <!-- Product actions-->
         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+        </div>
+        <div class="card-body p-4">
+            <h5 class="fw-bolder">Gráfico desde Django</h5>            
+            @if (isset($django['charts']) && count($django['charts']) > 0)
+            @foreach ($django['charts'] as $chart)
+                <img class="card-img-top" src="data:image/png;base64, {{ base64_encode($chart) }}" alt="Gráfico desde Django">                
+            @endforeach
+            @else
+                <p>No se pudo cargar el gráfico desde Django.</p>
+            @endif                        
         </div>
     </div>
 </div>

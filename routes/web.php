@@ -32,6 +32,7 @@ $routes_filled = [
    'fill_hotels',
    'fill_nivels',   
    'fill_areas',      
+   'fill_graphics',
 ];
 
 Route::prefix('/')->group(function () use ($routes_filled) {

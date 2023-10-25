@@ -11,6 +11,7 @@
     $accionformsent = 'empleado_registersent';
     $accionformupdate = 'empleado_registerupdate';
     $accionformdelete = 'empleado_registerdelete';
+    $stora_url = asset('storage/');
     $imageuser = 'https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg';
     $cuestionarioModal = true;
     $Modal_target = '#register_userModal';
@@ -50,6 +51,7 @@
         'accionformsent' => $accionformsent,
         'accionformupdate' => $accionformupdate,
         'accionformdelete' => $accionformdelete,
+        'stora_url' => $stora_url,
         'imageuser' => $imageuser,
         'cuestionarioModal' => $cuestionarioModal,
         'Modal_target' => $Modal_target,

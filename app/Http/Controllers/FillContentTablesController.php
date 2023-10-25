@@ -89,7 +89,26 @@ class FillContentTablesController extends Controller
                     ('Hotel H', 'Dirección H', 6666666666, 0, NOW(), NOW()),
                     ('Hotel I', 'Dirección I', 7777777777, 1, NOW(), NOW()),
                     ('Hotel J', 'Dirección J', 8888888888, 0, NOW(), NOW());
-                ";
+                    ";
+                    DB::statement($consulta);
+                    dd("Consulta ejecutada correctamente");
+                    return "Consulta ejecutada correctamente";
+                    break;
+                case 'fill_graphics':
+                    $consulta = "
+                    INSERT INTO graphics (nombre_grafico, graphical_representation, competencies, competency_levels, employee_skills, representacion_grafica, descripcion)
+                    VALUES
+                    ('Gráfico 1', 'Representación 1', 'Competencia 1', 'Nivel 1', 'Habilidades 1', 'Descripción 1', 'Descripción de Gráfico 1'),
+                    ('Gráfico 2', 'Representación 2', 'Competencia 2', 'Nivel 2', 'Habilidades 2', 'Descripción 2', 'Descripción de Gráfico 2'),
+                    ('Gráfico 3', 'Representación 3', 'Competencia 3', 'Nivel 3', 'Habilidades 3', 'Descripción 3', 'Descripción de Gráfico 3'),
+                    ('Gráfico 4', 'Representación 4', 'Competencia 4', 'Nivel 4', 'Habilidades 4', 'Descripción 4', 'Descripción de Gráfico 4'),
+                    ('Gráfico 5', 'Representación 5', 'Competencia 5', 'Nivel 5', 'Habilidades 5', 'Descripción 5', 'Descripción de Gráfico 5'),
+                    ('Gráfico 6', 'Representación 6', 'Competencia 6', 'Nivel 6', 'Habilidades 6', 'Descripción 6', 'Descripción de Gráfico 6'),
+                    ('Gráfico 7', 'Representación 7', 'Competencia 7', 'Nivel 7', 'Habilidades 7', 'Descripción 7', 'Descripción de Gráfico 7'),
+                    ('Gráfico 8', 'Representación 8', 'Competencia 8', 'Nivel 8', 'Habilidades 8', 'Descripción 8', 'Descripción de Gráfico 8'),
+                    ('Gráfico 9', 'Representación 9', 'Competencia 9', 'Nivel 9', 'Habilidades 9', 'Descripción 9', 'Descripción de Gráfico 9'),
+                    ('Gráfico 10', 'Representación 10', 'Competencia 10', 'Nivel 10', 'Habilidades 10', 'Descripción 10', 'Descripción de Gráfico 10');
+                    ";
                     DB::statement($consulta);
                     dd("Consulta ejecutada correctamente");
                     return "Consulta ejecutada correctamente";

@@ -26,7 +26,7 @@
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <!-- start body table -->
-                @yield('tables.store_table')                
+                @yield('tables.store_table')                                
                 <!-- end body table -->
             </div>
         </section>
@@ -39,7 +39,6 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <!-- CHART JS IMPORTATION -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
-        {!! $chart->script() !!} <!-- Script se carga después -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>        
     </body>
 </html>

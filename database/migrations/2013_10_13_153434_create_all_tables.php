@@ -48,8 +48,8 @@ class CreateAllTables extends Migration
             });
         }
 
-        if (!Schema::hasTable('nivels')) {
-            Schema::create('nivels', function (Blueprint $table) {
+        if (!Schema::hasTable('scaleniveles')) {            
+            Schema::create('scaleniveles', function (Blueprint $table) {
                 $table->id();
                 $table->timestamps();
             });
@@ -323,7 +323,7 @@ class CreateAllTables extends Migration
         Schema::dropIfExists('failed_jobs');
         Schema::dropIfExists('personal_access_tokens');
         Schema::dropIfExists('hotels');
-        Schema::dropIfExists('nivels');
+        Schema::dropIfExists('scaleniveles');        
         Schema::dropIfExists('niveles');
         Schema::dropIfExists('areas');
         Schema::dropIfExists('empleados');
