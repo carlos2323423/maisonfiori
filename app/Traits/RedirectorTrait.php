@@ -28,6 +28,10 @@ trait RedirectorTrait
         // return view('welcome2', ['title' => 'Welcome']);
     }    
 
+    public function traitqrgenerator() {        
+        return require 'RedirectorTrait/traitqrgenerator.php';          
+    }
+
     public function getChartFunctions($chart, $type, $labels, $title_name, $data) {        
         $parametros_graficacion = array(
             "Gráfico de desempeño individual" => array(

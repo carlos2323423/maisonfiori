@@ -20,8 +20,9 @@
         <!-- end navigation top bar -->
         <!-- Header-->
         <!-- start banner -->
-        @yield('banners.store_banner')
+        @yield('banners.store_banner')        
         <!-- end banner -->
+        @yield('QR.qr_generator_form')
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">

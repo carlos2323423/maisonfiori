@@ -10,6 +10,33 @@ use Illuminate\Support\Facades\DB;
 
 class ValidationHelper
 {  
+    private static function get_cloums_from_tables ($tableName, $total) {
+      // dd('hola como estas');
+      $columns = DB::getSchemaBuilder()->getColumnListing($tableName);    
+      $excludeColumns = [
+        'created_at', 
+        'updated_at', 'id'
+      ];      
+      $columnDetails = [];
+      if($total) {            
+        foreach ($columns as $column) {
+          $columnDetails[$column]['type'] = Schema::getColumnType($tableName, $column);
+          $columnDetails[$column]['nullable'] = Schema::isColumnNullable($tableName, $column);
+          $columnDetails[$column]['unique'] = Schema::hasUnique($tableName, $column);
+        }
+        return $columnDetails;
+      } else {
+        $columns = array_values(array_diff($columns, $excludeColumns));
+        foreach ($columns as $column) {
+          $columnDetails[$column]['type'] = Schema::getColumnType($tableName, $column);
+          $columnDetails[$column]['nullable'] = Schema::isColumnNullable($tableName, $column);
+          $columnDetails[$column]['unique'] = Schema::hasUnique($tableName, $column);
+        }
+        return $columnDetails;
+      }                              
+      dd('ERROR function getTableColumns');      
+    }
+
     private static function def_campos ($value): array { 
       switch ($value) {
         case 'rowtypeintegrer':
@@ -39,9 +66,14 @@ class ValidationHelper
             'email',
           ];
         break;
-        case 'rowpassword':
+        case 'rowtypepassword':
           return [
             'password',
+          ];
+          break;
+        case 'rowtyperequired':
+          return [
+            'name',
           ];
           break;
         default:
@@ -135,22 +167,28 @@ class ValidationHelper
     public static function rules1(string $tipo_tabla, array $data, $unique, $request) {      
       // dd($data);
       // dd($request);
+      dd(self::get_cloums_from_tables($tipo_tabla, false), $data);
       if ($unique) {
         $rowtypeunique = self::def_campos('rowtypeunique');
       }
       $rules = [];      
       $rowtypeunique = [];
-      $rowtypeintegrer = self::def_campos('rowtypeintegrer');      
+      $rowtyperequired = self::def_campos('rowtyperequired');
+      $rowtypeintegrer = self::def_campos('rowtypeintegrer');
       $rowtypedate = self::def_campos('rowtypedate');
       $rowtypeimage = self::def_campos('rowtypeimage');
       $rowtypeemail = self::def_campos('rowtypeemail');
-      $rowpassword = self::def_campos('rowpassword');
+      $rowpassword = self::def_campos('rowtypepassword');
   
       foreach ($data as $row_name => $value) {
         if (in_array($row_name, ['_method', '_token'])) {
             continue;
         }
-        $rowRules = ['required'];          
+        // $rowRules = [];          
+        $rowRules = ['required'];
+        if (!in_array($row_name, $rowtypeintegrer)) {
+          $rowRules = ['required'];
+        }
         if (!in_array($row_name, $rowtypeintegrer)) {
           $rowRules[] = 'string';
           $rowRules[] = 'max:255';
@@ -159,7 +197,8 @@ class ValidationHelper
           $rowRules[] = 'integer';
         }
         if (in_array($row_name, $rowtypeunique)) {
-            $rowRules[] = "unique:{$tipo_tabla}s";
+            $rowRules[] = "unique:{$tipo_tabla}";
+            // $rowRules[] = "unique:{$tipo_tabla}s";
         }
         if (in_array($row_name, $rowtypedate)) {
             $rowRules[] = 'date';
@@ -198,6 +237,9 @@ class ValidationHelper
         // AQUI SE OUEDEN DEFINIR REGLAS PERSONALIZASAS SI ASI SE DESEARA          
         return Validator::make($data, $rules, $messages);              
         break;
+      case 'qrgenerator':
+        return Validator::make($data, $rules, $messages);
+      break;
       case 'pregunta':
         $messages = [
           'type.required' => 'El campo tipo es requerido',

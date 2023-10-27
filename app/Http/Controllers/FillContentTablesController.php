@@ -50,26 +50,26 @@ class FillContentTablesController extends Controller
                 $consulta = "
                     INSERT INTO empleados (id, created_at, updated_at, lastname, firstname, hotel_id, nivel_id, cargo_id, foto, ci, email, celular, contratacion_id, genero, password)
                     VALUES
-                    (1, NOW(), NOW(), 'Apellido1', 'Nombre1', 1, 1, 1, 'foto1.jpg', 1234567, 'correo1@example.com', 1234567890, 1, 'M', 'password1'),
-                    (2, NOW(), NOW(), 'Apellido3', 'Nombre3', 1, 1, 1, 'foto3.jpg', 3456789, 'correo3@example.com', 1234567892, 1, 'M', 'password3'),
-                    (3, NOW(), NOW(), 'Apellido2', 'Nombre2', 1, 1, 1, 'foto2.jpg', 2345678, 'correo2@example.com', 1234567891, 1, 'F', 'password2'),
-                    (4, NOW(), NOW(), 'Apellido4', 'Nombre4', 1, 1, 1, 'foto4.jpg', 4567890, 'correo4@example.com', 1234567893, 1, 'F', 'password4'),
-                    (5, NOW(), NOW(), 'Apellido5', 'Nombre5', 1, 1, 1, 'foto5.jpg', 5678901, 'correo5@example.com', 1234567894, 1, 'M', 'password5'),
-                    (6, NOW(), NOW(), 'Apellido6', 'Nombre6', 1, 1, 1, 'foto6.jpg', 6789012, 'correo6@example.com', 1234567895, 1, 'F', 'password6'),
-                    (7, NOW(), NOW(), 'Apellido7', 'Nombre7', 1, 1, 1, 'foto7.jpg', 7890123, 'correo7@example.com', 1234567896, 1, 'M', 'password7'),
-                    (8, NOW(), NOW(), 'Apellido8', 'Nombre8', 1, 1, 1, 'foto8.jpg', 8901234, 'correo8@example.com', 1234567897, 1, 'F', 'password8'),
-                    (9, NOW(), NOW(), 'Apellido9', 'Nombre9', 1, 1, 1, 'foto9.jpg', 9012345, 'correo9@example.com', 1234567898, 1, 'M', 'password9'),
-                    (1, NOW(), NOW(), 'Apellido10', 'Nombre10', 1, 1, 1, 'foto10.jpg', 1234567, 'correo10@example.com', 1234567899, 1, 'F', 'password10'),
-                    (2, NOW(), NOW(), 'Apellido11', 'Nombre11', 1, 1, 1, 'foto11.jpg', 2345678, 'correo11@example.com', 1234567800, 1, 'M', 'password11'),
-                    (3, NOW(), NOW(), 'Apellido12', 'Nombre12', 1, 1, 1, 'foto12.jpg', 3456789, 'correo12@example.com', 1234567801, 1, 'F', 'password12'),
-                    (4, NOW(), NOW(), 'Apellido13', 'Nombre13', 1, 1, 1, 'foto13.jpg', 4567890, 'correo13@example.com', 1234567802, 1, 'M', 'password13'),
-                    (5, NOW(), NOW(), 'Apellido14', 'Nombre14', 1, 1, 1, 'foto14.jpg', 5678901, 'correo14@example.com', 1234567803, 1, 'F', 'password14'),
-                    (6, NOW(), NOW(), 'Apellido15', 'Nombre15', 1, 1, 1, 'foto15.jpg', 6789012, 'correo15@example.com', 1234567804, 1, 'M', 'password15'),
-                    (7, NOW(), NOW(), 'Apellido16', 'Nombre16', 1, 1, 1, 'foto16.jpg', 7890123, 'correo16@example.com', 1234567805, 1, 'F', 'password16'),
-                    (8, NOW(), NOW(), 'Apellido17', 'Nombre17', 1, 1, 1, 'foto17.jpg', 8901234, 'correo17@example.com', 1234567806, 1, 'M', 'password17'),
-                    (9, NOW(), NOW(), 'Apellido18', 'Nombre18', 1, 1, 1, 'foto18.jpg', 9012345, 'correo18@example.com', 1234567807, 1, 'F', 'password18'),
-                    (1, NOW(), NOW(), 'Apellido19', 'Nombre19', 1, 1, 1, 'foto19.jpg', 1234567, 'correo19@example.com', 1234567808, 1, 'M', 'password19'),
-                    (2, NOW(), NOW(), 'Apellido20', 'Nombre20', 1, 1, 1, 'foto20.jpg', 2345678, 'correo20@example.com', 1234567809, 1, 'F', 'password20');
+                    (NOW(), NOW(), 'Apellido1', 'Nombre1', 1, 1, 1, 'foto1.jpg', 1234567, 'correo1@example.com', 1234567890, 1, 'M', 'password1'),
+                    (NOW(), NOW(), 'Apellido3', 'Nombre3', 1, 1, 1, 'foto3.jpg', 3456789, 'correo3@example.com', 1234567892, 1, 'M', 'password3'),
+                    (NOW(), NOW(), 'Apellido2', 'Nombre2', 1, 1, 1, 'foto2.jpg', 2345678, 'correo2@example.com', 1234567891, 1, 'F', 'password2'),
+                    (NOW(), NOW(), 'Apellido4', 'Nombre4', 1, 1, 1, 'foto4.jpg', 4567890, 'correo4@example.com', 1234567893, 1, 'F', 'password4'),
+                    (NOW(), NOW(), 'Apellido5', 'Nombre5', 1, 1, 1, 'foto5.jpg', 5678901, 'correo5@example.com', 1234567894, 1, 'M', 'password5'),
+                    (NOW(), NOW(), 'Apellido6', 'Nombre6', 1, 1, 1, 'foto6.jpg', 6789012, 'correo6@example.com', 1234567895, 1, 'F', 'password6'),
+                    (NOW(), NOW(), 'Apellido7', 'Nombre7', 1, 1, 1, 'foto7.jpg', 7890123, 'correo7@example.com', 1234567896, 1, 'M', 'password7'),
+                    (NOW(), NOW(), 'Apellido8', 'Nombre8', 1, 1, 1, 'foto8.jpg', 8901234, 'correo8@example.com', 1234567897, 1, 'F', 'password8'),
+                    (NOW(), NOW(), 'Apellido9', 'Nombre9', 1, 1, 1, 'foto9.jpg', 9012345, 'correo9@example.com', 1234567898, 1, 'M', 'password9'),
+                    (NOW(), NOW(), 'Apellido10', 'Nombre10', 1, 1, 1, 'foto10.jpg', 1234567, 'correo10@example.com', 1234567899, 1, 'F', 'password10'),
+                    (NOW(), NOW(), 'Apellido11', 'Nombre11', 1, 1, 1, 'foto11.jpg', 2345678, 'correo11@example.com', 1234567800, 1, 'M', 'password11'),
+                    (NOW(), NOW(), 'Apellido12', 'Nombre12', 1, 1, 1, 'foto12.jpg', 3456789, 'correo12@example.com', 1234567801, 1, 'F', 'password12'),
+                    (NOW(), NOW(), 'Apellido13', 'Nombre13', 1, 1, 1, 'foto13.jpg', 4567890, 'correo13@example.com', 1234567802, 1, 'M', 'password13'),
+                    (NOW(), NOW(), 'Apellido14', 'Nombre14', 1, 1, 1, 'foto14.jpg', 5678901, 'correo14@example.com', 1234567803, 1, 'F', 'password14'),
+                    (NOW(), NOW(), 'Apellido15', 'Nombre15', 1, 1, 1, 'foto15.jpg', 6789012, 'correo15@example.com', 1234567804, 1, 'M', 'password15'),
+                    (NOW(), NOW(), 'Apellido16', 'Nombre16', 1, 1, 1, 'foto16.jpg', 7890123, 'correo16@example.com', 1234567805, 1, 'F', 'password16'),
+                    (NOW(), NOW(), 'Apellido17', 'Nombre17', 1, 1, 1, 'foto17.jpg', 8901234, 'correo17@example.com', 1234567806, 1, 'M', 'password17'),
+                    (NOW(), NOW(), 'Apellido18', 'Nombre18', 1, 1, 1, 'foto18.jpg', 9012345, 'correo18@example.com', 1234567807, 1, 'F', 'password18'),
+                    (NOW(), NOW(), 'Apellido19', 'Nombre19', 1, 1, 1, 'foto19.jpg', 1234567, 'correo19@example.com', 1234567808, 1, 'M', 'password19'),
+                    (NOW(), NOW(), 'Apellido20', 'Nombre20', 1, 1, 1, 'foto20.jpg', 2345678, 'correo20@example.com', 1234567809, 1, 'F', 'password20');
                 ";
             
                 DB::statement($consulta);
@@ -109,6 +109,39 @@ class FillContentTablesController extends Controller
                     ('Gráfico 9', 'Representación 9', 'Competencia 9', 'Nivel 9', 'Habilidades 9', 'Descripción 9', 'Descripción de Gráfico 9'),
                     ('Gráfico 10', 'Representación 10', 'Competencia 10', 'Nivel 10', 'Habilidades 10', 'Descripción 10', 'Descripción de Gráfico 10');
                     ";
+                    DB::statement($consulta);
+                    dd("Consulta ejecutada correctamente");
+                    return "Consulta ejecutada correctamente";
+                    break;                    
+                case 'fill_qrcode':
+                    $consulta = "
+                    INSERT INTO qr_codes (id, created_at, updated_at, name, qr_code_data)
+                    VALUES
+                        (1, NOW(), NOW(), 'Dato 1', 'Datos ficticios 1'),
+                        (2, NOW(), NOW(), 'Dato 2', 'Datos ficticios 2'),
+                        (3, NOW(), NOW(), 'Dato 3', 'Datos ficticios 3'),
+                        (4, NOW(), NOW(), 'Dato 4', 'Datos ficticios 4'),
+                        (5, NOW(), NOW(), 'Dato 5', 'Datos ficticios 5'),
+                        (6, NOW(), NOW(), 'Dato 6', 'Datos ficticios 6'),
+                        (7, NOW(), NOW(), 'Dato 7', 'Datos ficticios 7'),
+                        (8, NOW(), NOW(), 'Dato 8', 'Datos ficticios 8'),
+                        (9, NOW(), NOW(), 'Dato 9', 'Datos ficticios 9'),
+                        (10, NOW(), NOW(), 'Dato 10', 'Datos ficticios 10');
+                    ";
+                    // $consulta = "
+                    // INSERT INTO qr_codes (id, created_at, updated_at, name, qr_code_data)
+                    // VALUES
+                    // (NOW(), NOW(), 'Dato 1', 'O:24:\'Endroid\\QrCode\\QrCode\':7:{s:4:\'data\';s:18:\'https://www.ejemplo.com\';s:8:\'encoding\';O:24:\'Endroid\\QrCode\\Encoding\\Encoding\':0:{}s:23:\'errorCorrectionLevel\';O:24:\'Endroid\\QrCode\\ErrorCorrectionLevel\':2:{s:4:\'name\';s:3:\'Low\';s:5:\'value\';s:3:\'low\';}s:4:\'size\';i:300;s:6:\'margin\';i:10;s:20:\'roundBlockSizeMode\';O:24:\'Endroid\\QrCode\\RoundBlockSizeMode\':2:{s:4:\'name\';s:6:\'Margin\';s:5:\'value\';s:6:\'margin\';}s:15:\'foregroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:0;s:5:\'green\';i:0;s:4:\'blue\';i:0;s:5\:'alpha\';i:0;}s:16:\'backgroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:255;s:5:\'green\';i:255;s:4:\'blue\';i:255;s:5:\'alpha\';i:0;}\''),
+                    // (NOW(), NOW(), 'Dato 2', 'O:24:\'Endroid\\QrCode\\QrCode\':7:{s:4:\'data\';s:18:\'https://www.ejemplo.com\';s:8:\'encoding\';O:24:\'Endroid\\QrCode\\Encoding\\Encoding\':0:{}s:23:\'errorCorrectionLevel\';O:24:\'Endroid\\QrCode\\ErrorCorrectionLevel\':2:{s:4:\'name\';s:3:\'Low\';s:5:\'value\';s:3:\'low\';}s:4:\'size\';i:300;s:6:\'margin\';i:10;s:20:\'roundBlockSizeMode\';O:24:\'Endroid\\QrCode\\RoundBlockSizeMode\':2:{s:4:\'name\';s:6:\'Margin\';s:5:\'value\';s:6:\'margin\';}s:15:\'foregroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:0;s:5:\'green\';i:0;s:4:\'blue\';i:0;s:5\:'alpha\';i:0;}s:16:\'backgroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:255;s:5:\'green\';i:255;s:4:\'blue\';i:255;s:5:\'alpha\';i:0;}\''),
+                    // (NOW(), NOW(), 'Dato 3', 'O:24:\'Endroid\\QrCode\\QrCode\':7:{s:4:\'data\';s:18:\'https://www.ejemplo.com\';s:8:\'encoding\';O:24:\'Endroid\\QrCode\\Encoding\\Encoding\':0:{}s:23:\'errorCorrectionLevel\';O:24:\'Endroid\\QrCode\\ErrorCorrectionLevel\':2:{s:4:\'name\';s:3:\'Low\';s:5:\'value\';s:3:\'low\';}s:4:\'size\';i:300;s:6:\'margin\';i:10;s:20:\'roundBlockSizeMode\';O:24:\'Endroid\\QrCode\\RoundBlockSizeMode\':2:{s:4:\'name\';s:6:\'Margin\';s:5:\'value\';s:6:\'margin\';}s:15:\'foregroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:0;s:5:\'green\';i:0;s:4:\'blue\';i:0;s:5\:'alpha\';i:0;}s:16:\'backgroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:255;s:5:\'green\';i:255;s:4:\'blue\';i:255;s:5:\'alpha\';i:0;}\''),
+                    // (NOW(), NOW(), 'Dato 4', 'O:24:\'Endroid\\QrCode\\QrCode\':7:{s:4:\'data\';s:18:\'https://www.ejemplo.com\';s:8:\'encoding\';O:24:\'Endroid\\QrCode\\Encoding\\Encoding\':0:{}s:23:\'errorCorrectionLevel\';O:24:\'Endroid\\QrCode\\ErrorCorrectionLevel\':2:{s:4:\'name\';s:3:\'Low\';s:5:\'value\';s:3:\'low\';}s:4:\'size\';i:300;s:6:\'margin\';i:10;s:20:\'roundBlockSizeMode\';O:24:\'Endroid\\QrCode\\RoundBlockSizeMode\':2:{s:4:\'name\';s:6:\'Margin\';s:5:\'value\';s:6:\'margin\';}s:15:\'foregroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:0;s:5:\'green\';i:0;s:4:\'blue\';i:0;s:5\:'alpha\';i:0;}s:16:\'backgroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:255;s:5:\'green\';i:255;s:4:\'blue\';i:255;s:5:\'alpha\';i:0;}\''),
+                    // (NOW(), NOW(), 'Dato 5', 'O:24:\'Endroid\\QrCode\\QrCode\':7:{s:4:\'data\';s:18:\'https://www.ejemplo.com\';s:8:\'encoding\';O:24:\'Endroid\\QrCode\\Encoding\\Encoding\':0:{}s:23:\'errorCorrectionLevel\';O:24:\'Endroid\\QrCode\\ErrorCorrectionLevel\':2:{s:4:\'name\';s:3:\'Low\';s:5:\'value\';s:3:\'low\';}s:4:\'size\';i:300;s:6:\'margin\';i:10;s:20:\'roundBlockSizeMode\';O:24:\'Endroid\\QrCode\\RoundBlockSizeMode\':2:{s:4:\'name\';s:6:\'Margin\';s:5:\'value\';s:6:\'margin\';}s:15:\'foregroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:0;s:5:\'green\';i:0;s:4:\'blue\';i:0;s:5\:'alpha\';i:0;}s:16:\'backgroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:255;s:5:\'green\';i:255;s:4:\'blue\';i:255;s:5\:'alpha\';i:0;}\''),                        
+                    // (NOW(), NOW(), 'Dato 1', 'O:24:\'Endroid\\QrCode\\QrCode\':7:{s:4:\'data\';s:18:\'https://www.ejemplo.com\';s:8:\'encoding\';O:24:\'Endroid\\QrCode\\Encoding\\Encoding\':0:{}s:23:\'errorCorrectionLevel\';O:24:\'Endroid\\QrCode\\ErrorCorrectionLevel\':2:{s:4:\'name\';s:3:\'Low\';s:5:\'value\';s:3:\'low\';}s:4:\'size\';i:300;s:6:\'margin\';i:10;s:20:\'roundBlockSizeMode\';O:24:\'Endroid\\QrCode\\RoundBlockSizeMode\':2:{s:4:\'name\';s:6:\'Margin\';s:5:\'value\';s:6:\'margin\';}s:15:\'foregroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:0;s:5:\'green\';i:0;s:4:\'blue\';i:0;s:5:\'alpha\';i:0;}s:16:\'backgroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:255;s:5:\'green\';i:255;s:4:\'blue\';i:255;s:5:\'alpha\';i:0;}\''),
+                    // (NOW(), NOW(), 'Dato 2', 'O:24:\'Endroid\\QrCode\\QrCode\':7:{s:4:\'data\';s:18:\'https://www.ejemplo.com\';s:8:\'encoding\';O:24:\'Endroid\\QrCode\\Encoding\\Encoding\':0:{}s:23:\'errorCorrectionLevel\';O:24:\'Endroid\\QrCode\\ErrorCorrectionLevel\':2:{s:4:\'name\';s:3:\'Low\';s:5:\'value\';s:3:\'low\';}s:4:\'size\';i:300;s:6:\'margin\';i:10;s:20:\'roundBlockSizeMode\';O:24:\'Endroid\\QrCode\\RoundBlockSizeMode\':2:{s:4:\'name\';s:6:\'Margin\';s:5:\'value\';s:6:\'margin\';}s:15:\'foregroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:0;s:5:\'green\';i:0;s:4:\'blue\';i:0;s:5:\'alpha\';i:0;}s:16:\'backgroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:255;s:5:\'green\';i:255;s:4:\'blue\';i:255;s:5:\'alpha\';i:0;}\''),
+                    // (NOW(), NOW(), 'Dato 3', 'O:24:\'Endroid\\QrCode\\QrCode\':7:{s:4:\'data\';s:18:\'https://www.ejemplo.com\';s:8:\'encoding\';O:24:\'Endroid\\QrCode\\Encoding\\Encoding\':0:{}s:23:\'errorCorrectionLevel\';O:24:\'Endroid\\QrCode\\ErrorCorrectionLevel\':2:{s:4:\'name\';s:3:\'Low\';s:5:\'value\';s:3:\'low\';}s:4:\'size\';i:300;s:6:\'margin\';i:10;s:20:\'roundBlockSizeMode\';O:24:\'Endroid\\QrCode\\RoundBlockSizeMode\':2:{s:4:\'name\';s:6:\'Margin\';s:5:\'value\';s:6:\'margin\';}s:15:\'foregroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:0;s:5:\'green\';i:0;s:4:\'blue\';i:0;s:5:\'alpha\';i:0;}s:16:\'backgroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:255;s:5:\'green\';i:255;s:4:\'blue\';i:255;s:5:\'alpha\';i:0;}\''),
+                    // (NOW(), NOW(), 'Dato 4', 'O:24:\'Endroid\\QrCode\\QrCode\':7:{s:4:\'data\';s:18:\'https://www.ejemplo.com\';s:8:\'encoding\';O:24:\'Endroid\\QrCode\\Encoding\\Encoding\':0:{}s:23:\'errorCorrectionLevel\';O:24:\'Endroid\\QrCode\\ErrorCorrectionLevel\':2:{s:4:\'name\';s:3:\'Low\';s:5:\'value\';s:3:\'low\';}s:4:\'size\';i:300;s:6:\'margin\';i:10;s:20:\'roundBlockSizeMode\';O:24:\'Endroid\\QrCode\\RoundBlockSizeMode\':2:{s:4:\'name\';s:6:\'Margin\';s:5:\'value\';s:6:\'margin\';}s:15:\'foregroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:0;s:5:\'green\';i:0;s:4:\'blue\';i:0;s:5\:'alpha\';i:0;}s:16:\'backgroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:255;s:5:\'green\';i:255;s:4:\'blue\';i:255;s:5:\'alpha\';i:0;}\''),
+                    // (NOW(), NOW(), 'Dato 5', 'O:24:\'Endroid\\QrCode\\QrCode\':7:{s:4:\'data\';s:18:\'https://www.ejemplo.com\';s:8:\'encoding\';O:24:\'Endroid\\QrCode\\Encoding\\Encoding\':0:{}s:23:\'errorCorrectionLevel\';O:24:\'Endroid\\QrCode\\ErrorCorrectionLevel\':2:{s:4:\'name\';s:3:\'Low\';s:5:\'value\';s:3:\'low\';}s:4:\'size\';i:300;s:6:\'margin\';i:10;s:20:\'roundBlockSizeMode\';O:24:\'Endroid\\QrCode\\RoundBlockSizeMode\':2:{s:4:\'name\';s:6:\'Margin\';s:5:\'value\';s:6:\'margin\';}s:15:\'foregroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:0;s:5:\'green\';i:0;s:4:\'blue\';i:0;s:5:\'alpha\';i:0;}s:16:\'backgroundColor\';O:24:\'Endroid\\QrCode\\Color\\Color\':4:{s:3:\'red\';i:255;s:5\:'green\';i:255;s:4:\'blue\';i:255;s:5:\'alpha\';i:0;}\'');                    
+                    // ";
                     DB::statement($consulta);
                     dd("Consulta ejecutada correctamente");
                     return "Consulta ejecutada correctamente";

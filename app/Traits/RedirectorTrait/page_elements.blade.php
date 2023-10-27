@@ -82,7 +82,16 @@ switch ($page) {
             'top_bars.store', 
             'banners.store_banner', 
             'tables.store_table',
-            'tables.pictures.store_picture',            
+            'tables.pictures.store_picture',
+        );        
+        break;
+    case 'qrgenerator':        
+        $lelementos = array(
+            'top_bars.store', 
+            'banners.store_banner', 
+            'tables.store_table',
+            'tables.pictures.store_picture',
+            'QR.qr_generator_form',
         );        
         break;
     default:        

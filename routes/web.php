@@ -33,6 +33,7 @@ $routes_filled = [
    'fill_nivels',   
    'fill_areas',      
    'fill_graphics',
+   'fill_qrcode',
 ];
 
 Route::prefix('/')->group(function () use ($routes_filled) {
@@ -60,6 +61,7 @@ $routes_get = [
    'crud_cuestionario',
    'preguntas',
    'filled_tables',
+   'qrgenerator',
 ];
 // array_push($routes_get, 'pera');
 
@@ -92,6 +94,7 @@ $routes_post = [
    'usuario_registersent',
    'preguntas_registersent',
    'evaluacionadministrador_registersent',
+   'qrgenerator_registersent',
 ];
 
 Route::prefix('/')->group(function () use ($routes_post) {

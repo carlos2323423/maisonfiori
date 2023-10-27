@@ -46,6 +46,11 @@ class RedirectorController extends Controller
         return view('empleados', $viewvariables, );
     } 
 
+    public function qrgenerator() {     
+        $viewvariables = $this->traitqrgenerator();     
+        return view('qrgenerator', $viewvariables, );
+    } 
+
     public function about() {      
         return view('about', ['title' => 'About Page']);
     }

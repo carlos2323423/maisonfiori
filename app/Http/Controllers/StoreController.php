@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Empleado;
 use App\Models\User;
 use App\Models\Pregunta;
+use App\Models\QrGenerator;
 //END MODELOS
 //START TRAITS
 use App\Traits\CrudmodalTrait;
@@ -43,13 +44,28 @@ class StoreController extends Controller
                 $viewvariables = $this->traitpreguntas();
                 $redir = 'preguntas';
                 break;
+            case 'qrgenerator_registersent':
+                $modeTable = new QrGenerator;                                
+                // Utiliza parse_url para descomponer la URL
+                // $parsed_url = parse_url($request->url);                
+                // Accede al segmento que necesitas
+                // $path_segments = explode('/', $parsed_url['path']);
+                // $segment_you_need = end($path_segments);
+                // $request->request->add(['name' => $segment_you_need]);
+                // dd($request->all());
+                // dd('estpy dentreo dew gnerator qr');                
+                $validator = ValidationHelper::validator('qr_codes', $request->all(), true, $request);
+                $viewvariables = $this->traitqrgenerator();
+                dd($validator);
+                $redir = 'qrgenerator';
+                break;
             default:
                 dd("Store calling method invalid table");
                 break;
         }
-        
         if (isset($validator)) {
             if ($validator->fails()) {
+                dd('hola perri');
                 return redirect()->back()->withErrors($validator)->withInput();
             }
         } else {

@@ -307,8 +307,13 @@ class CreateAllTables extends Migration
             });
         }
 
+        if (!Schema::hasTable('qr_codes')) {            
+            Schema::create('qr_codes', function (Blueprint $table) {
+                $table->id();
+                $table->timestamps();
+            });
+        }        
         // Agregar más tablas según sea necesario.
-
     }
 
     /**
@@ -359,6 +364,7 @@ class CreateAllTables extends Migration
         Schema::dropIfExists('evaluaciones_360');
         Schema::dropIfExists('objetivos');
         Schema::dropIfExists('empleados_modelos');
+        Schema::dropIfExists('qr_codes');        
         // Agregar eliminaciones de más tablas según sea necesario.
     }
 }
