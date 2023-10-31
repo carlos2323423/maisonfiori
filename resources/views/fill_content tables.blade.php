@@ -16,8 +16,7 @@
     <button type="button" onclick="accion_de_redireccion('fill_empleados')">Filled Empleados</button>
     <button type="button" onclick="accion_de_redireccion('fill_scaleniveles')">Filled ScaleNiveles</button>    
     <button type="button" onclick="accion_de_redireccion('fill_graphics')">Filled Graphics</button>
-    <button type="button" onclick="accion_de_redireccion('fill_qrcode')">Filled QRCdes</button>
-    <button type="button" onclick="accion_de_redireccion('fill_cargos')">Filled Cargos</button>
+    <button type="button" onclick="accion_de_redireccion('fill_qrcode')">Filled QRCdes</button>    
 
     <script>        
         function accion_de_redireccion(opcion) {            
@@ -48,10 +47,7 @@
                     break;      
                 case "fill_niveles":
                     window.location.href = '{{ route('fill_niveles') }}';
-                    break;          
-                case "fill_cargos":           
-                    window.location.href = '{{ route('fill_cargos') }}';
-                    break;                    
+                    break;                                    
                 case "fill_contrataciones":           
                     window.location.href = '{{ route('fill_contrataciones') }}';
                     break;                    

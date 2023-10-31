@@ -345,25 +345,7 @@ class FillContentTablesController extends Controller
                     DB::statement($consulta);
                     dd("Consulta ejecutada correctamente");
                     return "Consulta ejecutada correctamente";
-                    break;
-                case 'fill_cargos':
-                    $consulta = "
-                    INSERT INTO cargos (nombre, descripcion, salario, area_id, hotel_id) VALUES
-                        ('Cargo 1', 'Descripción 1', 1500.00, 1, 1),
-                        ('Cargo 2', 'Descripción 2', 1800.00, 1, 2),
-                        ('Cargo 3', 'Descripción 3', 2000.00, 2, 2),
-                        ('Cargo 4', 'Descripción 4', 1700.00, 2, 1),
-                        ('Cargo 5', 'Descripción 5', 1600.00, 1, 1),
-                        ('Cargo 6', 'Descripción 6', 1900.00, 1, 2),
-                        ('Cargo 7', 'Descripción 7', 2200.00, 2, 2),
-                        ('Cargo 8', 'Descripción 8', 1750.00, 2, 1),
-                        ('Cargo 9', 'Descripción 9', 1650.00, 1, 1),
-                        ('Cargo 10', 'Descripción 10', 1950.00, 1, 2);                                        
-                    ";                    
-                    DB::statement($consulta);
-                    dd("Consulta ejecutada correctamente");
-                    return "Consulta ejecutada correctamente";                    
-                    break;
+                    break;                
             default:
                 # code...
                 dd('NO SE ENCONTRO TABLA PARA EL FILLED');
