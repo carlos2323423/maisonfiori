@@ -6,7 +6,7 @@
         @csrf
         <div class="input-group mb-3">
             <input type="text" name="name" class="form-control" placeholder="NAME BY QR IMAGE" aria-label="NAME" aria-describedby="generate-button">
-            <input type="text" name="url" class="form-control" placeholder="URL" aria-label="URL" aria-describedby="generate-button">
+            <input type="text" name="qr_code_data" class="form-control" placeholder="URL" aria-label="qr_code_data" aria-describedby="generate-button">
             <button type="submit" class="btn btn-outline-dark" id="generate-button">Generar Código QR</button>
         </div>
     </form>

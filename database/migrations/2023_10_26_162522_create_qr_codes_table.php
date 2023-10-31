@@ -18,6 +18,7 @@ class CreateQrCodesTable extends Migration
             // $table->timestamps();
             $table->string('name', 255);
             $table->longText('qr_code_data'); // Columna para almacenar el código QR serializado
+            $table->longText('imageqr'); // Columna para almacenar la imagen
         });
     }
 

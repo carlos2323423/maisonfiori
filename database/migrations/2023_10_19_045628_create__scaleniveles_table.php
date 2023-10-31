@@ -15,8 +15,8 @@ class CreateScalenivelesTable extends Migration
     {
         Schema::table ('scaleniveles', function (Blueprint $table) {
             // $table->id();
-            // $table->timestamps();            
-            $table->foreignId('name')->constrained('competencias')->onDelete('cascade');
+            // $table->timestamps();                        
+            $table->foreignId('empleado')->constrained('empleados')->onDelete('cascade');
             $table->foreignId('Deficiente')->nullable()->constrained('competencias')->onDelete('cascade');
             $table->foreignId('Mejorable')->nullable()->constrained('competencias')->onDelete('cascade');
             $table->foreignId('Aceptable')->nullable()->constrained('competencias')->onDelete('cascade');

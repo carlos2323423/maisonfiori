@@ -10,8 +10,8 @@ class CreateContextoContratacionTable extends Migration
         Schema::table('contexto_contratacion', function (Blueprint $table) {
             // $table->id();            
             // $table->timestamps();            
-            $table->text('contexto');
-            $table->text('cualidades_positivas');
+            $table->text('contexto');            
+            $table->json('cualidades_positivas')->nullable();
         });
     }
 

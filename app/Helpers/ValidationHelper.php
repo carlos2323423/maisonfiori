@@ -10,32 +10,89 @@ use Illuminate\Support\Facades\DB;
 
 class ValidationHelper
 {  
-    private static function get_cloums_from_tables ($tableName, $total) {
-      // dd('hola como estas');
-      $columns = DB::getSchemaBuilder()->getColumnListing($tableName);    
-      $excludeColumns = [
-        'created_at', 
-        'updated_at', 'id'
-      ];      
+
+  private static function handleColumnRules($tableName, $column, &$rules)
+  {
+      switch ($column['type']) {
+          case 'integer':
+          case 'int':
+          case 'tinyint':
+          case 'smallint':
+          case 'mediumint':
+          case 'bigint':
+              $rules[] = 'integer';
+              break;
+          case 'decimal':
+          case 'float':
+          case 'double':
+              $rules[] = 'numeric';
+              break;
+          case 'string':
+          case 'char':
+          case 'varchar':
+          case 'text':
+          case 'blob':
+              $rules[] = 'string';
+              $rules[] = 'max:255';
+              break;          
+          case 'date':
+              $rules[] = 'date';
+              break;
+          case 'time':
+              $rules[] = 'date_format:H:i:s';
+              break;
+          case 'datetime':
+          case 'timestamp':
+              $rules[] = 'date';
+              break;          
+          case 'bool':
+          case 'boolean':
+              $rules[] = 'boolean';
+              break;
+          case 'enum':
+              $enumValues = Schema::getConnection()->getDoctrineColumn($tableName, $column)->getCustomSchemaOptions()['options'];
+              $rules[] = 'in:' . implode(',', $enumValues);
+              break;
+          case 'set':
+              $setValues = Schema::getConnection()->getDoctrineColumn($tableName, $column)->getCustomSchemaOptions()['options'];
+              $rules[] = 'in:' . implode(',', $setValues);
+              break;
+          default:
+              dd("Error: Tipo de dato desconocido para la columna {$column}. Tipo: {$column['type']}");
+      }
+      // dd($column['notnull']);
+      if ($column['notnull']) {
+          $rules[] = 'required';
+      }
+  
+      if ($column['autoincrement']) {
+          $rules[] = "unique:{$tableName}";
+      }
+  }
+
+  private static function get_rules_from_columnstables($tableName, $total)
+  {
+      $columns = Schema::getColumnListing($tableName);
+      $excludeColumns = ['created_at', 'updated_at', 'id'];
       $columnDetails = [];
-      if($total) {            
-        foreach ($columns as $column) {
-          $columnDetails[$column]['type'] = Schema::getColumnType($tableName, $column);
-          $columnDetails[$column]['nullable'] = Schema::isColumnNullable($tableName, $column);
-          $columnDetails[$column]['unique'] = Schema::hasUnique($tableName, $column);
-        }
-        return $columnDetails;
-      } else {
+      if (!$total) {
         $columns = array_values(array_diff($columns, $excludeColumns));
-        foreach ($columns as $column) {
+          
+      } 
+      foreach ($columns as $column) {
           $columnDetails[$column]['type'] = Schema::getColumnType($tableName, $column);
-          $columnDetails[$column]['nullable'] = Schema::isColumnNullable($tableName, $column);
-          $columnDetails[$column]['unique'] = Schema::hasUnique($tableName, $column);
-        }
-        return $columnDetails;
-      }                              
-      dd('ERROR function getTableColumns');      
-    }
+          $rules = [];
+          self::handleColumnRules($tableName, [
+              'type' => $columnDetails[$column]['type'],
+              'notnull' => Schema::getConnection()->getDoctrineColumn($tableName, $column)->getNotnull(),
+              'autoincrement' => Schema::getConnection()->getDoctrineColumn($tableName, $column)->getAutoincrement(),
+          ], $rules);
+          // $columnDetails[$column]['rules'] = $rules;
+          $columnDetails[$column] = $rules;
+      }      
+      return $columnDetails;
+  }
+
 
     private static function def_campos ($value): array { 
       switch ($value) {
@@ -94,170 +151,145 @@ class ValidationHelper
 
         return [];
     }
-    public static function getMessages(array $rules, array $data): array {            
-      $messages = [];  
-      foreach ($rules as $row_name => $params) {        
-        $Charlong = '';
-        $datatype = gettype($data[$row_name]);
-        $Longitud = strlen($data[$row_name]);
-        $matches = preg_grep('/^(max|min):\d+$/', $params);
-        if (!empty($matches)) {
-          $Rule = reset($matches);          
-          $parts = explode(":", $Rule);
-          if (count($parts) === 2 && $parts[0] === "max" || $parts[0] === "min") {
-            $Charlong = $parts[1];              
-          } else {              
-              dd("La regla no sigue el formato esperado.");
-          }
-        } else {          
-          // dd("No se encontró la regla 'max:255' en el array.");          
-        }   
-        $originmessages = 
-        [
-          'required' => 'El campo :attribute es requerido.',
-          'string' => 'El campo :attribute debe ser una cadena de texto y usted está enviando un tipo :datatype.',
-          'integer' => 'El campo :attribute debe ser un número entero y usted está enviando un tipo :datatype.',
-          'maxstring' => 'El campo :attribute no debe exceder los :max caracteres y usted está enviando una longitud de :longitud caracteres.',
-          'maxfile' => 'El campo :attribute el tamaño máximo permitido para el archivo es :max Kilobites',
-          'minstring' => 'La :attribute debe tener al menos :min caracteres y usted está enviando una longitud de :longitud caracteres.',
-          'email' => 'El formato de :attribute no es válido. Debe enviar un formato tipo email.',
-          'date' => 'El formato de :attribute no es válido. Debe enviar un formato tipo date.',
-          'unique' => 'El valor de :attribute ya está en uso',
-          'image' => 'El archivo de :attribute debe ser una imagen',
-          'confirmed' => 'La confirmación de :attribute no coincide',
+    
+    public static function getMessages(array $rules, array $data): array 
+    {
+        $messages = [];
+    
+        $originMessages = [
+            'required' => 'El campo :attribute es requerido.',
+            'string' => 'El campo :attribute debe ser una cadena de texto y usted está enviando un tipo :datatype.',
+            'integer' => 'El campo :attribute debe ser un número entero y usted está enviando un tipo :datatype.',
+            'maxstring' => 'El campo :attribute no debe exceder los :max caracteres y usted está enviando una longitud de :longitud caracteres.',
+            'maxfile' => 'El campo :attribute el tamaño máximo permitido para el archivo es :max Kilobites',
+            'minstring' => 'La :attribute debe tener al menos :min caracteres y usted está enviando una longitud de :longitud caracteres.',
+            'email' => 'El formato de :attribute no es válido. Debe enviar un formato tipo email.',
+            'date' => 'El formato de :attribute no es válido. Debe enviar un formato tipo date.',
+            'unique' => 'El valor de :attribute ya está en uso',
+            'image' => 'El archivo de :attribute debe ser una imagen',
+            'confirmed' => 'La confirmación de :attribute no coincide',
         ];
-        foreach ($originmessages as $row_message => $text) {
-          $text = str_replace([':datatype', ':max', ':min', ':longitud'], [$datatype, $Charlong, $Charlong, $Longitud], $text);
-          $originmessages[$row_message] = $text;
+    
+        foreach ($rules as $row_name => $params) {
+            $charLong = '';
+            $dataType = gettype($data[$row_name]);
+            $longitud = strlen($data[$row_name]);
+    
+            $matches = preg_grep('/^(max|min):\d+$/', $params);
+            if (!empty($matches)) {
+                $rule = reset($matches);
+                $parts = explode(":", $rule);
+                if (count($parts) === 2 && ($parts[0] === "max" || $parts[0] === "min")) {
+                    $charLong = $parts[1];
+                } else {
+                    dd("La regla no sigue el formato esperado.");
+                }
+            }
+    
+            foreach ($originMessages as $rowMessage => $text) {
+                $text = str_replace([':datatype', ':max', ':min', ':longitud'], [$dataType, $charLong, $charLong, $longitud], $text);
+                $messages[$row_name . '.' . $rowMessage] = $text;
+            }
         }
-        // dd($originmessages);
-        $required = $originmessages['required'];
-        $string = $originmessages['string'];
-        $integer = $originmessages['integer'];
-        $maxstring = $originmessages['maxstring'];
-        $maxfile = $originmessages['maxfile'];
-        $minstring = $originmessages['minstring'];
-        $email = $originmessages['email'];
-        $date = $originmessages['date'];
-        $unique = $originmessages['unique'];
-        $image = $originmessages['image'];
-        $confirmed = $originmessages['confirmed'];                
-        $mesaje_pack =
-        [
-          $row_name . '.required' => $required,
-          $row_name .  '.string' => $string,
-          $row_name . '.integer' => $integer,
-          $row_name . '.max' => [
-            'string' => $maxstring,
-            'file' => $maxfile,
-          ],
-          $row_name . '.min' => [
-            'string' => $minstring,
-          ],
-          $row_name . '.email' => $email,
-          $row_name . '.date' => $data,
-          $row_name . '.unique' => $unique,           
-          $row_name . '.image' => $image,         
-          $row_name . '.confirmed' => $confirmed,
-        ];   
-        $messages = array_merge($messages, $mesaje_pack);
-      }      
-      return $messages;  
-    }    
-    public static function rules1(string $tipo_tabla, array $data, $unique, $request) {      
-      // dd($data);
-      // dd($request);
-      dd(self::get_cloums_from_tables($tipo_tabla, false), $data);
-      if ($unique) {
-        $rowtypeunique = self::def_campos('rowtypeunique');
-      }
-      $rules = [];      
-      $rowtypeunique = [];
-      $rowtyperequired = self::def_campos('rowtyperequired');
-      $rowtypeintegrer = self::def_campos('rowtypeintegrer');
-      $rowtypedate = self::def_campos('rowtypedate');
-      $rowtypeimage = self::def_campos('rowtypeimage');
-      $rowtypeemail = self::def_campos('rowtypeemail');
-      $rowpassword = self::def_campos('rowtypepassword');
+    
+        return $messages;
+    }
   
-      foreach ($data as $row_name => $value) {
-        if (in_array($row_name, ['_method', '_token'])) {
-            continue;
+
+    public static function get_rules_by_namespace(string $tableName, array $data, bool $unique, $request)
+    {
+        $columnDetails = self::get_columns_from_tables($tableName, false);
+        $rules = [];
+
+        foreach ($data as $columnName => $value) {
+            if (in_array($columnName, ['_method', '_token'])) {
+                continue;
+            }
+
+            $columnRules = [];
+
+            if (!empty($columnDetails[$columnName])) {
+                $columnTypeRules = $columnDetails[$columnName];
+
+                if (in_array('integer', $columnTypeRules)) {
+                    $columnRules[] = 'integer';
+                }
+
+                if (in_array('string', $columnTypeRules)) {
+                    $columnRules[] = 'required';
+                    $columnRules[] = 'string';
+                    $columnRules[] = 'max:255';
+                }
+
+                if (in_array('unique', $columnTypeRules) && $unique) {
+                    $columnRules[] = "unique:{$tableName}";
+                }
+
+                if (in_array('date', $columnTypeRules)) {
+                    $columnRules[] = 'date';
+                }
+
+                if (in_array('image', $columnTypeRules)) {
+                    if ($request->hasFile($columnName)) {
+                        $columnRules[] = 'nullable';
+                        $columnRules[] = 'image';
+                        $columnRules[] = 'max:2048';
+                    }
+                }
+
+                if (in_array('email', $columnTypeRules)) {
+                    $columnRules[] = 'email';
+                }
+
+                if (in_array('password', $columnTypeRules)) {
+                    $columnRules[] = 'confirmed';
+                    $columnRules[] = 'min:8';
+                }
+            }
+
+            $rules[$columnName] = $columnRules;
         }
-        // $rowRules = [];          
-        $rowRules = ['required'];
-        if (!in_array($row_name, $rowtypeintegrer)) {
-          $rowRules = ['required'];
-        }
-        if (!in_array($row_name, $rowtypeintegrer)) {
-          $rowRules[] = 'string';
-          $rowRules[] = 'max:255';
-        }
-        if (in_array($row_name, $rowtypeintegrer)) {
-          $rowRules[] = 'integer';
-        }
-        if (in_array($row_name, $rowtypeunique)) {
-            $rowRules[] = "unique:{$tipo_tabla}";
-            // $rowRules[] = "unique:{$tipo_tabla}s";
-        }
-        if (in_array($row_name, $rowtypedate)) {
-            $rowRules[] = 'date';
-        } 
-        if (in_array($row_name, $rowtypeimage)) {
-          // dd($row_name);          
-            if (!$request->hasFile($row_name)) {                
-            } 
-            $rowRules = ['nullable', 'image', 'max:2048'];
-            // $rowRules = ['nullable', 'image', 'max:2048'];
-        }                
-        if (in_array($row_name, $rowtypeemail)) {
-            $rowRules[] = 'email';
-        }
-        if (in_array($row_name, $rowpassword)) {
-            $rowRules[] = 'confirmed';
-            $rowRules[] = 'min:8';
-        }
-  
-          $rules[$row_name] = $rowRules;
-      }
-  
-      return $rules;               
+
+        return $rules;
     }
 
-  public static function rules(string $tipo_tabla, array $data, $unique, $request) {    
-    // dd(self::rules1($tipo_tabla, $data));    
-    $rules = self::rules1($tipo_tabla, $data, $unique, $request);
-    $messages = self::getMessages($rules, $data);
-    switch ($tipo_tabla) {
-      case 'empleado':                  
-        // AQUI SE OUEDEN DEFINIR REGLAS PERSONALIZASAS SI ASI SE DESEARA             
-        return Validator::make($data, $rules, $messages);
-        break;
-      case 'usuario':
-        // AQUI SE OUEDEN DEFINIR REGLAS PERSONALIZASAS SI ASI SE DESEARA          
-        return Validator::make($data, $rules, $messages);              
-        break;
-      case 'qrgenerator':
-        return Validator::make($data, $rules, $messages);
-      break;
-      case 'pregunta':
-        $messages = [
-          'type.required' => 'El campo tipo es requerido',
-          'valor.required' => 'El campo valor es requerido',
-        ];
-        return Validator::make($data, [
-          'type' => ['required', 'string', 'max:255'],
-          'valor' => ['required', 'string', 'max:255'],
-        ]);          
-        break;
-      default:              
-        dd("Validator Helper invalid table option");
-        break;
-    }    
-  }
 
-  public static function validator(string $tipo_tabla, array $data, $unique, $request)
+    public static function rules(string $tipo_tabla, array $data, $unique, $request, $enfoque)
+    {
+      if($enfoque){
+        $rules = self::get_rules_by_namespace($tipo_tabla, $data, $unique, $request);
+      } else {
+        $rules = self::get_rules_from_columnstables($tipo_tabla, false);
+      }      
+        $messages = self::getMessages($rules, $data);
+    
+        $customRules = [];
+        switch ($tipo_tabla) {
+            case 'empleado':
+            case 'usuario':
+            case 'qr_codes':
+                $customRules = Validator::make($data, $rules, $messages);
+                break;
+            case 'pregunta':
+                $customRules = Validator::make($data, [
+                    'type' => ['required', 'string', 'max:255'],
+                    'valor' => ['required', 'string', 'max:255'],
+                ], [
+                    'type.required' => 'El campo tipo es requerido',
+                    'valor.required' => 'El campo valor es requerido',
+                ]);
+                break;
+            default:
+                dd("Validator Helper invalid table option");
+                break;
+        }
+    
+        return $customRules;
+    }
+    
+
+  public static function validator(string $tipo_tabla, array $data, $unique, $request, $enfoque)
   {        
-    return self::rules($tipo_tabla, $data, $unique, $request);        
+    return self::rules($tipo_tabla, $data, $unique, $request, $enfoque);        
   }    
 }

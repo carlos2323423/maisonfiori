@@ -15,6 +15,7 @@ class QrGenerator extends Model
     protected $fillable = [
         'name',
         'qr_code_data',
+        'imageqr',
     ];
 
     // Puedes agregar relaciones u otros métodos aquí si es necesario

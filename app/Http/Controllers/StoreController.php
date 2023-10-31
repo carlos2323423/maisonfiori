@@ -14,6 +14,11 @@ use App\Traits\CrudmodalTrait;
 use App\Traits\RedirectorTrait;
 //END TRAITS
 use App\Helpers\ValidationHelper;
+// START QR
+// use BaconQrCode\Encoder\QrCode;            
+use Endroid\QrCode\QrCode;        
+use Endroid\QrCode\Writer\PngWriter;
+// END QR
 
 class StoreController extends Controller
 {
@@ -45,19 +50,27 @@ class StoreController extends Controller
                 $redir = 'preguntas';
                 break;
             case 'qrgenerator_registersent':
-                $modeTable = new QrGenerator;                                
-                // Utiliza parse_url para descomponer la URL
-                // $parsed_url = parse_url($request->url);                
-                // Accede al segmento que necesitas
-                // $path_segments = explode('/', $parsed_url['path']);
-                // $segment_you_need = end($path_segments);
-                // $request->request->add(['name' => $segment_you_need]);
-                // dd($request->all());
-                // dd('estpy dentreo dew gnerator qr');                
-                $validator = ValidationHelper::validator('qr_codes', $request->all(), true, $request);
-                $viewvariables = $this->traitqrgenerator();
-                dd($validator);
-                $redir = 'qrgenerator';
+                $modeTable = new QrGenerator;
+                $qrCode = new QrCode($request->qr_code_data);  
+                // Configura opciones adicionales (opcional)
+                $qrCode->setSize(300); // Tamaño del código QR
+                $qrCode->setMargin(10); // Margen alrededor del código QR
+                // Crea una instancia de PngWriter    
+                $qrCodeSerializado = serialize($qrCode);
+                // Crea una instancia de PngWriter    
+                $writer = new PngWriter();
+                $imagen = $writer->write($qrCode);
+                $nombreArchivo = $request->name;
+                $rutaDestino = storage_path('app/public/qrpagesimg/') . $nombreArchivo;  // Ubicación donde se guardará
+                // Guardar la imagen en el sistema de archivos
+                file_put_contents($rutaDestino, $imagen->getString());                
+                $imageqr = 'qrpagesimg/' . $request->name;
+                // $request = $request->request->all() + ['imageqr' => $imageqr];
+                $request = $request->duplicate(null, $request->request->all() + ['imageqr' => $imageqr]);                
+                $validator = ValidationHelper::validator('qr_codes', $request->all(), true, $request, false);
+                $viewvariables = $this->traitqrgenerator();                
+                // dd($validator);
+                $redir = 'qrgenerator';                
                 break;
             default:
                 dd("Store calling method invalid table");
@@ -81,6 +94,6 @@ class StoreController extends Controller
         // END CONPROBACIONES
         $this->storeTrait($request, $modeTable);
         // return view($redir, $viewvariables);
-        return redirect('empleados');
+        return redirect($redir);
     }
 }

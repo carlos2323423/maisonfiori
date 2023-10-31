@@ -30,10 +30,16 @@ Route::get('/clear', function() {
 $routes_filled = [
    'fill_empleados',
    'fill_hotels',
-   'fill_nivels',   
+   'fill_scaleniveles',
    'fill_areas',      
    'fill_graphics',
    'fill_qrcode',
+   'fill_cargos',
+   'fill_competencias',
+   'fill_niveles',
+   'fill_cargos',
+   'fill_contrataciones',
+   'fill_contexto_contratacion',
 ];
 
 Route::prefix('/')->group(function () use ($routes_filled) {
