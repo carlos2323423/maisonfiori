@@ -14,9 +14,7 @@ class CreateCalificacionesTable extends Migration
             // $table->foreignId('id_aspecto')->constrained('aspectos', 'id_aspecto');                        
             $table->decimal('valor', 5, 2); // Utiliza el tipo de dato decimal para valores con decimales
             $table->foreignId('id_competencia')->constrained('competencias')->onDelete('cascade');
-            // Otras columnas si son necesarias
-
-            $table->timestamps();
+            // Otras columnas si son necesarias            
         });
     }
 

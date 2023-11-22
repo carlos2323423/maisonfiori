@@ -1,0 +1,931 @@
+body {
+    margin: 0;
+    font-family: 'Circular', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    min-width: 320px;
+    background-color: #f5f5f5;
+}
+
+#dropzone {
+    margin: 20px;
+    padding: 20px;
+    border: 2px dashed #4e73df;
+    color: #4e73df;
+}
+
+#dropzone.dragover {
+    border: 2px dashed #c6c6c6;
+    background-color: #f1f1f1;
+    color: #f1f1f1;
+}
+
+#content-wrapper {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1220px;
+    font-size: 15px;
+    color: rgb(85, 85, 85);
+    font-family: "Arial Black", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, sans-serif;
+    background-color: #FFFFFF;
+}
+
+#id_27 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul.form-section.page_1 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+ul.form-section.page_1>li {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+ul.form-section.page_1>li#id_30 {
+    width: 100%;
+    flex: none;
+}
+
+ul.form-section.page_1>li#id_27 {
+    width: auto;
+    flex: none;
+}
+
+ul.form-section.page_1>li#id_38 {
+    align-items: center;
+}
+
+ul.form-section.page_1>li#id_38 .question-wrapper {
+    width: 100%;
+    text-align: center;
+}
+ul.form-section.page_1>li#id_26 {
+    width: 25%;
+    box-sizing: border-box;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+ul.form-section.page_1>li#id_26 .question-wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+ul.form-section.page_1>li#id_26 .form-input-wide {
+    position: relative;
+}
+
+ul.form-section.page_1>li#id_26 .form-sub-label-container {
+    vertical-align: top;
+}
+
+ul.form-section.page_1>li#id_26 .form-textbox {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+ul.form-section.page_1>li#id_24 {
+    width: 25%;
+    box-sizing: border-box;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+ul.form-section.page_1>li#id_24 .question-wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+ul.form-section.page_1>li#id_24 .form-input-wide {
+    position: relative;
+}
+
+ul.form-section.page_1>li#id_24 .form-sub-label-container {
+    vertical-align: top;
+}
+
+ul.form-section.page_1>li#id_24 .form-textbox {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+ul.form-section.page_1>li#id_23 {
+    width: 20%;
+    box-sizing: border-box;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+ul.form-section.page_1>li#id_23 .question-wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+ul.form-section.page_1>li#id_23 .form-input-wide {
+    position: relative;
+}
+
+ul.form-section.page_1>li#id_23 .form-sub-label-container {
+    vertical-align: top;
+}
+
+ul.form-section.page_1>li#id_23 .jsTest-address-line-wrapperField {
+    width: 100%;
+}
+
+ul.form-section.page_1>li#id_23 .form-textbox.form-address-line {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+ul.form-section.page_1>li#id_23 .form-address-line-wrapper .form-address-line {
+    width: 100%;
+    max-width: 100%;
+}
+
+ul.form-section.page_1>li#id_23 .form-address-line-wrapper .form-address-line .form-sub-label-container {
+    vertical-align: top;
+}
+
+ul.form-section.page_1>li#id_23 .form-address-line-wrapper .form-address-line .form-sub-label {
+    display: inline-block;
+}
+
+ul.form-section.page_1>li#id_23 .form-address-line-wrapper .form-address-line .form-textbox.form-address-line {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+/* Estilos para el contenedor principal del elemento de la lista */
+li.form-line {
+    list-style-type: none;
+    margin-bottom: 15px;
+    padding: 0;
+}
+
+/* Estilos para la etiqueta de pregunta */
+.label {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Estilos para el contenedor del campo de entrada de checkbox */
+.form-checkbox-item {
+    margin-bottom: 5px;
+}
+
+/* Estilos para el contenedor del campo de entrada de matriz */
+.form-matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+/* Estilos para las celdas de la tabla de matriz */
+.form-matrix-headers,
+.form-matrix-value-tr {
+    border: 1px solid #ccc;
+}
+
+/* Estilos para las celdas de encabezado de columna de la tabla de matriz */
+.form-matrix-th {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 8px;
+}
+
+/* Estilos para las celdas de valor de la tabla de matriz */
+.form-matrix-td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 8px;
+}
+
+/* Estilos para el contenedor de la etiqueta de la matriz */
+.form-matrix-header-tr {
+    background-color: #f2f2f2;
+}
+/* Estilos generales del formulario */
+.form-line {
+    margin-bottom: 12px;
+  }
+  
+  .form-input-wide {
+    width: 100%;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+  
+  .form-checkbox-item {
+    margin-right: 10px;
+  }
+  
+  /* Estilos de la matriz de entrada */
+  .form-matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .form-matrix-th,
+  .form-matrix-td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .form-matrix-th {
+    background-color: #f2f2f2;
+  }
+  
+  /* Estilos de las casillas de verificación en la matriz */
+  .form-checkbox {
+    margin-right: 5px;
+  }
+  
+  /* Estilos específicos de la matriz - puedes personalizar según sea necesario */
+  #label_21_col_0,
+  #label_21_col_1,
+  #label_21_col_2,
+  #label_21_row_0,
+  #label_21_row_1,
+  #label_21_row_2,
+  #label_21_row_3,
+  #label_21_row_4,
+  #label_21_row_5,
+  #label_21_row_6 {
+    font-weight: bold;
+  }
+  
+  /* Otros estilos específicos según sea necesario */
+  /* ... */
+  
+    .form-matrix-values {
+        /* Estilo para las celdas de la matriz */
+    }
+
+    .form-checkbox {
+        /* Estilo para los elementos de casilla de verificación */
+    }
+
+    .form-matrix-headers {
+        /* Estilo para los encabezados de la matriz */
+    }
+
+    .editor-container {
+        /* Contenedor para el editor de texto en línea */
+        display: inline-block;
+    }
+
+    .inlineEditor {
+        /* Estilo para el editor de texto en línea */
+        width: 100%;
+    }
+
+    /* Dimensiones y Posicionamiento */
+    [style="display: inline-block;"] {
+        /* Se utiliza para elementos en línea */
+    }
+
+    [style="width: 100%;"] {
+        /* Establece el ancho al 100% para ciertos elementos */
+    }
+
+    /* Manipulación de Diseño */
+    .lineAlignment-Top {
+        /* Alineación superior para líneas de formulario */
+    }
+
+    [data-shrinked="true"] {
+        /* Indica que el elemento está contraído */
+    }
+
+    [data-layout="full"] {
+        /* Establece el diseño completo para ciertos elementos */
+    }
+
+    /* Manipulación de Eventos */
+    [contenteditable="true"] {
+        /* Permite la edición de texto en línea */
+    }
+
+    /* Identificadores Únicos */
+    #input_33_6_1 {
+        /* Identificador único para un elemento específico */
+    }
+
+    /* Otros estilos personalizados según sea necesario */
+    .form-checkbox {
+        /* Estilos para los checkboxes */
+    }
+
+    .matrix-choice-label {
+        /* Estilos para las etiquetas de los checkboxes en la matriz */
+    }
+
+    .form-matrix-table {
+        /* Estilos para la tabla de la matriz */
+    }
+
+    .form-matrix-th {
+        /* Estilos para las celdas de encabezado de la matriz */
+        border: none;
+    }
+
+    .form-matrix-headers {
+        /* Estilos para las celdas de encabezado de la matriz */
+        position: relative;
+    }
+
+    .form-matrix-values {
+        /* Estilos para las celdas de valores de la matriz */
+    }
+
+    .editor-container {
+        /* Estilos para los contenedores de editores de texto */
+        display: inline-block;
+    }
+
+    .inlineEditor {
+        /* Estilos para los editores de texto en línea */
+        width: 100%; /* o el ancho deseado */
+    }
+
+    .dragHandle {
+        /* Estilos para el control de arrastre */
+    }
+
+    .dragHandle-point {
+        /* Estilos para los puntos de control del arrastre */
+    }
+
+    #app_wizards {
+        /* Estilos para el elemento con ID 'app_wizards' */
+    }
+
+    .question-wrapper {
+        /* Estilos para el contenedor de la pregunta */
+    }
+
+    .form-label {
+        /* Estilos para las etiquetas de formulario */
+        width: 100%;
+    }
+
+    .form-input-wide {
+        /* Estilos para el área de entrada ancha */
+        position: relative;
+    }
+
+    .lineAlignment-Top {
+        /* Estilos para la alineación superior de la línea */
+    }
+    /* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Estilos para la tabla */
+.form-matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+/* Estilos para las celdas de la tabla */
+.form-matrix-values {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+/* Estilos para las etiquetas de las celdas de la tabla */
+.matrix-choice-label {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Estilos para los encabezados de la tabla */
+.form-matrix-th,
+.form-matrix-headers,
+.form-matrix-column-headers,
+.form-matrix-row-headers {
+    background-color: #f2f2f2;
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+/* Estilos para las filas de la tabla */
+.form-matrix-tr {
+    background-color: #fff;
+}
+
+/* Estilos para el contenedor de la pregunta */
+.question-wrapper {
+    width: 100%;
+}
+
+/* Estilos para el contenedor del texto editable */
+.editor-container {
+    display: inline-block;
+}
+
+/* Estilos para el texto editable */
+.inlineEditor {
+    width: 100%;
+    min-height: 20px;
+    border: 1px solid #ddd;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+/* Estilos para el contenedor con asa de arrastre */
+.dragHandle {
+    cursor: move;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.dragHandle-point {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #333;
+    border-radius: 50%;
+    margin: 0 4px;
+}
+
+/* Estilos para la lista de usuarios colaboradores */
+.moodular.collabUsers-userList {
+    /* Agrega estilos según sea necesario */
+}
+
+/* Estilos para la etiqueta de la pregunta */
+.form-label {
+    width: 100%;
+}
+
+/* Estilos para el contenedor del texto editable con ancho del 100% */
+.editor-container[style="display: inline; width: 100%;"] {
+    display: inline-block;
+    width: 100%;
+}
+
+/* Estilos para el contenedor de la pregunta con ancho relativo */
+.form-input-wide[style="position: relative;"] {
+    position: relative;
+}
+
+/* Estilos para el contenedor con asa de arrastre con posición relativa */
+.dragHandle[style="position: relative;"] {
+    position: relative;
+}
+
+/* Estilos específicos para la clase matrix-checkbox-label */
+.matrix-checkbox-label {
+    /* Agrega estilos según sea necesario */
+}
+.form-checkbox {
+    /* Estilos para checkboxes en general */
+  }
+
+  .matrix-choice-label {
+    /* Estilos para etiquetas de opciones en matrices */
+    /* También puede incluir estilos de matrix-checkbox-label */
+  }
+
+  .form-matrix-tr {
+    /* Estilos para filas de matrices en formularios */
+  }
+
+  .form-matrix-headers {
+    /* Estilos para encabezados de matrices en formularios */
+  }
+
+  .editor-container {
+    /* Estilos para contenedores de editores */
+  }
+
+  .inlineEditor {
+    /* Estilos para editores de texto en línea */
+    /* Pueden incluir estilos como placeholder, formato, contenteditable, etc. */
+  }
+
+  .dragHandle {
+    /* Estilos para el asa de arrastre */
+  }
+
+  .dragHandle-point {
+    /* Estilos para los puntos del asa de arrastre */
+  }
+
+  .moodular.collabUsers-userList {
+    /* Estilos para la lista de usuarios en el moodular */
+  }
+
+  .form-line {
+    /* Estilos para líneas de formulario en general */
+  }
+
+  .form-label-top {
+    /* Estilos para etiquetas superiores de formularios */
+  }
+  .form-matrix-table {
+    /* Estilos para la tabla de la matriz */
+}
+
+.form-matrix-th {
+    border: none; /* Estilos para las celdas de encabezado de la matriz */
+}
+
+.form-matrix-headers {
+    position: relative; /* Estilos para los encabezados de columna y fila */
+}
+
+.form-matrix-values {
+    /* Estilos para las celdas de valores de la matriz */
+}
+
+.matrix-choice-label {
+    /* Estilos para las etiquetas de las casillas de verificación */
+}
+
+/* Otros estilos específicos según sea necesario para tu diseño */
+.form-matrix-table {
+    /* Estilos para la tabla de la matriz */
+}
+
+.form-matrix-tr {
+    /* Estilos para las filas de la matriz */
+}
+
+.form-matrix-header-tr {
+    /* Estilos para la fila de encabezado de la matriz */
+}
+
+.form-matrix-th {
+    /* Estilos para las celdas de encabezado de la matriz */
+    border: none; /* Sin borde */
+}
+
+.form-matrix-headers {
+    /* Estilos para las celdas de encabezado de la matriz */
+    position: relative;
+}
+
+.editor-container {
+    /* Estilos para el contenedor del editor */
+    display: inline-block;
+}
+
+.inlineEditor {
+    /* Estilos para el editor en línea */
+    display: inline-block;
+}
+
+.form-matrix-value-tr {
+    /* Estilos para las filas de valores de la matriz */
+}
+
+.form-matrix-headers {
+    /* Estilos para las celdas de encabezado de la matriz */
+    position: relative;
+}
+
+.form-matrix-row-headers {
+    /* Estilos para las celdas de encabezado de fila de la matriz */
+}
+
+.form-matrix-values {
+    /* Estilos para las celdas de valores de la matriz */
+}
+
+.form-checkbox {
+    /* Estilos para los elementos de casilla de verificación */
+}
+
+.matrix-choice-label {
+    /* Estilos para las etiquetas de la matriz de elección */
+}
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Estilos de la tabla de la parte 11/17 */
+.form-matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.form-matrix-th,
+.form-matrix-headers,
+.form-matrix-values {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.form-matrix-th {
+    background-color: #f2f2f2;
+}
+
+.form-matrix-values input {
+    margin-right: 5px;
+}
+
+/* Estilos de la tabla de la parte 12/17 */
+.form-matrix-table[data-component="matrix"] {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.form-matrix-th,
+.form-matrix-headers,
+.form-matrix-values {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.form-matrix-th {
+    background-color: #f2f2f2;
+}
+
+.form-matrix-values input {
+    margin-right: 5px;
+}
+
+/* Estilos del contenedor de la pregunta en ambas partes */
+.question-wrapper {
+    width: 100%;
+}
+
+/* Estilos del contenedor de la pregunta en la parte 11/17 */
+#label_34,
+#label_34_col_0,
+#label_34_col_1,
+#label_34_col_2,
+#label_34_row_5,
+#label_34_row_6,
+#label_34_row_7,
+#label_34_row_8,
+#label_34_row_9,
+#label_34_row_10,
+#label_34_row_11 {
+    width: 100%;
+}
+
+/* Estilos del contenedor de la pregunta en la parte 12/17 */
+#label_36,
+#label_36_col_0,
+#label_36_col_1,
+#label_36_col_2,
+#label_36_row_0,
+#label_36_row_1,
+#label_36_row_2,
+#label_36_row_3 {
+    width: 100%;
+}
+/* Estilos Globales */
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    color: #333;
+  }
+
+  /* Estilos para Tablas */
+  .form-matrix-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  /* Estilos para Celdas de la Matriz */
+  .form-matrix-th,
+  .form-matrix-values {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+
+  /* Estilos para Entradas de Checkbox */
+  .form-checkbox {
+    /* Estilos específicos para las casillas de verificación */
+  }
+
+  .matrix-choice-label {
+    /* Estilos específicos para las etiquetas de las casillas de verificación */
+  }
+
+  /* Estilos para Manipulación y Manejo */
+  .dragHandle {
+    /* Estilos para el manipulador de arrastre */
+  }
+
+  .dragHandle-point {
+    /* Estilos para los puntos del manipulador de arrastre */
+  }
+
+  /* Estilos para Etiquetas y Encabezados */
+  .form-label {
+    /* Estilos para las etiquetas del formulario */
+  }
+
+  .form-matrix-headers {
+    /* Estilos para los encabezados de la matriz */
+  }
+
+  /* Estilos para Contenedores y Diseño */
+  .editor-container,
+  .inlineEditor,  
+    /* Estilos para los contenedores del editor y la pregunta */
+    .question-wrapper {
+        /* Estilos para el contenedor de la pregunta */
+    }
+    
+    .form-label {
+        /* Estilos para las etiquetas de formulario */
+        width: 100%;
+    }
+    
+    .inlineEditor {
+        /* Estilos para el editor en línea */
+        width: 100%;
+    }
+    
+    .form-input-wide {
+        /* Estilos para el área de entrada ancha del formulario */
+        position: relative;
+    }
+    
+    .form-matrix-table {
+        /* Estilos para la tabla de la matriz del formulario */
+    }
+    
+    .form-matrix-th {
+        /* Estilos para las celdas de encabezado de la matriz */
+        border: none;
+    }
+    
+    .form-matrix-headers {
+        /* Estilos para los encabezados de la matriz */
+        position: relative;
+    }
+    
+    .form-matrix-values {
+        /* Estilos para los valores de la matriz */
+    }
+    
+    .matrix-choice-label {
+        /* Estilos para las etiquetas de elección en la matriz */
+    }
+    
+    /* Puedes ajustar estos estilos según tus necesidades específicas */
+    /* Estilos para el contenedor principal del formulario */
+.question-wrapper {
+    /* Agrega tus estilos personalizados aquí */
+}
+
+/* Estilos para las etiquetas de las preguntas */
+.form-label {
+    /* Agrega tus estilos personalizados aquí */
+}
+
+/* Estilos para el contenedor del editor de texto en línea */
+.editor-container {
+    /* Agrega tus estilos personalizados aquí */
+}
+
+/* Estilos para el editor de texto en línea */
+.inlineEditor {
+    /* Agrega tus estilos personalizados aquí */
+}
+
+/* Estilos para la tabla de matriz en el formulario */
+.form-matrix-table {
+    /* Agrega tus estilos personalizados aquí */
+}
+
+/* Estilos para las celdas de la tabla de matriz */
+.form-matrix-values {
+    /* Agrega tus estilos personalizados aquí */
+}
+
+/* Estilos para las opciones de la matriz (checkboxes) */
+.form-checkbox {
+    /* Agrega tus estilos personalizados aquí */
+}
+
+/* Estilos para el contenedor de la lista de usuarios colaboradores */
+.collabUsers-userList {
+    /* Agrega tus estilos personalizados aquí */
+}
+
+/* Estilos para el contenedor del campo de opción única (radio) */
+.form-single-column {
+    /* Agrega tus estilos personalizados aquí */
+}
+
+/* Estilos para los elementos de opción única (radio) */
+.form-radio-item {
+    /* Agrega tus estilos personalizados aquí */
+}
+/* Estilos del primer bloque */
+.form-line {
+    /* Propiedades del form-line */
+}
+
+.clearfix {
+    /* Propiedades del clearfix */
+}
+
+.isNotSelected {
+    /* Propiedades del isNotSelected */
+}
+
+/* Agrega más estilos según sea necesario */
+
+/* Estilos del segundo bloque (tabla) */
+.form-matrix-table {
+    /* Propiedades del form-matrix-table */
+}
+
+.form-matrix-th {
+    /* Propiedades del form-matrix-th */
+}
+
+/* Agrega más estilos según sea necesario */
+
+/* Estilos del tercer bloque (otra tabla) */
+.form-matrix-table {
+    /* Propiedades del form-matrix-table */
+}
+
+.form-matrix-th {
+    /* Propiedades del form-matrix-th */
+}
+
+/* Agrega más estilos según sea necesario */    
+ /* Estilos para la tabla del último bloque */
+ .form-matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px; /* Ajusta según sea necesario */
+}
+
+.form-matrix-th,
+.form-matrix-headers,
+.form-matrix-values {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.form-textbox {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 8px; /* Ajusta según sea necesario */
+}
+
+/* Estilos para el botón de envío */
+.form-submit-button {
+    /* Propiedades del botón de envío */
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-submit-button:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para el formulario en general */
+.form-line {
+    /* Propiedades del form-line */
+    margin-bottom: 20px; /* Ajusta según sea necesario */
+}
+
+/* Agrega más estilos según sea necesario */

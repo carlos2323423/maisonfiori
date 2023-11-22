@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit9eebbda1af4b9e35b0316f989cdec539
+class ComposerStaticInit6e33362737348b873afc68d932239432
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -585,6 +585,7 @@ class ComposerStaticInit9eebbda1af4b9e35b0316f989cdec539
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\ImageController' => __DIR__ . '/../..' . '/app/Http/Controllers/ImageController.php',
         'App\\Http\\Controllers\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/LoginController.php',
+        'App\\Http\\Controllers\\LoginController1' => __DIR__ . '/../..' . '/app/Http/Controllers/LoginController1.php',
         'App\\Http\\Controllers\\MainparentController' => __DIR__ . '/../..' . '/app/Http/Controllers/MainparentController.php',
         'App\\Http\\Controllers\\PreguntaController' => __DIR__ . '/../..' . '/app/Http/Controllers/PreguntaController.php',
         'App\\Http\\Controllers\\QrGenerator' => __DIR__ . '/../..' . '/app/Http/Controllers/QrGenerator.php',
@@ -608,6 +609,7 @@ class ComposerStaticInit9eebbda1af4b9e35b0316f989cdec539
         'App\\Models\\CamposDeEvaluacion' => __DIR__ . '/../..' . '/app/Models/CamposDeEvaluacion.php',
         'App\\Models\\DateTime' => __DIR__ . '/../..' . '/app/Models/DateTime.php',
         'App\\Models\\Empleado' => __DIR__ . '/../..' . '/app/Models/Empleado.php',
+        'App\\Models\\EscalaCalificacion' => __DIR__ . '/../..' . '/app/Models/EscalaCalificacion.php',
         'App\\Models\\Graphic' => __DIR__ . '/../..' . '/app/Models/Graphic.php',
         'App\\Models\\Pregunta' => __DIR__ . '/../..' . '/app/Models/Pregunta.php',
         'App\\Models\\QrGenerator' => __DIR__ . '/../..' . '/app/Models/QrGenerator.php',
@@ -3945,6 +3947,7 @@ class ComposerStaticInit9eebbda1af4b9e35b0316f989cdec539
         'Nette\\Utils\\Html' => __DIR__ . '/..' . '/nette/utils/src/Utils/Html.php',
         'Nette\\Utils\\IHtmlString' => __DIR__ . '/..' . '/nette/utils/src/compatibility.php',
         'Nette\\Utils\\Image' => __DIR__ . '/..' . '/nette/utils/src/Utils/Image.php',
+        'Nette\\Utils\\ImageColor' => __DIR__ . '/..' . '/nette/utils/src/Utils/ImageColor.php',
         'Nette\\Utils\\ImageException' => __DIR__ . '/..' . '/nette/utils/src/Utils/exceptions.php',
         'Nette\\Utils\\ImageType' => __DIR__ . '/..' . '/nette/utils/src/Utils/ImageType.php',
         'Nette\\Utils\\Json' => __DIR__ . '/..' . '/nette/utils/src/Utils/Json.php',
@@ -3953,6 +3956,7 @@ class ComposerStaticInit9eebbda1af4b9e35b0316f989cdec539
         'Nette\\Utils\\Paginator' => __DIR__ . '/..' . '/nette/utils/src/Utils/Paginator.php',
         'Nette\\Utils\\Random' => __DIR__ . '/..' . '/nette/utils/src/Utils/Random.php',
         'Nette\\Utils\\Reflection' => __DIR__ . '/..' . '/nette/utils/src/Utils/Reflection.php',
+        'Nette\\Utils\\ReflectionMethod' => __DIR__ . '/..' . '/nette/utils/src/Utils/ReflectionMethod.php',
         'Nette\\Utils\\RegexpException' => __DIR__ . '/..' . '/nette/utils/src/Utils/exceptions.php',
         'Nette\\Utils\\Strings' => __DIR__ . '/..' . '/nette/utils/src/Utils/Strings.php',
         'Nette\\Utils\\Type' => __DIR__ . '/..' . '/nette/utils/src/Utils/Type.php',
@@ -6113,9 +6117,9 @@ class ComposerStaticInit9eebbda1af4b9e35b0316f989cdec539
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit9eebbda1af4b9e35b0316f989cdec539::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit9eebbda1af4b9e35b0316f989cdec539::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit9eebbda1af4b9e35b0316f989cdec539::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit6e33362737348b873afc68d932239432::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit6e33362737348b873afc68d932239432::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit6e33362737348b873afc68d932239432::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -1,0 +1,164 @@
+/* Estilos comunes */
+body {
+    margin: 0;
+    font-family: 'Circular', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    min-width: 320px;
+    background-color: #f5f5f5;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+}
+
+#dropzone {
+    margin: 20px;
+    padding: 20px;
+    border: 2px dashed #4e73df;
+    color: #4e73df;
+}
+
+#dropzone.dragover {
+    border: 2px dashed #c6c6c6;
+    background-color: #f1f1f1;
+    color: #f1f1f1;
+}
+
+#content-wrapper {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1220px;
+    font-size: 15px;
+    color: rgb(85, 85, 85);
+    background-color: #FFFFFF;
+}
+
+/* Estilos comunes para varios elementos */
+*,
+.inlineEditor,
+.form-matrix-table,
+.form-matrix-values,
+.form-checkbox,
+.form-matrix-th,
+.form-matrix-td,
+.form-matrix-headers,
+.form-matrix-column-headers,
+.form-matrix-row-headers,
+.dragHandle[style^="position: relative"],
+.form-line,
+.form-input-wide,
+.form-label,
+.form-checkbox-item,
+.form-matrix-tr,
+.form-matrix-table[style^="width: 100%; border-collapse: collapse; margin-bottom: 20px;"],
+.form-textbox,
+.form-submit-button,
+.form-submit-button:hover {
+    width: 100%;
+}
+
+/* Contenedor de editor y editor de texto en línea */
+.editor-container,
+.inlineEditor,
+.editor-container[style^="display: inline"],
+.dragHandle-point {
+    display: inline-block;
+}
+
+/* Estilos para la tabla y celdas de la matriz */
+.form-matrix-table,
+.form-matrix-th,
+.form-matrix-td,
+.form-matrix-values,
+.form-checkbox,
+.form-matrix-tr,
+.form-matrix-headers,
+.form-matrix-column-headers,
+.form-matrix-row-headers {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Estilos específicos de la matriz */
+#label_21_col_0,
+#label_21_col_1,
+#label_21_col_2,
+#label_21_row_0,
+#label_21_row_1,
+#label_21_row_2,
+#label_21_row_3,
+#label_21_row_4,
+#label_21_row_5,
+#label_21_row_6,
+.form-matrix-th,
+.form-matrix-headers,
+.form-matrix-column-headers,
+.form-matrix-row-headers {
+    font-weight: bold;
+    background-color: #f2f2f2;
+}
+
+/* Estilos específicos para algunos elementos li en ul.form-section.page_1 */
+ul.form-section.page_1>li#id_30,
+ul.form-section.page_1>li#id_27,
+ul.form-section.page_1>li#id_26,
+ul.form-section.page_1>li#id_24,
+ul.form-section.page_1>li#id_23,
+ul.form-section.page_1>li#id_38,
+ul.form-section.page_1>li#id_38 .question-wrapper,
+ul.form-section.page_1>li#id_26 .form-input-wide,
+ul.form-section.page_1>li#id_24 .form-input-wide {
+    width: 100%;
+}
+
+ul.form-section.page_1>li#id_23,
+ul.form-section.page_1>li#id_23 .form-input-wide,
+ul.form-section.page_1>li#id_23 .form-sub-label-container,
+ul.form-section.page_1>li#id_23 .jsTest-address-line-wrapperField,
+ul.form-section.page_1>li#id_23 .form-textbox.form-address-line,
+ul.form-section.page_1>li#id_23 .form-address-line-wrapper .form-address-line,
+ul.form-section.page_1>li#id_23 .form-address-line-wrapper .form-address-line .form-sub-label-container,
+ul.form-section.page_1>li#id_23 .form-address-line-wrapper .form-address-line .form-sub-label,
+ul.form-section.page_1>li#id_23 .form-address-line-wrapper .form-address-line .form-textbox.form-address-line {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    position: relative
+}
+
+ul.form-section.page_1>li#id_23 .form-sub-label-container,
+ul.form-section.page_1>li#id_23 .form-address-line-wrapper .form-address-line .form-sub-label-container,
+ul.form-section.page_1>li#id_23 .form-address-line-wrapper .form-address-line .form-sub-label,
+ul.form-section.page_1>li#id_23 .form-address-line-wrapper .form-address-line .form-sub-label {
+    vertical-align: top;
+    display: inline-block;
+}
+
+ul.form-section.page_1>li#id_23 .form-address-line-wrapper .form-address-line .form-sub-label {
+    display: inline-block;
+}
+
+/* Estilos adicionales */
+.dragHandle,
+.dragHandle-point {
+    cursor: move;
+    margin: 10px 0;
+    text-align: center;
+    position: relative;
+}
+
+/* Estilos para el botón de envío */
+.form-submit-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-submit-button:hover {
+    background-color: #45a049;
+}

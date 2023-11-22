@@ -6,8 +6,8 @@
 <body>
     <h1>Vista con botones</h1>
 
-    <button type="button" onclick="accion_de_redireccion('fill_areas')">Filled Areas</button>    
     <button type="button" onclick="accion_de_redireccion('fill_hotels')">Filled Hoteles</button>
+    <button type="button" onclick="accion_de_redireccion('fill_areas')">Filled Areas</button>    
     <button type="button" onclick="accion_de_redireccion('fill_competencias')">Filled Competencias</button>
     <button type="button" onclick="accion_de_redireccion('fill_niveles')">Filled Niveles</button>
     <button type="button" onclick="accion_de_redireccion('fill_cargos')">Filled Cargos</button>
