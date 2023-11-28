@@ -10,12 +10,12 @@ class EscalaCalificacions extends Migration
         Schema::table('escala_calificacions', function (Blueprint $table) {
             // $table->id();
             // $table->timestamps();
-            $table->string('name', 255);
-            $table->string('e1', 255);
-            $table->string('e2', 255);
-            $table->string('e3', 255);
-            $table->string('e4', 255);
-            $table->string('e5', 255);
+            $table->string('name')->unique();            
+            $table->foreignId('e1')->constrained('escala_atributo')->onDelete('cascade');
+            $table->foreignId('e2')->constrained('escala_atributo')->onDelete('cascade');
+            $table->foreignId('e3')->constrained('escala_atributo')->onDelete('cascade');
+            $table->foreignId('e4')->constrained('escala_atributo')->onDelete('cascade');
+            $table->foreignId('e5')->constrained('escala_atributo')->onDelete('cascade');            
         });
     }
 

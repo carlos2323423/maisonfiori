@@ -39,6 +39,9 @@ $routes_filled = [
    'fill_cargos',
    'fill_contrataciones',
    'fill_contexto_contratacion',
+   'fill_escala_atributo',
+   'fill_escala_calificacions',
+   'fill_factoresdesempeno',
 ];
 
 Route::prefix('/')->group(function () use ($routes_filled) {

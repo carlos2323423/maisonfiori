@@ -9,6 +9,9 @@
     <button type="button" onclick="accion_de_redireccion('fill_hotels')">Filled Hoteles</button>
     <button type="button" onclick="accion_de_redireccion('fill_areas')">Filled Areas</button>    
     <button type="button" onclick="accion_de_redireccion('fill_competencias')">Filled Competencias</button>
+    <button type="button" onclick="accion_de_redireccion('fill_factoresdesempeno')">Filled Factores Desempeno</button>
+    <button type="button" onclick="accion_de_redireccion('fill_escala_atributo')">Filled Escala Atributo</button>
+    <button type="button" onclick="accion_de_redireccion('fill_escala_calificacions')">Filled Escala Calificacions'</button>
     <button type="button" onclick="accion_de_redireccion('fill_niveles')">Filled Niveles</button>
     <button type="button" onclick="accion_de_redireccion('fill_cargos')">Filled Cargos</button>
     <button type="button" onclick="accion_de_redireccion('fill_contexto_contratacion')">Filled Contexto Contratacion</button>        
@@ -17,7 +20,6 @@
     <button type="button" onclick="accion_de_redireccion('fill_scaleniveles')">Filled ScaleNiveles</button>    
     <button type="button" onclick="accion_de_redireccion('fill_graphics')">Filled Graphics</button>
     <button type="button" onclick="accion_de_redireccion('fill_qrcode')">Filled QRCdes</button>    
-
     <script>        
         function accion_de_redireccion(opcion) {            
             switch (opcion) {
@@ -45,6 +47,12 @@
                 case "fill_competencias":
                     window.location.href = '{{ route('fill_competencias') }}';
                     break;      
+                case "fill_escala_atributo":
+                    window.location.href = '{{ route('fill_escala_atributo') }}';
+                break;      
+                case "fill_escala_calificacions":
+                    window.location.href = '{{ route('fill_escala_calificacions') }}';
+                break;      
                 case "fill_niveles":
                     window.location.href = '{{ route('fill_niveles') }}';
                     break;                                    
@@ -53,7 +61,10 @@
                     break;                    
                 case "fill_contexto_contratacion":
                     window.location.href = '{{ route('fill_contexto_contratacion') }}';
-                    break;                                              
+                    break;
+                case "fill_factoresdesempeno":
+                    window.location.href = '{{ route('fill_factoresdesempeno') }}';
+                    break;                    
                 default:
                     console.log("Opción no válida");
             }

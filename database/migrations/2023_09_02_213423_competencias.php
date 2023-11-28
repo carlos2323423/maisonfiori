@@ -9,8 +9,8 @@ class Competencias extends Migration
     {
         Schema::table('competencias', function (Blueprint $table) {
             // $table->id();
-            // $table->timestamps();
-            $table->string('name');
+            // $table->timestamps();            
+            $table->string('name')->unique();
             $table->boolean('state')->nullable();
             $table->string('descripcion', 255);
         });

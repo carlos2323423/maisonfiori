@@ -13,7 +13,6 @@ class CreateEvaluacionesCompetenciasTable extends Migration
             $table->unsignedBigInteger('empleado_id');
             $table->unsignedBigInteger('competencia_id');
             $table->integer('calificacion');
-
             $table->foreign('empleado_id')->references('id')->on('empleados')->onDelete('cascade');
             $table->foreign('competencia_id')->references('id')->on('competencias')->onDelete('cascade');
         });

@@ -138,6 +138,13 @@ class CreateAllTables extends Migration
                 $table->timestamps();
             });
         }
+        
+        if (!Schema::hasTable('escala_atributo')) {
+            Schema::create('escala_atributo', function (Blueprint $table) {
+                $table->id();
+                $table->timestamps();
+            });
+        }        
 
         if (!Schema::hasTable('competency_levels')) {
             Schema::create('competency_levels', function (Blueprint $table) {
@@ -340,6 +347,7 @@ class CreateAllTables extends Migration
         Schema::dropIfExists('escala_calificacions');        
         Schema::dropIfExists('graphics');
         Schema::dropIfExists('competencias');
+        Schema::dropIfExists('escala_atributo');        
         Schema::dropIfExists('competency_levels');
         Schema::dropIfExists('employee_skills');
         Schema::dropIfExists('ejes');

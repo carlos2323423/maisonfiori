@@ -369,18 +369,20 @@
                                         <span class="form-sub-label-container" data-input-type="last" style="vertical-align: top;">
                                             <span class="form-sub-label" data-testid="undefined">
                                                 <div class="editor-container editorHasText" style="display: inline-block;">
-                                                    <div class="inlineEditor" placeholder="Type a sublabel" format="text" contenteditable="true" data-gramm="false">
-                                                        Nombre:
-                                                    </div>
+                                                    @if ($empleado)
+                                                        <div class="inlineEditor" placeholder="Type a sublabel" format="text" contenteditable="true" data-gramm="false">
+                                                            Nombre: {{ $empleado->firstname }} {{ $empleado->lastname }}
+                                                        </div>
+                                                    @endif
                                                 </div>
                                             </span>
-                                            <input type="text" id="nombre" name="nombre" class="form-textbox validate[required]" data-defaultvalue="" autocomplete="section-input_22 family-name" size="15" tabindex="-1" data-component="last" aria-labelledby="label_22 sublabel_22_last" required="" value="">                                        
+                                            <!-- <input type="text" id="nombre" name="nombre" class="form-textbox validate[required]" data-defaultvalue="" autocomplete="section-input_22 family-name" size="15" tabindex="-1" data-component="last" aria-labelledby="label_22 sublabel_22_last" required="" value="">                                         -->
                                         </span>                                                                        
                                         <span class="form-sub-label-container" data-input-type="last" style="vertical-align: top;">
                                             <span class="form-sub-label" data-testid="undefined">
                                                 <div class="editor-container editorHasText" style="display: inline-block;">
                                                     <div class="inlineEditor" placeholder="Type a sublabel" format="text" contenteditable="true" data-gramm="false">
-                                                        Superior:
+                                                        Superior: {{ $empleado->superior ? $empleado->superior->firstname : 'N/A' }}
                                                     </div>
                                                 </div>
                                             </span>
@@ -434,285 +436,68 @@
                                         </div>
                                     </label>
                                     <div class="form-input-wide" data-layout="full" style="position: relative;">
-                                        <table summary="" aria-labelledby="label_21" cellpadding="4" cellspacing="0" class="form-matrix-table" data-component="matrix">                                
-                                        <!-- estoy equi -->                                                                                                
+                                    <table summary="" aria-labelledby="label_21" cellpadding="4" cellspacing="0" class="form-matrix-table"
+                                            data-component="matrix">
                                             <tr class="form-matrix-tr form-matrix-header-tr">
                                                 <th class="form-matrix-th" style="border: none;">&nbsp;</th>
-                                                <th scope="col"
-                                                    class="form-matrix-headers form-matrix-column-headers form-matrix-column_0"
-                                                    style="position: relative;">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Col Name" format="text"
-                                                            contenteditable="true" data-gramm="false">Sobresaliente</div>
-                                                    </div>
-                                                </th>
-                                                <th scope="col"
-                                                    class="form-matrix-headers form-matrix-column-headers form-matrix-column_1"
-                                                    style="position: relative;">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Col Name" format="text"
-                                                            contenteditable="true" data-gramm="false">Por encima de las expectativas</div>
-                                                    </div>
-                                                </th>
-                                                <th scope="col"
-                                                    class="form-matrix-headers form-matrix-column-headers form-matrix-column_2"
-                                                    style="position: relative;">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Col Name" format="text"
-                                                            contenteditable="true" data-gramm="false">Satisface las expectativas</div>
-                                                    </div>
-                                                </th>
-                                                <th scope="col"
-                                                    class="form-matrix-headers form-matrix-column-headers form-matrix-column_2"
-                                                    style="position: relative;">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Col Name" format="text"
-                                                            contenteditable="true" data-gramm="false">Por debajo de las expectativas</div>
-                                                    </div>
-                                                </th>
-                                                <th scope="col"
-                                                    class="form-matrix-headers form-matrix-column-headers form-matrix-column_2"
-                                                    style="position: relative;">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Col Name" format="text"
-                                                            contenteditable="true" data-gramm="false">Necesita mejorar</div>
-                                                    </div>
-                                                </th>
-                                            </tr>
-                                            <tr class="form-matrix-tr form-matrix-value-tr"
-                                                aria-labelledby="label_21 label_21_row_0">
-                                                <th scope="row" class="form-matrix-headers form-matrix-row-headers">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Row Name" format="text" contenteditable="true" data-gramm="false">Integrar y coordinar el trabajo del personal:</div>                                                
-                                                    </div>
-                                                </th>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="input_21_0_0"
-                                                        class="form-checkbox" type="checkbox" name="q21_pleaseCheck[0][]"
-                                                        tabindex="-1" aria-labelledby="label_21_col_0 label_21_row_0"
-                                                        aria-label="Cells Check Box" value="You">
-                                                    <label for="input_21_0_0" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="input_21_0_1"
-                                                        class="form-checkbox" type="checkbox" name="q21_pleaseCheck[0][]"
-                                                        tabindex="-1" aria-labelledby="label_21_col_1 label_21_row_0"
-                                                        aria-label="Cells Check Box" value="Friend">
-                                                    <label for="input_21_0_1" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="input_21_0_2"
-                                                        class="form-checkbox" type="checkbox" name="q21_pleaseCheck[0][]"
-                                                        tabindex="-1" aria-labelledby="label_21_col_2 label_21_row_0"
-                                                        aria-label="Cells Check Box" value="Family">
-                                                    <label for="input_21_0_2" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <!-- Nuevos campos -->
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="input_21_0_3"
-                                                        class="form-checkbox" type="checkbox" name="q21_pleaseCheck[0][]"
-                                                        tabindex="-1" aria-labelledby="label_21_col_3 label_21_row_0"
-                                                        aria-label="Cells Check Box" value="NewOption1">
-                                                    <label for="input_21_0_3" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="input_21_0_4"
-                                                        class="form-checkbox" type="checkbox" name="q21_pleaseCheck[0][]"
-                                                        tabindex="-1" aria-labelledby="label_21_col_4 label_21_row_0"
-                                                        aria-label="Cells Check Box" value="NewOption2">
-                                                    <label for="input_21_0_4" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
+                                                
+                                                @for($i = 1; $i <= 5; $i++)
+                                                    <th scope="col" class="form-matrix-headers form-matrix-column-headers form-matrix-column_{{ $i - 1 }}" style="position: relative;">
+                                                        <div class="editor-container editorHasText" style="display: inline-block;">
+                                                            @php
+                                                                $atributo = "atributoE{$i}";
+                                                            @endphp
+
+                                                            @if($escalaFactoresDesempeno->$atributo)
+                                                                <div class="inlineEditor" placeholder="Type Col Name" format="text" contenteditable="true" data-gramm="false">
+                                                                    {{ $escalaFactoresDesempeno->$atributo->name }}
+                                                                </div>
+                                                            @else
+                                                                <div class="inlineEditor" placeholder="Type Col Name" format="text" contenteditable="true" data-gramm="false">
+                                                                    Sin nombre
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                    </th>
+                                                @endfor
+
 
                                             </tr>
-                                            <tr class="form-matrix-values-tr" aria-labelledby="label_21 label_21_row_1">
+                                            <!-- Generar las filas -->
+                                            @foreach($FactoresDesempeno as $FactorDesempeno)
+                                            <tr class="form-matrix-values-tr" aria-labelledby="label_21 label_21_row_x">
                                                 <th scope="row" class="form-matrix-headers form-matrix-row-headers">
                                                     <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Row Name" format="text" contenteditable="true" data-gramm="false">Responsable de tomar decisiones, establecer políticas y estrategias que afecten a la organización:</div>
+                                                        <div class="inlineEditor" placeholder="Type Row Name" format="text" contenteditable="true"
+                                                            data-gramm="false">{{ $FactorDesempeno->name }}</div>
                                                     </div>
                                                 </th>
+
+                                                <!-- Generar las celdas de checkbox -->
+                                                @for($i = 5; $i >= 1; $i--)
                                                 <td class="form-matrix-values">
-                                                    <input readonly="" id="factor2_sobresaliente" class="form-checkbox" type="checkbox" name="factor2[]" tabindex="-1" aria-labelledby="label_factor2_sobresaliente" aria-label="Cells Check Box" value="5">
-                                                    <label for="factor2_sobresaliente" class="matrix-choice-label matrix-checkbox-label"></label>
+                                                    <input readonly=""
+                                                        id="competencia_{{ strtolower(str_replace(' ', '', $FactorDesempeno)) }}_excelente"
+                                                        class="form-checkbox" type="checkbox"
+                                                        name="competencia_{{ strtolower(str_replace(' ', '', $FactorDesempeno)) }}[]" tabindex="-1"
+                                                        aria-labelledby="label_competencia_{{ strtolower(str_replace(' ', '', $FactorDesempeno)) }}_excelente"
+                                                        aria-label="Cells Check Box" value="{{ $i }}">
+                                                    <label
+                                                        for="competencia_{{ strtolower(str_replace(' ', '', $FactorDesempeno)) }}_excelente"
+                                                        class="matrix-choice-label matrix-checkbox-label"></label>
                                                 </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor2_por_encima" class="form-checkbox" type="checkbox" name="factor2[]" tabindex="-1" aria-labelledby="label_factor2_por_encima" aria-label="Cells Check Box" value="4">
-                                                    <label for="factor2_por_encima" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor2_satisface" class="form-checkbox" type="checkbox" name="factor2[]" tabindex="-1" aria-labelledby="label_factor2_satisface" aria-label="Cells Check Box" value="3">
-                                                    <label for="factor2_satisface" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor2_por_debajo" class="form-checkbox" type="checkbox" name="factor2[]" tabindex="-1" aria-labelledby="label_factor2_por_debajo" aria-label="Cells Check Box" value="2">
-                                                    <label for="factor2_por_debajo" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor2_necesita_mejorar" class="form-checkbox" type="checkbox" name="factor2[]" tabindex="-1" aria-labelledby="label_factor2_necesita_mejorar" aria-label="Cells Check Box" value="1">
-                                                    <label for="factor2_necesita_mejorar" class="matrix-choice-label matrix-checkbox-label"></label>
+                                                @endfor
+
+                                            </tr>
+                                            @endforeach
+                                            <tr>
+                                                <td colspan="{{ count($FactoresDesempeno) + 1 }}">
+                                                    <label for="puntaje_promedio_competencias">PUNTAJE PROMEDIO:</label>
+                                                    <input type="text" id="puntaje_promedio_competencias"
+                                                        name="puntaje_promedio_competencias"><br><br>
                                                 </td>
                                             </tr>
-                                            <tr class="form-matrix-values-tr" aria-labelledby="label_21 label_21_row_2">
-                                                <th scope="row" class="form-matrix-headers form-matrix-row-headers">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Row Name" format="text" contenteditable="true" data-gramm="false">Dirigir el mercado en el momento actual:</div>
-                                                    </div>
-                                                </th>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor3_sobresaliente" class="form-checkbox" type="checkbox" name="factor3[]" tabindex="-1" aria-labelledby="label_factor3_sobresaliente" aria-label="Cells Check Box" value="5">
-                                                    <label for="factor3_sobresaliente" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor3_por_encima" class="form-checkbox" type="checkbox" name="factor3[]" tabindex="-1" aria-labelledby="label_factor3_por_encima" aria-label="Cells Check Box" value="4">
-                                                    <label for="factor3_por_encima" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor3_satisface" class="form-checkbox" type="checkbox" name="factor3[]" tabindex="-1" aria-labelledby="label_factor3_satisface" aria-label="Cells Check Box" value="3">
-                                                    <label for="factor3_satisface" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor3_por_debajo" class="form-checkbox" type="checkbox" name="factor3[]" tabindex="-1" aria-labelledby="label_factor3_por_debajo" aria-label="Cells Check Box" value="2">
-                                                    <label for="factor3_por_debajo" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor3_necesita_mejorar" class="form-checkbox" type="checkbox" name="factor3[]" tabindex="-1" aria-labelledby="label_factor3_necesita_mejorar" aria-label="Cells Check Box" value="1">
-                                                    <label for="factor3_necesita_mejorar" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                            </tr>
-                                            <tr class="form-matrix-values-tr" aria-labelledby="label_21 label_21_row_3">
-                                                <th scope="row" class="form-matrix-headers form-matrix-row-headers">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Row Name" format="text" contenteditable="true" data-gramm="false">Controlar el personal y el restaurante:</div>
-                                                    </div>
-                                                </th>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor4_sobresaliente" class="form-checkbox" type="checkbox" name="factor4[]" tabindex="-1" aria-labelledby="label_factor4_sobresaliente" aria-label="Cells Check Box" value="5">
-                                                    <label for="factor4_sobresaliente" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor4_por_encima" class="form-checkbox" type="checkbox" name="factor4[]" tabindex="-1" aria-labelledby="label_factor4_por_encima" aria-label="Cells Check Box" value="4">
-                                                    <label for="factor4_por_encima" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor4_satisface" class="form-checkbox" type="checkbox" name="factor4[]" tabindex="-1" aria-labelledby="label_factor4_satisface" aria-label="Cells Check Box" value="3">
-                                                    <label for="factor4_satisface" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor4_por_debajo" class="form-checkbox" type="checkbox" name="factor4[]" tabindex="-1" aria-labelledby="label_factor4_por_debajo" aria-label="Cells Check Box" value="2">
-                                                    <label for="factor4_por_debajo" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor4_necesita_mejorar" class="form-checkbox" type="checkbox" name="factor4[]" tabindex="-1" aria-labelledby="label_factor4_necesita_mejorar" aria-label="Cells Check Box" value="1">
-                                                    <label for="factor4_necesita_mejorar" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                            </tr>
-                                            <tr class="form-matrix-values-tr" aria-labelledby="label_21 label_21_row_4">
-                                                <th scope="row" class="form-matrix-headers form-matrix-row-headers">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Row Name" format="text" contenteditable="true" data-gramm="false">Distribuir las funciones:</div>
-                                                    </div>
-                                                </th>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor5_sobresaliente" class="form-checkbox" type="checkbox" name="factor5[]" tabindex="-1" aria-labelledby="label_factor5_sobresaliente" aria-label="Cells Check Box" value="5">
-                                                    <label for="factor5_sobresaliente" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor5_por_encima" class="form-checkbox" type="checkbox" name="factor5[]" tabindex="-1" aria-labelledby="label_factor5_por_encima" aria-label="Cells Check Box" value="4">
-                                                    <label for="factor5_por_encima" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor5_satisface" class="form-checkbox" type="checkbox" name="factor5[]" tabindex="-1" aria-labelledby="label_factor5_satisface" aria-label="Cells Check Box" value="3">
-                                                    <label for="factor5_satisface" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor5_por_debajo" class="form-checkbox" type="checkbox" name="factor5[]" tabindex="-1" aria-labelledby="label_factor5_por_debajo" aria-label="Cells Check Box" value="2">
-                                                    <label for="factor5_por_debajo" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor5_necesita_mejorar" class="form-checkbox" type="checkbox" name="factor5[]" tabindex="-1" aria-labelledby="label_factor5_necesita_mejorar" aria-label="Cells Check Box" value="1">
-                                                    <label for="factor5_necesita_mejorar" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                            </tr>
-                                            <tr class="form-matrix-values-tr" aria-labelledby="label_21 label_21_row_5">
-                                                <th scope="row" class="form-matrix-headers form-matrix-row-headers">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Row Name" format="text" contenteditable="true" data-gramm="false">Controlar los procesos:</div>
-                                                    </div>
-                                                </th>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor6_sobresaliente" class="form-checkbox" type="checkbox" name="factor6[]" tabindex="-1" aria-labelledby="label_factor6_sobresaliente" aria-label="Cells Check Box" value="5">
-                                                    <label for="factor6_sobresaliente" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor6_por_encima" class="form-checkbox" type="checkbox" name="factor6[]" tabindex="-1" aria-labelledby="label_factor6_por_encima" aria-label="Cells Check Box" value="4">
-                                                    <label for="factor6_por_encima" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor6_satisface" class="form-checkbox" type="checkbox" name="factor6[]" tabindex="-1" aria-labelledby="label_factor6_satisface" aria-label="Cells Check Box" value="3">
-                                                    <label for="factor6_satisface" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor6_por_debajo" class="form-checkbox" type="checkbox" name="factor6[]" tabindex="-1" aria-labelledby="label_factor6_por_debajo" aria-label="Cells Check Box" value="2">
-                                                    <label for="factor6_por_debajo" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor6_necesita_mejorar" class="form-checkbox" type="checkbox" name="factor6[]" tabindex="-1" aria-labelledby="label_factor6_necesita_mejorar" aria-label="Cells Check Box" value="1">
-                                                    <label for="factor6_necesita_mejorar" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                            </tr>
-                                            <tr class="form-matrix-values-tr" aria-labelledby="label_21 label_21_row_6">
-                                                <th scope="row" class="form-matrix-headers form-matrix-row-headers">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Row Name" format="text" contenteditable="true" data-gramm="false">Controlar las actividades de las áreas operativas y administrativas:</div>
-                                                    </div>
-                                                </th>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor7_sobresaliente" class="form-checkbox" type="checkbox" name="factor7[]" tabindex="-1" aria-labelledby="label_factor7_sobresaliente" aria-label="Cells Check Box" value="5">
-                                                    <label for="factor7_sobresaliente" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor7_por_encima" class="form-checkbox" type="checkbox" name="factor7[]" tabindex="-1" aria-labelledby="label_factor7_por_encima" aria-label="Cells Check Box" value="4">
-                                                    <label for="factor7_por_encima" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor7_satisface" class="form-checkbox" type="checkbox" name="factor7[]" tabindex="-1" aria-labelledby="label_factor7_satisface" aria-label="Cells Check Box" value="3">
-                                                    <label for="factor7_satisface" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor7_por_debajo" class="form-checkbox" type="checkbox" name="factor7[]" tabindex="-1" aria-labelledby="label_factor7_por_debajo" aria-label="Cells Check Box" value="2">
-                                                    <label for="factor7_por_debajo" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor7_necesita_mejorar" class="form-checkbox" type="checkbox" name="factor7[]" tabindex="-1" aria-labelledby="label_factor7_necesita_mejorar" aria-label="Cells Check Box" value="1">
-                                                    <label for="factor7_necesita_mejorar" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                            </tr>
-                                            <tr class="form-matrix-values-tr" aria-labelledby="label_21 label_21_row_7">
-                                                <th scope="row" class="form-matrix-headers form-matrix-row-headers">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Row Name" format="text" contenteditable="true" data-gramm="false">Llevar un reporte mensual:</div>
-                                                    </div>
-                                                </th>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor8_sobresaliente" class="form-checkbox" type="checkbox" name="factor8[]" tabindex="-1" aria-labelledby="label_factor8_sobresaliente" aria-label="Cells Check Box" value="5">
-                                                    <label for="factor8_sobresaliente" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor8_por_encima" class="form-checkbox" type="checkbox" name="factor8[]" tabindex="-1" aria-labelledby="label_factor8_por_encima" aria-label="Cells Check Box" value="4">
-                                                    <label for="factor8_por_encima" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor8_satisface" class="form-checkbox" type="checkbox" name="factor8[]" tabindex="-1" aria-labelledby="label_factor8_satisface" aria-label="Cells Check Box" value="3">
-                                                    <label for="factor8_satisface" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor8_por_debajo" class="form-checkbox" type="checkbox" name="factor8[]" tabindex="-1" aria-labelledby="label_factor8_por_debajo" aria-label="Cells Check Box" value="2">
-                                                    <label for="factor8_por_debajo" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="factor8_necesita_mejorar" class="form-checkbox" type="checkbox" name="factor8[]" tabindex="-1" aria-labelledby="label_factor8_necesita_mejorar" aria-label="Cells Check Box" value="1">
-                                                    <label for="factor8_necesita_mejorar" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                            </tr>
+
                                         </table>
                                         <label for="puntaje_promedio">PUNTAJE PROMEDIO:</label>
                                         <input type="text" id="puntaje_promedio" name="puntaje_promedio"><br><br>
@@ -732,208 +517,92 @@
                         <h2>COMPETENCIAS LABORALES</h2>
                         <p>Por favor, evalúa el rendimiento observado en cada una de las siguientes competencias seleccionando la opción que
                             mejor represente tu opinión:</p>
-                        <ol>
-                            <li id="id_21" data-type="control_matrix" data-inputtype="Check Box" data-shrinked="true" data-qid="21" data-order="10" data-selectioncount="0" class="form-line clearfix isNotSelected form-line-column form-line-column-clear lineAlignment-Top form-col-7" tabindex="0" aria-label="Input Table Field " role="group" style="z-index: 1;">
-                                <div class="question-wrapper questionWrapper ">
+                        <ol>                            
+                            <li id="id_21" data-type="control_matrix" data-inputtype="Check Box" data-shrinked="true" data-qid="21" data-order="10"
+                                data-selectioncount="0" class="form-line clearfix isNotSelected form-line-column form-line-column-clear lineAlignment-Top form-col-7"
+                                tabindex="0" aria-label="Input Table Field " role="group" style="z-index: 1;">
+                                <div class="question-wrapper questionWrapper">
                                     <label id="label_21" class="form-label form-label-top" for="none" style="width: 100%;">
                                         <div class="editor-container editorHasText" style="display: inline; width: 100%;">
-                                            <div class="inlineEditor" placeholder="Type a question" format="text" contenteditable="true" data-gramm="false" style="width: 100%;">Please check all
-                                                        appropriate boxes
-                                            </div>
+                                            <div class="inlineEditor" placeholder="Type a question" format="text" contenteditable="true"
+                                                data-gramm="false" style="width: 100%;">Please check all appropriate boxes</div>
                                         </div>
                                     </label>
                                     <div class="form-input-wide" data-layout="full" style="position: relative;">
-                                        <table summary="" aria-labelledby="label_21" cellpadding="4" cellspacing="0" class="form-matrix-table" data-component="matrix">
+                                        <table summary="" aria-labelledby="label_21" cellpadding="4" cellspacing="0" class="form-matrix-table"
+                                            data-component="matrix">
                                             <tr class="form-matrix-tr form-matrix-header-tr">
                                                 <th class="form-matrix-th" style="border: none;">&nbsp;</th>
-                                                <th scope="col"
-                                                    class="form-matrix-headers form-matrix-column-headers form-matrix-column_0"
-                                                    style="position: relative;">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Col Name" format="text"
-                                                            contenteditable="true" data-gramm="false">Excelente</div>
-                                                    </div>
-                                                </th>
-                                                <th scope="col"
-                                                    class="form-matrix-headers form-matrix-column-headers form-matrix-column_1"
-                                                    style="position: relative;">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Col Name" format="text"
-                                                            contenteditable="true" data-gramm="false">Muy Bueno</div>
-                                                    </div>
-                                                </th>
-                                                <th scope="col"
-                                                    class="form-matrix-headers form-matrix-column-headers form-matrix-column_2"
-                                                    style="position: relative;">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Col Name" format="text"
-                                                            contenteditable="true" data-gramm="false">Normal</div>
-                                                    </div>
-                                                </th>
-                                                <th scope="col"
-                                                    class="form-matrix-headers form-matrix-column-headers form-matrix-column_2"
-                                                    style="position: relative;">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Col Name" format="text"
-                                                            contenteditable="true" data-gramm="false">Necesidad de Desarrollo</div>
-                                                    </div>
-                                                </th>
-                                                <th scope="col"
-                                                    class="form-matrix-headers form-matrix-column-headers form-matrix-column_2"
-                                                    style="position: relative;">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Col Name" format="text"
-                                                            contenteditable="true" data-gramm="false">Mejora Urgente</div>
-                                                    </div>
-                                                </th>
+                                                
+                                                @for($i = 1; $i <= 5; $i++)
+                                                    <th scope="col" class="form-matrix-headers form-matrix-column-headers form-matrix-column_{{ $i - 1 }}" style="position: relative;">
+                                                        <div class="editor-container editorHasText" style="display: inline-block;">
+                                                            @php
+                                                                $atributo = "atributoE{$i}";
+                                                            @endphp
+
+                                                            @if($escalaCompetencias->$atributo)
+                                                                <div class="inlineEditor" placeholder="Type Col Name" format="text" contenteditable="true" data-gramm="false">
+                                                                    {{ $escalaCompetencias->$atributo->name }}
+                                                                </div>
+                                                            @else
+                                                                <div class="inlineEditor" placeholder="Type Col Name" format="text" contenteditable="true" data-gramm="false">
+                                                                    Sin nombre
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                    </th>
+                                                @endfor
+
+
                                             </tr>
+                                            <!-- Generar las filas -->
+                                            @foreach($competencias as $competencia)
                                             <tr class="form-matrix-values-tr" aria-labelledby="label_21 label_21_row_x">
                                                 <th scope="row" class="form-matrix-headers form-matrix-row-headers">
                                                     <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Row Name" format="text" contenteditable="true" data-gramm="false">Liderazgo:</div>
+                                                        <div class="inlineEditor" placeholder="Type Row Name" format="text" contenteditable="true"
+                                                            data-gramm="false">{{ $competencia->name }}</div>
                                                     </div>
                                                 </th>
+
+                                                <!-- Generar las celdas de checkbox -->
+                                                @for($i = 5; $i >= 1; $i--)
                                                 <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia1_excelente" class="form-checkbox" type="checkbox" name="competencia1[]" tabindex="-1" aria-labelledby="label_competencia1_excelente" aria-label="Cells Check Box" value="5">
-                                                    <label for="competencia1_excelente" class="matrix-choice-label matrix-checkbox-label"></label>
+                                                    <input readonly=""
+                                                        id="competencia_{{ strtolower(str_replace(' ', '', $competencia)) }}_excelente"
+                                                        class="form-checkbox" type="checkbox"
+                                                        name="competencia_{{ strtolower(str_replace(' ', '', $competencia)) }}[]" tabindex="-1"
+                                                        aria-labelledby="label_competencia_{{ strtolower(str_replace(' ', '', $competencia)) }}_excelente"
+                                                        aria-label="Cells Check Box" value="{{ $i }}">
+                                                    <label
+                                                        for="competencia_{{ strtolower(str_replace(' ', '', $competencia)) }}_excelente"
+                                                        class="matrix-choice-label matrix-checkbox-label"></label>
                                                 </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia1_muy_bueno" class="form-checkbox" type="checkbox" name="competencia1[]" tabindex="-1" aria-labelledby="label_competencia1_muy_bueno" aria-label="Cells Check Box" value="4">
-                                                    <label for="competencia1_muy_bueno" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia1_normal" class="form-checkbox" type="checkbox" name="competencia1[]" tabindex="-1" aria-labelledby="label_competencia1_normal" aria-label="Cells Check Box" value="3">
-                                                    <label for="competencia1_normal" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia1_necesidad_desarrollo" class="form-checkbox" type="checkbox" name="competencia1[]" tabindex="-1" aria-labelledby="label_competencia1_necesidad_desarrollo" aria-label="Cells Check Box" value="2">
-                                                    <label for="competencia1_necesidad_desarrollo" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia1_mejora_urgente" class="form-checkbox" type="checkbox" name="competencia1[]" tabindex="-1" aria-labelledby="label_competencia1_mejora_urgente" aria-label="Cells Check Box" value="1">
-                                                    <label for="competencia1_mejora_urgente" class="matrix-choice-label matrix-checkbox-label"></label>
+                                                @endfor
+
+                                            </tr>
+                                            @endforeach
+                                            <tr>
+                                                <td colspan="{{ count($competencias) + 1 }}">
+                                                    <label for="puntaje_promedio_competencias">PUNTAJE PROMEDIO:</label>
+                                                    <input type="text" id="puntaje_promedio_competencias"
+                                                        name="puntaje_promedio_competencias"><br><br>
                                                 </td>
                                             </tr>
-                                            <tr class="form-matrix-values-tr" aria-labelledby="label_21 label_21_row_8">
-                                                <th scope="row" class="form-matrix-headers form-matrix-row-headers">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Row Name" format="text" contenteditable="true" data-gramm="false">Proactivo:</div>
-                                                    </div>
-                                                </th>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia2_excelente" class="form-checkbox" type="checkbox" name="competencia2[]" tabindex="-1" aria-labelledby="label_competencia2_excelente" aria-label="Cells Check Box" value="5">
-                                                    <label for="competencia2_excelente" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia2_muy_bueno" class="form-checkbox" type="checkbox" name="competencia2[]" tabindex="-1" aria-labelledby="label_competencia2_muy_bueno" aria-label="Cells Check Box" value="4">
-                                                    <label for="competencia2_muy_bueno" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia2_normal" class="form-checkbox" type="checkbox" name="competencia2[]" tabindex="-1" aria-labelledby="label_competencia2_normal" aria-label="Cells Check Box" value="3">
-                                                    <label for="competencia2_normal" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia2_necesidad_desarrollo" class="form-checkbox" type="checkbox" name="competencia2[]" tabindex="-1" aria-labelledby="label_competencia2_necesidad_desarrollo" aria-label="Cells Check Box" value="2">
-                                                    <label for="competencia2_necesidad_desarrollo" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia2_mejora_urgente" class="form-checkbox" type="checkbox" name="competencia2[]" tabindex="-1" aria-labelledby="label_competencia2_mejora_urgente" aria-label="Cells Check Box" value="1">
-                                                    <label for="competencia2_mejora_urgente" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                            </tr>
-                                            <tr class="form-matrix-values-tr" aria-labelledby="label_21 label_21_row_9">
-                                                <th scope="row" class="form-matrix-headers form-matrix-row-headers">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Row Name" format="text" contenteditable="true" data-gramm="false">Dinámico:</div>
-                                                    </div>
-                                                </th>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia3_excelente" class="form-checkbox" type="checkbox" name="competencia3[]" tabindex="-1" aria-labelledby="label_competencia3_excelente" aria-label="Cells Check Box" value="5">
-                                                    <label for="competencia3_excelente" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia3_muy_bueno" class="form-checkbox" type="checkbox" name="competencia3[]" tabindex="-1" aria-labelledby="label_competencia3_muy_bueno" aria-label="Cells Check Box" value="4">
-                                                    <label for="competencia3_muy_bueno" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia3_normal" class="form-checkbox" type="checkbox" name="competencia3[]" tabindex="-1" aria-labelledby="label_competencia3_normal" aria-label="Cells Check Box" value="3">
-                                                    <label for="competencia3_normal" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia3_necesidad_desarrollo" class="form-checkbox" type="checkbox" name="competencia3[]" tabindex="-1" aria-labelledby="label_competencia3_necesidad_desarrollo" aria-label="Cells Check Box" value="2">
-                                                    <label for="competencia3_necesidad_desarrollo" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia3_mejora_urgente" class="form-checkbox" type="checkbox" name="competencia3[]" tabindex="-1" aria-labelledby="label_competencia3_mejora_urgente" aria-label="Cells Check Box" value="1">
-                                                    <label for="competencia3_mejora_urgente" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                            </tr>
-                                            <tr class="form-matrix-values-tr" aria-labelledby="label_21 label_21_row_10">
-                                                <th scope="row" class="form-matrix-headers form-matrix-row-headers">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Row Name" format="text" contenteditable="true" data-gramm="false">Analítico:</div>
-                                                    </div>
-                                                </th>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia4_excelente" class="form-checkbox" type="checkbox" name="competencia4[]" tabindex="-1" aria-labelledby="label_competencia4_excelente" aria-label="Cells Check Box" value="5">
-                                                    <label for="competencia4_excelente" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia4_muy_bueno" class="form-checkbox" type="checkbox" name="competencia4[]" tabindex="-1" aria-labelledby="label_competencia4_muy_bueno" aria-label="Cells Check Box" value="4">
-                                                    <label for="competencia4_muy_bueno" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia4_normal" class="form-checkbox" type="checkbox" name="competencia4[]" tabindex="-1" aria-labelledby="label_competencia4_normal" aria-label="Cells Check Box" value="3">
-                                                    <label for="competencia4_normal" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia4_necesidad_desarrollo" class="form-checkbox" type="checkbox" name="competencia4[]" tabindex="-1" aria-labelledby="label_competencia4_necesidad_desarrollo" aria-label="Cells Check Box" value="2">
-                                                    <label for="competencia4_necesidad_desarrollo" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia4_mejora_urgente" class="form-checkbox" type="checkbox" name="competencia4[]" tabindex="-1" aria-labelledby="label_competencia4_mejora_urgente" aria-label="Cells Check Box" value="1">
-                                                    <label for="competencia4_mejora_urgente" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                            </tr>
-                                            <tr class="form-matrix-values-tr" aria-labelledby="label_21 label_21_row_11">
-                                                <th scope="row" class="form-matrix-headers form-matrix-row-headers">
-                                                    <div class="editor-container editorHasText" style="display: inline-block;">
-                                                        <div class="inlineEditor" placeholder="Type Row Name" format="text" contenteditable="true" data-gramm="false">Orientación al logro:</div>
-                                                    </div>
-                                                </th>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia5_excelente" class="form-checkbox" type="checkbox" name="competencia5[]" tabindex="-1" aria-labelledby="label_competencia5_excelente" aria-label="Cells Check Box" value="5">
-                                                    <label for="competencia5_excelente" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia5_muy_bueno" class="form-checkbox" type="checkbox" name="competencia5[]" tabindex="-1" aria-labelledby="label_competencia5_muy_bueno" aria-label="Cells Check Box" value="4">
-                                                    <label for="competencia5_muy_bueno" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia5_normal" class="form-checkbox" type="checkbox" name="competencia5[]" tabindex="-1" aria-labelledby="label_competencia5_normal" aria-label="Cells Check Box" value="3">
-                                                    <label for="competencia5_normal" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia5_necesidad_desarrollo" class="form-checkbox" type="checkbox" name="competencia5[]" tabindex="-1" aria-labelledby="label_competencia5_necesidad_desarrollo" aria-label="Cells Check Box" value="2">
-                                                    <label for="competencia5_necesidad_desarrollo" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                                <td class="form-matrix-values">
-                                                    <input readonly="" id="competencia5_mejora_urgente" class="form-checkbox" type="checkbox" name="competencia5[]" tabindex="-1" aria-labelledby="label_competencia5_mejora_urgente" aria-label="Cells Check Box" value="1">
-                                                    <label for="competencia5_mejora_urgente" class="matrix-choice-label matrix-checkbox-label"></label>
-                                                </td>
-                                            </tr>
+
                                         </table>
-                                        <label for="puntaje_promedio_competencias">PUNTAJE PROMEDIO:</label>
-                                        <input type="text" id="puntaje_promedio_competencias" name="puntaje_promedio_competencias"><br><br>
+
+                                        <div class="dragHandle">
+                                            <div class="dragHandle-point"></div>
+                                            <div class="dragHandle-point"></div>
+                                            <div class="dragHandle-point"></div>
+                                            <div class="dragHandle-point"></div>
+                                        </div>
+
+                                        <div id="app_wizards" class="moodular collabUsers-userList"></div>
                                     </div>
                                 </div>
-                                <div class="dragHandle">
-                                    <div class="dragHandle-point"></div>
-                                    <div class="dragHandle-point"></div>
-                                    <div class="dragHandle-point"></div>
-                                    <div class="dragHandle-point"></div>
-                                </div>
-                                <div id="app_wizards" class="moodular collabUsers-userList"></div>
                             </li>
                         </ol>
                     </ul>
