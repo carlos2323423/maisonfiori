@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Template</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333; /* Color de texto predeterminado */
+        }
+
+        h1 {
+            color: #007BFF; /* Azul para el título principal */
+        }
+
+        .info-section {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #28a745; /* Verde para los subtítulos */
+        }
+
+        p {
+            margin-bottom: 10px;
+            color: #555; /* Gris oscuro para los párrafos */
+        }
+
+        strong {
+            color: #333; /* Color de texto predeterminado para negrita */
+        }
+        .metodo-de-solicitud {
+            background-color: #f4f4f4; /* Gris claro para el fondo */
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .metodo-de-solicitud h2 {
+            color: #001a4d; /* Azul oscuro para el título principal */
+            margin-bottom: 15px; /* Aumenté el margen inferior para mayor separación */
+        }
+
+        .metodo-de-solicitud p {
+            color: #333; /* Negro para los párrafos */
+            margin-bottom: 10px; /* Mantuve el margen inferior */
+        }
+
+        .metodo-de-solicitud strong {
+            color: #000080; /* Azul marino para el texto en negrita */
+            margin-bottom: 5px; /* Reduje el margen inferior para una separación más compacta */
+        }
+
+        .parametros-post {
+            background-color: #f5f5f5; /* Cambié el fondo a un gris más claro */
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .parametros-post h2 {
+            color: #006400; /* Verde oscuro para el título principal */
+            margin-bottom: 15px; /* Aumenté el margen inferior para mayor separación */
+        }
+
+        .parametros-post p {
+            color: #333; /* Negro para los párrafos */
+            margin-bottom: 10px; /* Mantuve el margen inferior */
+        }
+
+        .parametros-post strong {
+            color: #8b0000; /* Rojo oscuro para el texto en negrita */
+            margin-bottom: 5px; /* Reduje el margen inferior para una separación más compacta */
+        }
+
+        .parametros-get {
+            background-color: #f9f1f5; /* Cambié el fondo a un tono rosa claro */
+            border: 1px solid #e0bbcf;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .parametros-get h2 {
+            color: #8e0038; /* Borgoña oscuro para el título principal */
+            margin-bottom: 15px; /* Aumenté el margen inferior para mayor separación */
+        }
+
+        .parametros-get p {
+            color: #555; /* Gris oscuro para los párrafos */
+            margin-bottom: 10px; /* Mantuve el margen inferior */
+        }
+
+        .parametros-get strong {
+            color: #ff0077; /* Rosa para el texto en negrita */
+            margin-bottom: 5px; /* Reduje el margen inferior para una separación más compacta */
+        }
+
+        .cabeceras-de-solicitud {
+            background-color: #f4f4f4; /* Cambié el fondo a un gris más claro */
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cabeceras-de-solicitud h2 {
+            color: #1a2e5c; /* Azul oscuro para el título principal */
+            margin-bottom: 15px; /* Aumenté el margen inferior para mayor separación */
+        }
+
+        .cabeceras-de-solicitud p {
+            color: #4d4d4d; /* Gris para los párrafos */
+            margin-bottom: 10px; /* Mantuve el margen inferior */
+        }
+
+        .cabeceras-de-solicitud strong {
+            color: #ff7f00; /* Naranja para el texto en negrita */
+            margin-bottom: 5px; /* Reduje el margen inferior para una separación más compacta */
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <h1> WELCOME TO MY VARIABLE DEPLOY VIEWER ON DJANGO</h1>
+    <!-- Información de la solicitud -->    
+    <!-- Sección para visualizar información del parámetro cuando no es un HttpRequest -->
+    <div class="info-section">
+        <h2>Detalles del Parámetro</h2>
+        <div>
+            <p>
+                <strong>Tipo:</strong> {{ type }}
+            </p>
+            <p>
+                <strong>Valor:</strong> {{ value }}
+            </p>
+        </div>
+    </div>
+</body>
+</html>

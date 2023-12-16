@@ -11,7 +11,7 @@ class CreateContextoContratacionTable extends Migration
             // $table->id();            
             // $table->timestamps();            
             $table->text('contexto');            
-            $table->json('cualidades_positivas')->nullable();
+            $table->json('cualidades')->nullable();
         });
     }
 

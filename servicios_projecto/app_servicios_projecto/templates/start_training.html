@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Start Training</title>
+</head>
+<body>
+    <h2>Ingrese la entrevista:</h2>
+    <form method="post" action="{% url 'acces_model' %}">
+        {% csrf_token %}
+        
+        <label for="{{ form.dropdown.id_for_label }}">Selecciona una opción:</label>
+        {{ form.dropdown }}
+
+        <br>
+
+        <label for="{{ form.interview_text.id_for_label }}">Texto de la entrevista:</label>
+        {{ form.interview_text }}
+
+        <br>
+
+        <label for="{{ form.interview_name.id_for_label }}">Nombre de la entrevista:</label>
+        {{ form.interview_name }}
+
+        <br>
+
+        <button type="submit">Enviar entrevista</button>
+    </form>
+</body>
+</html>
