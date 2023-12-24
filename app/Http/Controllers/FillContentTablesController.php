@@ -10,6 +10,41 @@ class FillContentTablesController extends Controller
         $table = str_replace('fill_', '', $original_string);        
 
         switch ($tipo_tabla) {
+            case 'fill_preguntas':                   
+                DB::beginTransaction();
+                try {
+                    $idExists = DB::table($table)->where('id', 1)->exists();
+                    if (!$idExists) {
+                        $consulta1 = "
+                            INSERT INTO " . $table . " (id, created_at, updated_at, type, valor)
+                            VALUES                                                                                    
+                            (1, NOW(), NOW(), 'Tipo1', 'Valor1'));                
+                        ";                    
+                        DB::statement($consulta1);
+                    } 
+                    $consulta = "
+                        INSERT INTO preguntas (created_at, updated_at, type, valor)
+                        VALUES                        
+                        (NOW(), NOW(), 'COMPETENCIAS LABORALES', '¿Cómo describirías tu experiencia durante el proceso de registro en la recepción?'),
+                        (NOW(), NOW(), 'Tipo3', 'Valor3'),
+                        (NOW(), NOW(), 'Tipo4', 'Valor4'),
+                        (NOW(), NOW(), 'Tipo5', 'Valor5'),
+                        (NOW(), NOW(), 'Tipo6', 'Valor6'),
+                        (NOW(), NOW(), 'Tipo7', 'Valor7'),
+                        (NOW(), NOW(), 'Tipo8', 'Valor8'),
+                        (NOW(), NOW(), 'Tipo9', 'Valor9'),
+                        (NOW(), NOW(), 'Tipo10', 'Valor10');
+                    ";                                                 
+                    DB::statement($consulta);
+
+                    DB::commit();
+
+                    return "Consultas ejecutadas correctamente";
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    return "Error: " . $e->getMessage();
+                }
+                break;
             case 'fill_escala_atributo':
                 DB::beginTransaction();                
                 $atributos = [

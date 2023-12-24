@@ -84,16 +84,19 @@
                         @enderror                            
                     @endif
                 @endforeach
-                <button type="submit" class="btn btn-primary btn-user btn-block">
-                    {{ __('Registrar cuenta') }}
+                <button type="submit" class="btn btn-primary btn-user btn-block">                    
+                    {{ __('Registrar') . ' ' . ucfirst($name) }}
+
                 </button>
                 <hr>
-                <a href="index.html" class="btn btn-google btn-user btn-block">
-                    <i class="fab fa-google fa-fw"></i> Registrarse con Google
-                </a>
-                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                    <i class="fab fa-facebook-f fa-fw"></i> Registrarse con Facebook
-                </a>                    
+                @if ($register_buttons == true)
+                    <a href="index.html" class="btn btn-google btn-user btn-block">
+                        <i class="fab fa-google fa-fw"></i> Registrarse con Google
+                    </a>
+                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                        <i class="fab fa-facebook-f fa-fw"></i> Registrarse con Facebook
+                    </a>                    
+                @endif
             </form>  
             <div class="text-center">
                 <a class="small" href="forgot-password.html">¿Olvidaste tu contraseña?</a>

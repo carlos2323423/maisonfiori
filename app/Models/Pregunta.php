@@ -12,4 +12,8 @@ class Pregunta extends Model
         'type',
         'valor',
     ];
+    public function areaable()
+    {
+        return $this->morphTo('areaable');
+    }
 }

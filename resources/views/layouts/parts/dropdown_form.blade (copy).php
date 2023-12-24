@@ -34,7 +34,16 @@
                             @break
                         @default
                             <a class="dropdown-item" href="#" onclick="ButtonDropdownValorSee('{{ $data }}', '{{ $space }}'); agregarOpcionesDropdown('{{ json_encode([]) }}', '{{ $data }}', '{{ $dropdown2 }}');">{{ ucfirst($data) }}</a>
-                    @endswitch                      
+                    @endswitch
+                    @if($space == "type")
+                        @if($data == "FACTORES DE DESEMPEÑO")
+                            <a class="dropdown-item" href="#" onclick="ButtonDropdownValorSee('{{ $data }}', '{{ $space }}'); agregarOpcionesDropdown('{{ json_encode($factoresdesempeno_names) }}', '{{ $data }}', '{{ $dropdown2 }}');">{{ ucfirst($data) }}</a>
+                        @elseif ($data == "COMPETENCIAS LABORALES")
+                            <a class="dropdown-item" href="#" onclick="ButtonDropdownValorSee('{{ $data }}', '{{ $space }}'); agregarOpcionesDropdown('{{ json_encode($competencias_names) }}', '{{ $data }}', '{{ $dropdown2 }}');">{{ ucfirst($data) }}</a>                        
+                        @enderror  
+                    @else
+                        <a class="dropdown-item" href="#" onclick="ButtonDropdownValorSee('{{ $data }}', '{{ $space }}')">{{ ucfirst($data) }}</a>
+                    @enderror    
                 @endforeach                
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" onclick="ButtonDropdownValorSee('Otros', '{{ $space }}')">Otros</a>

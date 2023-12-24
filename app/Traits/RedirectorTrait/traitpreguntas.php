@@ -1,10 +1,18 @@
 <?php
     use App\Models\Pregunta;
+    use App\Models\Competencia;
+    use App\Models\FactoresDesempeno;
     $spaces = $this->getTableColumns('preguntas', false);
     // dd($spaces);
     $spacesTotal = $this->getTableColumns('preguntas', true);
     // dd($spaces);
-    $list = Pregunta::all();      
+    $register_buttons = false;
+    $list = Pregunta::all();    
+    $competencias = Competencia::all();
+    $factoresdesempeno_names = FactoresDesempeno::all();
+    $competencias_names = Competencia::pluck('name')->toArray();
+    $factoresdesempeno_names = FactoresDesempeno::pluck('name')->toArray();
+    // dd($competencias);
     $lelementos = $this->page_elements('preguntas');
     $route_name = 'preguntas';
     $name = 'pregunta';
@@ -38,8 +46,11 @@
         'typees' => $preguntas_type = array(
             'FACTORES DE DESEMPEÑO',
             'COMPETENCIAS LABORALES',                
-        ),        
-    ];        
+        ),
+        'areas_de_evaluaciones' => [],
+    ];
+    $dropdown2 = 'areas_de_evaluacion';
+    // dd($list_options); 
     // view()->share('spaces', $spaces);        
         
     $viewvariables = [
@@ -58,6 +69,10 @@
         'imageuser' => $imageuser,
         'Modal_target' => $Modal_target,
         'form_data_toggle_list' => $form_data_toggle_list,
+        'register_buttons' => $register_buttons,
+        'competencias_names' => $competencias_names,
+        'factoresdesempeno_names' => $factoresdesempeno_names,
+        'dropdown2' => $dropdown2,        
     ];
     return $viewvariables;
     

@@ -4,6 +4,7 @@
     // dd($spaces);
     $spacesTotal = $this->getTableColumns('empleados', true);
     // dd($spaces);
+    $register_buttons = false;
     $list = Empleado::all();      
     $lelementos = $this->page_elements('empleados');
     $route_name = 'empleado';
@@ -65,7 +66,7 @@
         'imageuser' => $imageuser,
         'Modal_target' => $Modal_target,
         'form_data_toggle_list' => $form_data_toggle_list,
-        
+        'register_buttons' => $register_buttons,
     ];
     return $viewvariables;
     

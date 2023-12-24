@@ -44,8 +44,9 @@ class StoreController extends Controller
                 $redir = 'usuarios';
                 break;
             case 'preguntas_registersent':
+                // dd($request->all());
                 $modeTable = new Pregunta;
-                $validator = ValidationHelper::validator('pregunta', $request->all());
+                $validator = ValidationHelper::validator('pregunta', $request->all(), true, $request, false);
                 $viewvariables = $this->traitpreguntas();
                 $redir = 'preguntas';
                 break;

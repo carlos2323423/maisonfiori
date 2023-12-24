@@ -14,7 +14,14 @@
     $empleado = Empleado::where('firstname', 'Ana')
                     ->where('lastname', 'García')
                     ->first();
-    $empleadosuper = $empleado->superior_id->firstname;
+    $superiorId = $empleado->superior_id;
+
+    if ($superiorId) {
+        $superior = Empleado::find($superiorId);
+        $empleadosuper = $superior->firstname;
+    } else {
+        $empleadosuper = null; // O cualquier valor por defecto que desees asignar si no hay superior
+    }
     // dd($empleadosuper);
     $FactoresDesempeno = FactoresDesempeno::all();
     $escalacalificacion = EscalaCalificacion::all();    

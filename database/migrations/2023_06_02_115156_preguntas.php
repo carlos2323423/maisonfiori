@@ -11,6 +11,7 @@ class Preguntas extends Migration
             // $table->id();
             // $table->timestamps();
             $table->string('type', 255);
+            $table->string('areas_de_evaluacion', 255);
             $table->string('valor', 255);
         });
     }
