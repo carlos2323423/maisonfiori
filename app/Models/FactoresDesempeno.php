@@ -20,4 +20,9 @@ class FactoresDesempeno extends Model
     protected $casts = [
         'state' => 'boolean',
     ];
+    public function preguntas()
+    {
+        return $this->morphMany('App\Models\Pregunta', 'areas_de_evaluacion');
+    }
+
 }        

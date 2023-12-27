@@ -19,4 +19,11 @@ class Competencia extends Model
     protected $casts = [
         'state' => 'boolean',
     ];
+
+    // Definición de la relación polimórfica inversa
+    public function preguntas()
+    {
+        return $this->morphMany('App\Models\Pregunta', 'areas_de_evaluacion');
+    }
+
 }

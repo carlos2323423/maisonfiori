@@ -11,9 +11,10 @@ class Pregunta extends Model
     protected $fillable = [                                
         'type',
         'valor',
-    ];
-    public function areaable()
+    ];    
+    public function areas_de_evaluacion()
     {
-        return $this->morphTo('areaable');
+        return $this->morphTo('areas_de_evaluacion');
     }
+
 }

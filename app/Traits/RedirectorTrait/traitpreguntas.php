@@ -12,6 +12,7 @@
     $factoresdesempeno_names = FactoresDesempeno::all();
     $competencias_names = Competencia::pluck('name')->toArray();
     $factoresdesempeno_names = FactoresDesempeno::pluck('name')->toArray();
+    // dd($factoresdesempeno_names);
     // dd($competencias);
     $lelementos = $this->page_elements('preguntas');
     $route_name = 'preguntas';
@@ -47,7 +48,8 @@
             'FACTORES DE DESEMPEÑO',
             'COMPETENCIAS LABORALES',                
         ),
-        'areas_de_evaluaciones' => [],
+        // 'areas_de_evaluaciones' => [],
+        'areaable_typees' => [],        
     ];
     $dropdown2 = 'areas_de_evaluacion';
     // dd($list_options); 
