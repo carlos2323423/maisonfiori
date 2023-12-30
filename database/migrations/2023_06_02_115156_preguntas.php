@@ -9,10 +9,7 @@ class Preguntas extends Migration
     {
         Schema::table('preguntas', function (Blueprint $table) {
             // $table->id();
-            // $table->timestamps();
-            $table->string('type', 255);            
-            // $table->unsignedBigInteger('areas_de_evaluacion_id')->nullable();
-            // $table->string('areas_de_evaluacion_type')->nullable();
+            // $table->timestamps();                        
             $table->morphs('areas_de_evaluacion');
             $table->string('valor', 255);
         });

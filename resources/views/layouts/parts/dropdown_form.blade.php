@@ -14,7 +14,7 @@
             <div class="dropdown-menu" aria-labelledby="ListModalDropdown_{{ $space }}" id="dropdown-menu_{{ $space }}">            
                 @foreach ($list_options[$space.'es'] as $data)
                     @switch($space)
-                        @case('type')
+                        @case('areas_de_evaluacion_type')
                             @php
                                 $options = '';
                                 switch ($data) {
@@ -30,6 +30,16 @@
                                         break;
                                 }
                             @endphp
+                            <option value="opcion1">Opción 1</option>
+                            <option value="opcion2">Opción 2</option>
+                            <option value="opcion3">Opción 3</option>
+                            <select id="myDropdown" class="custom-select form-control">
+                                <option value="opcion1">Opción 1</option>
+                                <option value="opcion2">Opción 2</option>
+                                <option value="opcion3">Opción 3</option>
+                                <!-- Agregar más opciones según sea necesario -->
+                            </select>
+
                             <a class="dropdown-item" href="#" onclick="ButtonDropdownValorSee('{{ $data }}', '{{ $space }}'); agregarOpcionesDropdown('{{ $options }}', '{{ $data }}', '{{ $dropdown2 }}');">{{ ucfirst($data) }}</a>
                             @break
                         @default

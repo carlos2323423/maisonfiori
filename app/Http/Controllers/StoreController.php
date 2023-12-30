@@ -45,8 +45,9 @@ class StoreController extends Controller
                 break;
             case 'preguntas_registersent':
                 // dd($request->all());
+                $columns = $this->getTableColumns('preguntas', false);
                 $modeTable = new Pregunta;
-                $validator = ValidationHelper::validator('pregunta', $request->all(), true, $request, false);
+                $validator = ValidationHelper::validator('pregunta', $request->all(), true, $request, true, $columns);
                 $viewvariables = $this->traitpreguntas();
                 $redir = 'preguntas';
                 break;
@@ -78,8 +79,9 @@ class StoreController extends Controller
                 break;
         }
         if (isset($validator)) {
-            if ($validator->fails()) {
-                dd('hola perri');
+            if ($validator->fails()) {                         
+                $errors = $validator->errors()->all();
+                dd($errors);
                 return redirect()->back()->withErrors($validator)->withInput();
             }
         } else {

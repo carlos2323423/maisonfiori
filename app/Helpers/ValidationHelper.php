@@ -10,6 +10,21 @@ use Illuminate\Support\Facades\DB;
 
 class ValidationHelper
 {  
+  protected $table;
+  protected $data;
+  protected $unique;
+  protected $request;
+  protected $enfoque;
+  protected $columns;
+  public function __construct(string $tipo_tabla, array $data, $unique, $request, $enfoque, $columns)
+  {
+    $this->table = $tipo_tabla;
+    $this->data = $data;
+    $this->unique = $unique;
+    $this->request = $request;
+    $this->enfoque = $enfoque;
+    $this->columns = $columns;      
+  }
 
   private static function handleColumnRules($tableName, $column, &$rules)
   {
@@ -271,13 +286,15 @@ class ValidationHelper
                 $customRules = Validator::make($data, $rules, $messages);
                 break;
             case 'pregunta':
-                $customRules = Validator::make($data, [
-                    'type' => ['required', 'string', 'max:255'],
-                    'valor' => ['required', 'string', 'max:255'],
-                ], [
-                    'type.required' => 'El campo tipo es requerido',
-                    'valor.required' => 'El campo valor es requerido',
-                ]);
+              dd($rules);
+              $customRules = Validator::make($data, $rules, $messages);
+                // $customRules = Validator::make($data, [
+                //     'type' => ['required', 'string', 'max:255'],
+                //     'valor' => ['required', 'string', 'max:255'],
+                // ], [
+                //     'type.required' => 'El campo tipo es requerido',
+                //     'valor.required' => 'El campo valor es requerido',
+                // ]);
                 break;
             default:
                 dd("Validator Helper invalid table option");
@@ -288,7 +305,7 @@ class ValidationHelper
     }
     
 
-  public static function validator(string $tipo_tabla, array $data, $unique, $request, $enfoque)
+  public static function validator(string $tipo_tabla, array $data, $unique, $request, $enfoque, $columns)
   {        
     return self::rules($tipo_tabla, $data, $unique, $request, $enfoque);        
   }    

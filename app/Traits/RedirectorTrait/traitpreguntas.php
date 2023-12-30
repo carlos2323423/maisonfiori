@@ -44,14 +44,14 @@
             'masculino',
             'femenino',                
         ),
-        'typees' => $preguntas_type = array(
+        'areas_de_evaluacion_typees' => $preguntas_type = array(
             'FACTORES DE DESEMPEÑO',
             'COMPETENCIAS LABORALES',                
         ),
         // 'areas_de_evaluaciones' => [],
-        'areaable_typees' => [],        
+        'areas_de_evaluacion_ides' => [],        
     ];
-    $dropdown2 = 'areas_de_evaluacion';
+    $dropdown2 = 'areas_de_evaluacion_id';
     // dd($list_options); 
     // view()->share('spaces', $spaces);        
         
