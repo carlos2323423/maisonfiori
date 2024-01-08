@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\MainparentController;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 //START MODELOS
 use App\Models\Empleado;
 use App\Models\User;
 use App\Models\Pregunta;
 use App\Models\QrGenerator;
+use App\Models\FactoresDesempeno;
 //END MODELOS
 //START TRAITS
 use App\Traits\CrudmodalTrait;
 use App\Traits\RedirectorTrait;
 //END TRAITS
+use Illuminate\Validation\Validator;
 use App\Helpers\ValidationHelper;
 // START QR
 // use BaconQrCode\Encoder\QrCode;            
@@ -25,6 +28,16 @@ class StoreController extends Controller
     use CrudmodalTrait;
     use RedirectorTrait;
     
+    public function obtenerIdPorNombre($nombre, $modelo)
+    {
+        try {
+            $valor = $modelo::where('name', $nombre)->firstOrFail();
+            $id = $valor->id;
+            return $id;
+        } catch (ModelNotFoundException $e) {
+            throw new \Exception("No se encontró ninguna fila con el nombre '$nombre'");
+        }
+    }
     public function store(Request $request, $tipo_tabla)
     {        
         $modeTable = '';
@@ -43,11 +56,24 @@ class StoreController extends Controller
                 $viewvariables = $this->traitusuarios();
                 $redir = 'usuarios';
                 break;
-            case 'preguntas_registersent':
+            case 'preguntas_registersent':                
                 // dd($request->all());
                 $columns = $this->getTableColumns('preguntas', false);
+                $columns = array_values($columns);
+                // dd($columns);
                 $modeTable = new Pregunta;
-                $validator = ValidationHelper::validator('pregunta', $request->all(), true, $request, true, $columns);
+                // $validator = ValidationHelper::validator('pregunta', $request->all(), true, $request, true, $columns);
+                $table = 'preguntas';                                                
+                $request->merge(['areas_de_evaluacion_id' => self::obtenerIdPorNombre($request->input('areas_de_evaluacion_id'), new FactoresDesempeno)]);                
+                $data = $request->all();
+                // dd($data);
+                $unique = true;                
+                $enfoque = true;                
+                $validator = new ValidationHelper($table, $data, $unique, $request, $enfoque);
+                $validator = $validator->validator();
+                // dd($validator);
+                // llamdo estatico de function
+                // $validator = ValidationHelper::validator();
                 $viewvariables = $this->traitpreguntas();
                 $redir = 'preguntas';
                 break;
