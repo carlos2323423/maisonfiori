@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 trait RedirectorTrait
 {
+    public function remove_routes($routes_filled, $urlsByMethod, $method)
+    {
+        return require 'RedirectorTrait/trait_remove_routes.php';        
+    }
+    public function get_routes() {
+        return require 'RedirectorTrait/trait_get_routes.php';
+    }
     public function page_elements(string $page) {
         return require 'RedirectorTrait/page_elements.blade.php';
     }

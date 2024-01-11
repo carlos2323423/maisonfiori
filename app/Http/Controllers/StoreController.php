@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Pregunta;
 use App\Models\QrGenerator;
 use App\Models\FactoresDesempeno;
+use App\Models\Competencia;
 //END MODELOS
 //START TRAITS
 use App\Traits\CrudmodalTrait;
@@ -55,28 +56,30 @@ class StoreController extends Controller
                 $validator = ValidationHelper::validator('usuario', $request->all(), true, $request);
                 $viewvariables = $this->traitusuarios();
                 $redir = 'usuarios';
-                break;
-            case 'preguntas_registersent':                
-                // dd($request->all());
-                $columns = $this->getTableColumns('preguntas', false);
-                $columns = array_values($columns);
-                // dd($columns);
+                break;            
+            case 'preguntas_registersent':
                 $modeTable = new Pregunta;
-                // $validator = ValidationHelper::validator('pregunta', $request->all(), true, $request, true, $columns);
-                $table = 'preguntas';                                                
-                $request->merge(['areas_de_evaluacion_id' => self::obtenerIdPorNombre($request->input('areas_de_evaluacion_id'), new FactoresDesempeno)]);                
+                $table = 'preguntas';
+                $unique = true;
+                $enfoque = true;
+                switch ($request->input('areas_de_evaluacion_type')) {
+                    case 'FACTORES DE DESEMPEÑO':
+                        $request->merge(['areas_de_evaluacion_id' => self::obtenerIdPorNombre($request->input('areas_de_evaluacion_id'), new FactoresDesempeno)]);
+                        break;
+                    case 'COMPETENCIAS LABORALES';
+                        $request->merge(['areas_de_evaluacion_id' => self::obtenerIdPorNombre($request->input('areas_de_evaluacion_id'), new Competencia)]);
+                        break;
+                    default:
+                        dd('el valor de la lista principal no coincide con nimgun valor conocido');
+                        break;
+                }
                 $data = $request->all();
-                // dd($data);
-                $unique = true;                
-                $enfoque = true;                
-                $validator = new ValidationHelper($table, $data, $unique, $request, $enfoque);
-                $validator = $validator->validator();
-                // dd($validator);
-                // llamdo estatico de function
-                // $validator = ValidationHelper::validator();
+                $validator = (new ValidationHelper($table, $data, $unique, $request, $enfoque))->validator();
+
                 $viewvariables = $this->traitpreguntas();
                 $redir = 'preguntas';
                 break;
+
             case 'qrgenerator_registersent':
                 $modeTable = new QrGenerator;
                 $qrCode = new QrCode($request->qr_code_data);  

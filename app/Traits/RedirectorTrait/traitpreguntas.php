@@ -2,6 +2,8 @@
     use App\Models\Pregunta;
     use App\Models\Competencia;
     use App\Models\FactoresDesempeno;
+    $routes = $this->get_routes();
+    // dd($routes);
     $spaces = $this->getTableColumns('preguntas', false);
     // dd($spaces);
     $spacesTotal = $this->getTableColumns('preguntas', true);
@@ -74,7 +76,8 @@
         'register_buttons' => $register_buttons,
         'competencias_names' => $competencias_names,
         'factoresdesempeno_names' => $factoresdesempeno_names,
-        'dropdown2' => $dropdown2,        
+        'dropdown2' => $dropdown2,
+        'routes' => $routes,
     ];
     return $viewvariables;
     

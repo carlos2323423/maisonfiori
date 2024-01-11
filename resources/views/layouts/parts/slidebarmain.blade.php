@@ -85,7 +85,11 @@
             <a class="collapse-item" href="http://127.0.0.1:8000/cuestionarios">Cuestionarios</a>
             <a class="collapse-item" href="http://127.0.0.1:8000/preguntas">Preguntas</a>
             <a class="collapse-item" href="http://127.0.0.1:8000/hoteles">Hoteles</a>
-            <a class="collapse-item" href="http://127.0.0.1:8000/clientes">Clientes</a>
+            <a class="collapse-item" href="http://127.0.0.1:8000/clientes">Clientes</a>           
+            @foreach ($routes['GET'] as $route)
+                <a class="collapse-item" href="{{ $route['url'] }}">{{ $route['lastSegment'] }}</a>
+            @endforeach
+
         </div>
     </div>
 </li>
