@@ -36,30 +36,34 @@ foreach ($groupedRoutes as $method => $routes) {
         ];
     }, $routes);
 }
-$routes_filled = [
-    'fill_empleados',
-    'fill_hotels',
-    'fill_scaleniveles',
-    'fill_areas',      
-    'fill_graphics',
-    'fill_qrcode',   
-    'fill_competencias',
-    'fill_niveles',
-    'fill_cargos',
-    'fill_contrataciones',
-    'fill_contexto_contratacion',
-    'fill_escala_atributo',
-    'fill_escala_calificacions',
-    'fill_factoresdesempeno',
-];
+$filteredRoutes = $urlsByMethod;
+if ($Fgeneral) {    
+    $routes_filled = [
+        'clear',
+        'health-check',
+        '{script}',
+        '{style}',
+        'csrf-cookie',
+        'fill_empleados',
+        'fill_hotels',
+        'fill_scaleniveles',
+        'fill_areas',      
+        'fill_graphics',
+        'fill_qrcode',   
+        'fill_competencias',
+        'fill_niveles',
+        'fill_cargos',
+        'fill_contrataciones',
+        'fill_contexto_contratacion',
+        'fill_escala_atributo',
+        'fill_escala_calificacions',
+        'fill_factoresdesempeno',
+    ];
+    $method = 'GET';
+    $filteredRoutes = $this->remove_routes($routes_filled, $urlsByMethod, $method);
 
-$filteredRoutes = array_filter($urlsByMethod['GET'], function ($route) use ($routes_filled) {
-    return !in_array($route['lastSegment'], $routes_filled);
-});
-
-// Puedes asignar el resultado filtrado a $routes['GET'] si deseas modificar el array original.
-$urlsByMethod['GET'] = $filteredRoutes;
-
+}
 // Ahora $routes['GET'] solo contiene elementos que no tienen los valores prohibidos en 'lastSegment'.
 // dd($urlsByMethod);
-return $urlsByMethod;
+// dd($filteredRoutes);
+return $filteredRoutes;

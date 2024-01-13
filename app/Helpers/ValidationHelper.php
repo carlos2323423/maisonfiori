@@ -326,7 +326,7 @@ class ValidationHelper
     $customRules = [];
     switch ($tipo_tabla) {
       case 'empleado':
-      case 'usuario':
+      case 'usuarios':
       case 'qr_codes':
         $customRules = Validator::make($data, $rules, $messages);
         break;

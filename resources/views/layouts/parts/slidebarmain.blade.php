@@ -80,12 +80,12 @@
             <a class="collapse-item" href="blank.html">Página en blanco</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Páginas Personalizadas:</h6>
-            <a class="collapse-item" href="http://127.0.0.1:8000/users">Usuarios</a>
+            <!-- <a class="collapse-item" href="http://127.0.0.1:8000/users">Usuarios</a>
             <a class="collapse-item" href="http://127.0.0.1:8000/empleados">Empleados</a>
             <a class="collapse-item" href="http://127.0.0.1:8000/cuestionarios">Cuestionarios</a>
             <a class="collapse-item" href="http://127.0.0.1:8000/preguntas">Preguntas</a>
             <a class="collapse-item" href="http://127.0.0.1:8000/hoteles">Hoteles</a>
-            <a class="collapse-item" href="http://127.0.0.1:8000/clientes">Clientes</a>           
+            <a class="collapse-item" href="http://127.0.0.1:8000/clientes">Clientes</a>            -->
             @foreach ($routes['GET'] as $route)
                 <a class="collapse-item" href="{{ $route['url'] }}">{{ $route['lastSegment'] }}</a>
             @endforeach

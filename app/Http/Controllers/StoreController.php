@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 //START MODELOS
 use App\Models\Empleado;
 use App\Models\User;
+use App\Models\Usuario;
 use App\Models\Pregunta;
 use App\Models\QrGenerator;
 use App\Models\FactoresDesempeno;
@@ -41,6 +42,7 @@ class StoreController extends Controller
     }
     public function store(Request $request, $tipo_tabla)
     {        
+        // dd($request->all());
         $modeTable = '';
         $redir = '';
         switch ($tipo_tabla) {
@@ -52,14 +54,31 @@ class StoreController extends Controller
                 $redir = 'empleados';
                 break;
             case 'usuario_registersent':
-                $modeTable = new User;
-                $validator = ValidationHelper::validator('usuario', $request->all(), true, $request);
+                $data = $this->configure_request_to_data($request);
+                // $data = $request->all();
+                if ($request->hasFile('foto')) {
+                    // dd('hola tengo foto');
+                    // dd($request->foto);
+                    $imagePath = $request->file('foto')->store('avatar_img', 'public');                    
+                    $data['foto'] = $imagePath;
+                    // dd($request->foto);
+                    // dd($request->all());
+                } else {
+                    $imagePath = null; // o cualquier otro valor predeterminado que desee usar
+                }        
+                $modeTable = new Usuario;
+                $table = 'usuarios';                                
+                // dd($data);
+                $unique = true;
+                $enfoque = true;
+                // $validator = ValidationHelper::validator('usuario', $request->all(), true, $request);
+                $validator = (new ValidationHelper($table, $data, $unique, $request, $enfoque))->validator();
                 $viewvariables = $this->traitusuarios();
                 $redir = 'usuarios';
                 break;            
             case 'preguntas_registersent':
                 $modeTable = new Pregunta;
-                $table = 'preguntas';
+                $table = strstr($tipo_tabla, '_', true);                
                 $unique = true;
                 $enfoque = true;
                 switch ($request->input('areas_de_evaluacion_type')) {
@@ -124,7 +143,7 @@ class StoreController extends Controller
           dd('No EXISTE REDIR');
         }
         // END CONPROBACIONES
-        $this->storeTrait($request, $modeTable);
+        $this->storeTrait($data, $modeTable);
         // return view($redir, $viewvariables);
         return redirect($redir);
     }

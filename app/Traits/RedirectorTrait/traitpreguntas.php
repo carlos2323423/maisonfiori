@@ -2,7 +2,7 @@
     use App\Models\Pregunta;
     use App\Models\Competencia;
     use App\Models\FactoresDesempeno;
-    $routes = $this->get_routes();
+    $routes = $this->get_routes(true);
     // dd($routes);
     $spaces = $this->getTableColumns('preguntas', false);
     // dd($spaces);

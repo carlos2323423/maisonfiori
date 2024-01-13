@@ -11,7 +11,7 @@ trait RedirectorTrait
     {
         return require 'RedirectorTrait/trait_remove_routes.php';        
     }
-    public function get_routes() {
+    public function get_routes($Fgeneral) {
         return require 'RedirectorTrait/trait_get_routes.php';
     }
     public function page_elements(string $page) {

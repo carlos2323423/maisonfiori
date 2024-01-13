@@ -29,21 +29,12 @@
                                         $options = json_encode([]); // Otra opción por defecto
                                         break;
                                 }
-                            @endphp
-                            <option value="opcion1">Opción 1</option>
-                            <option value="opcion2">Opción 2</option>
-                            <option value="opcion3">Opción 3</option>
-                            <select id="myDropdown" class="custom-select form-control">
-                                <option value="opcion1">Opción 1</option>
-                                <option value="opcion2">Opción 2</option>
-                                <option value="opcion3">Opción 3</option>
-                                <!-- Agregar más opciones según sea necesario -->
-                            </select>
+                            @endphp                                                        
 
                             <a class="dropdown-item" href="#" onclick="ButtonDropdownValorSee('{{ $data }}', '{{ $space }}'); agregarOpcionesDropdown('{{ $options }}', '{{ $data }}', '{{ $dropdown2 }}');">{{ ucfirst($data) }}</a>
                             @break
-                        @default
-                            <a class="dropdown-item" href="#" onclick="ButtonDropdownValorSee('{{ $data }}', '{{ $space }}'); agregarOpcionesDropdown('{{ json_encode([]) }}', '{{ $data }}', '{{ $dropdown2 }}');">{{ ucfirst($data) }}</a>
+                        @default                            
+                            <a class="dropdown-item" href="#" onclick="ButtonDropdownValorSee('{{ $data }}', '{{ $space }}'); ">{{ ucfirst($data) }}</a>
                     @endswitch                      
                 @endforeach                
                 <div class="dropdown-divider"></div>

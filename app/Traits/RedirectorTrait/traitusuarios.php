@@ -1,9 +1,11 @@
 <?php    
     use App\Models\Usuario;
+    $routes = $this->get_routes(true);
     $spaces = $this->getTableColumns('usuarios', false);
     $spacesTotal = $this->getTableColumns('usuarios', true);        
     // selection query        
-    // dd($spaces);                
+    // dd($spaces);        
+    $register_buttons = false;        
     $list = Usuario::all();
     $lelementos = $this->page_elements('usuarios');
     $route_name = 'usuario';
@@ -52,5 +54,7 @@
         'imageuser' => $imageuser,
         'Modal_target' => $Modal_target,
         'form_data_toggle_list' => $form_data_toggle_list,
+        'register_buttons' => $register_buttons,
+        'routes' => $routes,
     ];
     return $viewvariables;

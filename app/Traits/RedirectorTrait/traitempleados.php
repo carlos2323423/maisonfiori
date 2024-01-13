@@ -1,5 +1,6 @@
 <?php
     use App\Models\Empleado;
+    $routes = $this->get_routes();
     $spaces = $this->getTableColumns('empleados', false);
     // dd($spaces);
     $spacesTotal = $this->getTableColumns('empleados', true);
@@ -67,6 +68,7 @@
         'Modal_target' => $Modal_target,
         'form_data_toggle_list' => $form_data_toggle_list,
         'register_buttons' => $register_buttons,
+        'routes' => $routes,
     ];
     return $viewvariables;
     
