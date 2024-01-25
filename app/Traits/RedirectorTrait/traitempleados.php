@@ -1,6 +1,6 @@
 <?php
     use App\Models\Empleado;
-    $routes = $this->get_routes();
+    $routes = $this->get_routes(true);
     $spaces = $this->getTableColumns('empleados', false);
     // dd($spaces);
     $spacesTotal = $this->getTableColumns('empleados', true);

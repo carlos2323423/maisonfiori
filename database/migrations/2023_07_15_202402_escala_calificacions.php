@@ -11,6 +11,7 @@ class EscalaCalificacions extends Migration
             // $table->id();
             // $table->timestamps();
             $table->string('name')->unique();            
+            $table->morphs('are_evaluacion');
             $table->foreignId('e1')->constrained('escala_atributo')->onDelete('cascade');
             $table->foreignId('e2')->constrained('escala_atributo')->onDelete('cascade');
             $table->foreignId('e3')->constrained('escala_atributo')->onDelete('cascade');

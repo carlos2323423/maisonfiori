@@ -39,6 +39,8 @@ foreach ($groupedRoutes as $method => $routes) {
 $filteredRoutes = $urlsByMethod;
 if ($Fgeneral) {    
     $routes_filled = [
+        '{filename}',
+        '0.0.0.0:8000',
         'clear',
         'health-check',
         '{script}',

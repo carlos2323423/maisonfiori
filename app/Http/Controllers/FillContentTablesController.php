@@ -104,35 +104,37 @@ class FillContentTablesController extends Controller
             
                     if (!$idExists) {
                         $consulta1 = "
-                            INSERT INTO " . $table . " (id, name, e1, e2, e3, e4, e5, created_at, updated_at)
+                            INSERT INTO " . $table . " (id, name, are_evaluacion_type, are_evaluacion_id, e1, e2, e3, e4, e5, created_at, updated_at)
                             VALUES
-                            (1, 'Nombre1', 1, 2, 3, 4, 5, NOW(), NOW());                    
+                            (1, 'Nombre1', 'TypeNro1', 1, 1, 2, 3, 4, 5, NOW(), NOW());                    
                         ";
                         DB::statement($consulta1);
                     }
             
                     $consultasCondicionales = [
-                        ['Escala Competencias', 1, 2, 3, 4, 5],
-                        ['Escala Factores Desempeno', 6, 7, 8, 9, 10],
-                        ['Nombre2', 1, 2, 3, 4, 5],
-                        ['Nombre3', 1, 2, 3, 4, 5],
-                        ['Nombre4', 1, 2, 3, 4, 5],
-                        ['Nombre5', 1, 2, 3, 4, 5],
-                        ['Nombre6', 1, 2, 3, 4, 5],
-                        ['Nombre7', 1, 2, 3, 4, 5],
-                        ['Nombre8', 1, 2, 3, 4, 5],
-                        ['Nombre9', 1, 2, 3, 4, 5],
-                        ['Nombre10', 1, 2, 3, 4, 5],                        
+                        // ['Escala Competencias', 1, 2, 3, 4, 5],
+                        // ['Escala Factores Desempeno', 6, 7, 8, 9, 10],                        
+                        ['Escala Competencias','Liderazgo', 11, 6, 7, 8, 9, 10],
+                        ['Escala Factores Desempeno','Controlar Procesos', 20, 1, 2, 3, 4, 5],
+                        ['Nombre2', 'TypeNro2', 1, 1, 2, 3, 4, 5],
+                        ['Nombre3', 'TypeNro3', 1, 1, 2, 3, 4, 5],
+                        ['Nombre4', 'TypeNro4', 1, 1, 2, 3, 4, 5],
+                        ['Nombre5', 'TypeNro5', 1, 1, 2, 3, 4, 5],
+                        ['Nombre6', 'TypeNro6', 1, 1, 2, 3, 4, 5],
+                        ['Nombre7', 'TypeNro7', 1, 1, 2, 3, 4, 5],
+                        ['Nombre8', 'TypeNro8', 1, 1, 2, 3, 4, 5],
+                        ['Nombre9', 'TypeNro9', 1, 1, 2, 3, 4, 5],
+                        ['Nombre10', 'TypeNro10', 1, 1, 2, 3, 4, 5],                        
                         // Agrega más consultas condicionales si es necesario
                     ];
             
                     foreach ($consultasCondicionales as $consultaCondicional) {
-                        list($name, $e1, $e2, $e3, $e4, $e5) = $consultaCondicional;
+                        list($name, $are_evaluacion_type, $are_evaluacion_id, $e1, $e2, $e3, $e4, $e5) = $consultaCondicional;
             
                         $consulta = "
-                            INSERT IGNORE INTO escala_calificacions (name, e1, e2, e3, e4, e5, created_at, updated_at)
+                            INSERT IGNORE INTO escala_calificacions (name, are_evaluacion_type, are_evaluacion_id, e1, e2, e3, e4, e5, created_at, updated_at)
                             VALUES                        
-                            ('$name', $e1, $e2, $e3, $e4, $e5, NOW(), NOW());
+                            ('$name', '$are_evaluacion_type', '$are_evaluacion_id', $e1, $e2, $e3, $e4, $e5, NOW(), NOW());
                         ";
             
                         DB::statement($consulta);
