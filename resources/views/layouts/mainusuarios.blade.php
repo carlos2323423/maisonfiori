@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title>SB Admin 2 - Tables</title>
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @yield('styles1')                  
     @yield('styles2')                  
 

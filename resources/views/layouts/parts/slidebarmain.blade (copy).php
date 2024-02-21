@@ -12,8 +12,6 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
-    <div id="app"></div>
-    <script src="{{ mix('js/app.js') }}"></script>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
